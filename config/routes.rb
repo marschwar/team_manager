@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :teams do
-    resources :players
+    resources :players, only: [:index]
     member do
       get 'select'
     end
   end
-  resources :players, only: [:index]
+  resources :players
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
