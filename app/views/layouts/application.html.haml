@@ -7,4 +7,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    = render 'layouts/navigation'
+    .container
+      .row
+        .col-lg-12.livescore__main
+          = bootstrap_flash
+          = yield

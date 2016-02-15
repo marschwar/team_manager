@@ -1,0 +1,20 @@
+%header.navbar.navbar-default.navbar-static-top{role: 'banner'}
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: '#team_manager_navbar'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand(href="/")
+        - if @current_team
+          = @current_team.name
+        - else
+          Team Manager
+
+    %nav.navbar-collapse.collapse{id: 'team_manager_navbar'}
+      %ul.nav.navbar-nav
+        %li= link_to t("navbar.teams"), teams_path
+        %li
+          %a{href: '/auth/facebook'}
+            = t('.login_with')
+            = image_tag 'social/24/facebook.png', title: 'Facebook', class: 'img-rounded'
