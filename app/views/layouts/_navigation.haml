@@ -1,7 +1,8 @@
-%header.navbar.navbar-default.navbar-static-top{role: 'banner'}
-  .container
+%nav.navbar.navbar-default
+  .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: '#team_manager_navbar'}}
+        %span.sr-only Menü
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
@@ -11,9 +12,17 @@
         - else
           Team Manager
 
-    %nav.navbar-collapse.collapse{id: 'team_manager_navbar'}
+    .collapse.navbar-collapse#team_manager_navbar
       %ul.nav.navbar-nav
-        %li= link_to t("navbar.teams"), teams_path
+        %li.dropdown
+          %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
+            Teams
+            %span.caret
+          %ul.dropdown-menu
+            - @all_teams.each do |team|
+              %li= link_to team.name, select_team_path(team)
+            %li.divider{role: 'separator'}
+            %li= link_to t("navbar.new_team"), new_team_path
         %li= link_to t("navbar.team.players"), players_path
         %li
           %a{href: '/auth/facebook'}

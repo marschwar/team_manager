@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
 
   def select
     session[:current_team_id] = @team.id
-    redirect_to teams_path
+    redirect_to team_path(@team)
   end
 
   # GET /teams/1

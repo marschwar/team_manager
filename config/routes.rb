@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   root 'players#index'
   
   resources :teams do
