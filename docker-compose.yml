@@ -1,0 +1,8 @@
+db:
+  image: postgres
+  ports:
+    - "5432"
+  environment:
+    POSTGRES_PASSWORD: "admin"
+    POSTGRES_USER: "admin"
+    PSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
