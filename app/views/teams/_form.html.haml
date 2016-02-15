@@ -1,0 +1,22 @@
+= form_for @team,:html => { :class => 'form-horizontal', multipart: true } do |f|
+  - if @team.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@team.errors.count, "error")} prohibited this team from being saved:"
+      %ul
+        - @team.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group{class: "#{'has-error' if @team.errors[:name].present?}"}
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'form-control', maxlength: 100
+  .form-group{class: "#{'has-error' if @team.errors[:year_from].present?}"}
+    = f.label :year_from, :class => 'control-label'
+    .controls
+      = f.number_field :year_from, :class => 'form-control', maxlength: 100
+  .form-group{class: "#{'has-error' if @team.errors[:year_until].present?}"}
+    = f.label :year_until, :class => 'control-label'
+    .controls
+      = f.number_field :year_until, :class => 'form-control', maxlength: 100
+  .actions
+    = f.submit 'Save'
