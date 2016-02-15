@@ -4,7 +4,8 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    team = Team.find params[:team_id] if params[:team_id]
+    @players = team ? Player.of_team(team) : Player.all
   end
 
   # GET /players/1
@@ -69,6 +70,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name)
+      params.require(:player).permit(:first_name, :last_name, :birthday)
     end
 end

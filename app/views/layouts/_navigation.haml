@@ -14,8 +14,7 @@
     %nav.navbar-collapse.collapse{id: 'team_manager_navbar'}
       %ul.nav.navbar-nav
         %li= link_to t("navbar.teams"), teams_path
-        - if @current_team
-          %li= link_to t("navbar.team.players"), team_players_path(@current_team)
+        %li= link_to t("navbar.team.players"), players_path
         %li
           %a{href: '/auth/facebook'}
             = t('.login_with')

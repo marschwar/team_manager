@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160215082704) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       null: false
-    t.integer  "year_from"
-    t.integer  "year_until"
+    t.integer  "year_from",  null: false
+    t.integer  "year_until", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

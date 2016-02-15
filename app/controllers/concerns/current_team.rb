@@ -20,25 +20,16 @@ private
     remember_team team 
   end
 
-
   def session_team
-    Team.find(session[:current_team_id]) if session[:current_team_id]
+    load_team session[:current_team_id]
   end
 
   def first_available
-    team = Team.first
-    session_team_id = team.id if team
-    team
+    Team.first
   end
 
   def cookie_team
-    id = cookies.signed[:current_team_id]
-    begin
-      team = Team.find(id) if id
-    rescue
-      logger.info "invalid id #{id} in cookie"
-    end
-    team
+    load_team cookies.signed[:current_team_id]
   end
 
   def remember_team(team)
@@ -52,5 +43,14 @@ private
 
   def session_team=(team)
     session[:current_team_id] = team.id if team
+  end
+
+  def load_team(id)
+    begin
+      team = Team.find(id) if id
+    rescue
+      logger.info "invalid id #{id} in cookie"
+    end    
+    team
   end
 end

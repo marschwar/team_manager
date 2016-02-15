@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'players#index'
+  
   resources :teams do
     resources :players, only: [:index]
     member do
