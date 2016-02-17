@@ -23,8 +23,6 @@
               %li= link_to team.name, select_team_path(team)
             %li.divider{role: 'separator'}
             %li= link_to t("navbar.new_team"), new_team_path
-        %li= link_to t("navbar.team.players"), players_path
-        %li
-          %a{href: '/auth/facebook'}
-            = t('.login_with')
-            = image_tag 'social/24/facebook.png', title: 'Facebook', class: 'img-rounded'
+        %li= link_to t("navbar.players"), players_path
+        - if @current_team
+          %li= link_to t("navbar.team.events"), team_events_path(@current_team)
