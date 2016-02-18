@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @event
+= link_to 'Show', team_event_path(@event.team, @event)
 \|
-= link_to 'Back', events_path
+= link_to 'Back', team_events_path(@event.team)

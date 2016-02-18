@@ -70,6 +70,9 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:first_name, :last_name, :birthday)
+      my_params = params.require(:player).permit(:first_name, :last_name, :birthday, :position, :team_id, :team_overwritten)
+      my_params[:team_id] = nil if my_params[:team_overwritten] == '0'
+      my_params.delete :team_overwritten
+      my_params
     end
 end

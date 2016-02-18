@@ -8,6 +8,10 @@ class Team < ActiveRecord::Base
 
 	scope :for_birthday, -> (date) { where('year_from <= ? and year_until >= ?', date.year, date.year) }
 
+	def self.any_with_birthday(birthday)
+		self.for_birthday(birthday).first if birthday
+	end
+
 	def first_day
 		Date.new year_from, 1, 1
 	end
@@ -16,4 +20,7 @@ class Team < ActiveRecord::Base
 		Date.new year_until, 12, 31
 	end
 
+	def players
+		@players ||= Player.of_team self
+	end
 end

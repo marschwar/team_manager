@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  resources :participations
   root 'players#index'
   
   resources :teams do
     resources :players, only: [:index]
     resources :events
-    resources :practices, controller: 'events', type: 'Practice'
+    resources :practices
     member do
       get 'select'
     end

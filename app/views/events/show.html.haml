@@ -10,6 +10,10 @@
   %b Event date:
   = @event.event_date
 
-= link_to 'Edit', edit_event_path(@event)
+%ul.list-group
+  - @participations.each do |participation|
+    %li.list-group-item{class: participation.participated ? 'list-group-item-success' : 'list-group-item-warning'}= participation.player.full_name
+
+= link_to 'Edit', edit_team_event_path(@event.team, @event)
 \|
-= link_to 'Back', events_path
+= link_to 'Back', team_events_path(@team)

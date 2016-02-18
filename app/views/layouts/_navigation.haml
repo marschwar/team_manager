@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand(href="/")
+      %a.navbar-brand{href: "#{@current_team ? team_players_path(@current_team) : teams_path}"}
         - if @current_team
           = @current_team.name
         - else
@@ -23,6 +23,6 @@
               %li= link_to team.name, select_team_path(team)
             %li.divider{role: 'separator'}
             %li= link_to t("navbar.new_team"), new_team_path
-        %li= link_to t("navbar.players"), players_path
         - if @current_team
-          %li= link_to t("navbar.team.events"), team_events_path(@current_team)
+          %li= link_to t("navbar.team.players"), team_players_path(@current_team)
+          %li= link_to t("navbar.team.practices"), team_practices_path(@current_team)

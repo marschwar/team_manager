@@ -1,2 +1,2 @@
-class Practice < ActiveRecord::Base
+class Practice < Event
 end

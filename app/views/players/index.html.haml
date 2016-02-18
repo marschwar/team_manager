@@ -1,18 +1,22 @@
 %h1 Listing players
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th Name
       %th First Name
-      %th
+      %th 
+      %th 
+      %th 
 
   %tbody
     - @players.each do |player|
       %tr
         %td= player.last_name
         %td= player.first_name
-        %td= player.actual_team.name
+        %td= player.birthday
+        %td= player.position
+        %td= player.year_class
         %td
           = link_to 'Show', player
           |

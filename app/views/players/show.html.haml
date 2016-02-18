@@ -2,7 +2,10 @@
 
 %p
   %b Name:
-  = @player.first_name
+  = @player.full_name
+%p
+  %b Team:
+  = @player.actual_team_name
 
 = link_to 'Edit', edit_player_path(@player)
 \|

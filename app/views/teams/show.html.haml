@@ -1,9 +1,7 @@
-%p#notice= notice
+%h2= @team.name
 
-%p
-  %b Name:
-  = @team.name
-
+= link_to 'Players', team_players_path(@team)
+\|
 = link_to 'Edit', edit_team_path(@team)
 \|
 = link_to 'Back', teams_path
