@@ -6,7 +6,26 @@
 %p
   %b Team:
   = @player.actual_team_name
+%p
+  %b Birthday:
+  = @player.birthday
 
+%h2= t('.contacts')
+- unless @player.contacts.empty?
+  %ul
+  - @player.contacts.each do |contact|
+    %li
+      = contact.email
+      = link_to 'Destroy',  [@player, contact], :method => :delete
+
+
+= form_for [@player, @contact], :html => { :class => 'form-horizontal' }  do |f|
+  .form-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'form-control', maxlength: 100
+  .actions
+    = f.submit t('.actions.add_contact'), class: 'btn btn-primary'
 = link_to 'Edit', edit_player_path(@player)
 \|
 = link_to 'Back', players_path

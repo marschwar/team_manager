@@ -25,3 +25,7 @@ en:
     team:
       players: Roster
       practices: Practice
+  players:
+    show:
+      actions:
+        add_contact: Add Contact

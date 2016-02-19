@@ -11,6 +11,7 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    @contact = Contact.new
   end
 
   # GET /players/new

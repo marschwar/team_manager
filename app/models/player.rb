@@ -4,6 +4,8 @@ class Player < ActiveRecord::Base
 	POSITIONS = OFFENSE_POSITIONS + DEFENSE_POSITIONS
 	YEAR_CLASSES = %w(Sr Jr So Fr)
 
+	has_many :contacts
+
 	scope :of_team, -> (team) { where('team_id = ? or (birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
 	scope :list, -> (ids) {where(id: ids).order([:first_name, :last_name])}
 
@@ -30,7 +32,8 @@ class Player < ActiveRecord::Base
 	# In Ermangelung eines besseren Names. Dies ist der Jahrgang
 	def year_class
 		if birthday
-			YEAR_CLASSES[birthday.year - actual_team.year_from ]
+			year_index = birthday.year - actual_team.year_from
+			YEAR_CLASSES[year_index] if year_index.between?(0, 3)
 		end
 	end
 
