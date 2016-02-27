@@ -38,6 +38,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml-rails'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'cancancan'
+
 group :development, :test do
 end
 
