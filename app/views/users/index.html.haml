@@ -1,0 +1,16 @@
+.container
+  %h1= t('.headline')
+  %p.muted-text= t('.subheadline')
+  - if flash[:notice].present?
+    .alert.alert-success= flash[:notice]
+  %ul.nav.nav-tabs
+    %li{class: "#{'active' if controller.action_name == 'guests'}"}= link_to t('.guests'), guests_users_path
+    %li{class: "#{'active' if controller.action_name == 'players'}"}= link_to t('.users'), players_users_path
+    %li{class: "#{'active' if controller.action_name == 'managers'}"}= link_to t('.managers'), managers_users_path
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= t('.name')
+        %th= t('.role')
+        %th= t('.actions')
+    =render partial: 'user_row', collection: @users

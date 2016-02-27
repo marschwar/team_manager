@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :participations
-  root 'players#index'
+  root 'startpage#show'
   
   resources :teams do
     resources :players, only: [:index]
@@ -18,6 +17,14 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#clear'
   # Omniauth success callback
   get '/auth/:provider/callback', to: 'sessions#create'
+
+  resources :users, only: [:index, :edit, :update] do
+    collection do
+      get :guests
+      get :players
+      get :managers
+    end    
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

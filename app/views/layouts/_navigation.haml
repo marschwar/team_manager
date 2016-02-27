@@ -1,32 +1,34 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: '#team_manager_navbar'}}
-        %span.sr-only Menü
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{href: "#{@current_team ? team_players_path(@current_team) : teams_path}"}
-        - if @current_team
-          = @current_team.name
-        - else
-          Team Manager
+- if can? :show, Team
+  %nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: '#team_manager_navbar'}}
+          %span.sr-only Menü
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{href: "#{@current_team ? team_players_path(@current_team) : teams_path}"}
+          - if @current_team
+            = @current_team.name
+          - else
+            Team Manager
 
-    .collapse.navbar-collapse#team_manager_navbar
-      %ul.nav.navbar-nav
-        %li.dropdown
-          %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
-            Teams
-            %span.caret
-          %ul.dropdown-menu
-            - @all_teams.each do |team|
-              %li= link_to team.name, select_team_path(team)
-            %li.divider{role: 'separator'}
-            %li= link_to t("navbar.new_team"), new_team_path
-        - if @current_team
-          %li= link_to t("navbar.team.players"), team_players_path(@current_team)
-          %li= link_to t("navbar.team.practices"), team_practices_path(@current_team)
-        - if @current_user
+      .collapse.navbar-collapse#team_manager_navbar
+        %ul.nav.navbar-nav
+          %li.dropdown
+            %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
+              Teams
+              %span.caret
+            %ul.dropdown-menu
+              - @all_teams.each do |team|
+                %li= link_to team.name, select_team_path(team)
+              %li.divider{role: 'separator'}
+              %li= link_to t("navbar.new_team"), new_team_path
+          - if @current_team
+            %li= link_to t("navbar.team.players"), team_players_path(@current_team)
+            %li= link_to t("navbar.team.practices"), team_practices_path(@current_team)
+          - if can? :index, User
+            %li= link_to t("navbar.users"), users_path
           %li.dropdown
             %a.dropdown-toggle{href: '#', 'data-toggle' => "dropdown"}
               = "#{@current_user.common_name}"
@@ -36,8 +38,3 @@
                 %a{href: "#{logout_path}"}
                   %span.glyphicon.glyphicon-log-out
                   = t('.logout')
-        - else
-          %li
-            %a{href: '/auth/facebook'}
-              = t('.login_with')
-              = image_tag 'social/24/facebook.png', title: 'Facebook', class: 'img-rounded'

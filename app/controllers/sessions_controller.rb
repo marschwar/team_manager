@@ -1,10 +1,7 @@
 class SessionsController < ApplicationController
-
+  
   def create
-
-    logger.info "Auth-Hash: #{auth_hash}"
     user = auth_service.handle_auth_success auth_hash
-    logger.info "User: #{user.try(:inspect)}"
     self.session_user_id = user.id
     self.remember_me = user.id
     redirect_to root_path

@@ -1,0 +1,7 @@
+%tr
+  %td= user_row.common_name
+  %td= user_row.role
+  %td
+    %a{href: "#{edit_user_path user_row.id}"}
+      %span.glyphicon.glyphicon-edit
+      = t('.edit')

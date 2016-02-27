@@ -18,9 +18,15 @@ private
       guest
     end
 
+    def player
+      guest
+    end
+
     def manager
       user
       can :manage, Team
+      can :manage, Player
+      can :manage, Event
     end
 
     def admin

@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   include TeamScoped
 
+  load_and_authorize_resource
+
   EVENT_TYPES = %w(Practice)
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]

@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  load_and_authorize_resource
+
   before_action :set_player, only: [:create, :destroy]
   before_action :set_contact, only: [:destroy]
 
