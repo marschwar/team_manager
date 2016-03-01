@@ -10,6 +10,7 @@ class AuthService
     info = auth_hash[:info]
     user.common_name = info[:name]
     user.email = info[:email]
+    user.role = 'guest'
 
     user.save!
 

@@ -1,0 +1,16 @@
+- if @user.id
+  %h2= t('.headline.edit', name: @user.common_name)
+  %p.text-muted= t('.subheadline.edit')
+- else
+  %h2= t('.headline.new')
+  %p.text-muted= t('.subheadline.new')
+- if @user.errors.present?
+  .alert.alert-danger
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li= msg
+= form_for @user do |f|
+  .form-group
+    = label_tag :role, t('.role.label')
+    = f.text_field :role, placeholder: t('.role.placeholder'), class: 'form-control'
+  = submit_tag t(".submit.#{@user.id ? 'edit' : 'new'}"), class: 'btn btn-default'
