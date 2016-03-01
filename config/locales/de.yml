@@ -25,6 +25,11 @@ de:
     team:
       players: Roster
       practices: Practice
+  startpage:
+    show:
+      headline: FPE Team Manager
+      subheadline: Melde dich mit deinem Facebook Account an und lass dich freischalten.
+      salutation: Moin %{name}, nach deiner Freischaltung gehts weiter!
   players:
     show:
       actions:

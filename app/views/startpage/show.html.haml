@@ -1,4 +1,11 @@
-%h1= t('.headline')
+%h1
+  = t('.headline')
+  %span.badge Beta
+- unless @current_user
+  %p.muted= t('.subheadline', name: @current_user.common_name)
 
-%a{href: '/auth/facebook'}
-  = image_tag 'social/128/facebook.jpg', title: 'Facebook', class: 'img-rounded'
+- if @current_user
+  %h2= t('.salutation', name: @current_user.common_name)
+- else
+  %a{href: '/auth/facebook'}
+    = image_tag 'social/128/facebook.jpg', title: 'Facebook', class: 'img-rounded'
