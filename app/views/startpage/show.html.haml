@@ -2,7 +2,7 @@
   = t('.headline')
   %span.badge Beta
 - unless @current_user
-  %p.muted= t('.subheadline', name: @current_user.common_name)
+  %p.muted= t('.subheadline')
 
 - if @current_user
   %h2= t('.salutation', name: @current_user.common_name)
