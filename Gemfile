@@ -42,6 +42,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancancan'
 
+# multi threaded webserver
+gem 'puma'
+gem 'lograge'
+
 group :development, :test do
 end
 

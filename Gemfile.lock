@@ -87,6 +87,10 @@ GEM
     json (1.8.3)
     jwt (1.5.1)
     libv8 (3.16.14.13)
+    lograge (0.3.6)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -114,6 +118,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.18.4)
+    puma (3.0.2)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -202,9 +207,11 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  lograge
   omniauth
   omniauth-facebook
   pg (~> 0.15)
+  puma
   quiet_assets
   rails (= 4.2.5.1)
   rails_12factor
