@@ -1,5 +1,6 @@
-%h1 New event
+%h1= t('.headline')
 
 = render 'form'
 
-= link_to 'Back', team_events_path(@current_team)
+%br
+= link_to 'Back', team_practices_path(@current_team)

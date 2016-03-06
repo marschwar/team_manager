@@ -17,7 +17,7 @@
     - @players.each_with_index do |player, idx|
       %tr
         %td= idx + 1
-        %td= player.last_name
+        %td= link_to player.last_name, player_path(player)
         %td= player.first_name
         %td= birthday_of(player)
         %td= player.position

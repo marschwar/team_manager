@@ -1,19 +1,16 @@
-%p#notice= notice
+%h1= t(".headline.#{@event.type.downcase}", date: format_date(@event.event_date))
+%p.text-muted= @event.name if @event.name
+.row
+  .col-sm-12
+    = link_to t('.actions.edit'), edit_team_event_path(@event.team, @event), class: 'btn btn-primary'
+%br
+.row
+  .col-sm-4
+    %ul.list-group
+      - @participations.each do |participation|
+        %li.list-group-item{class: participation.participated ? 'list-group-item-success' : 'list-group-item-warning'}= participation.player.full_name
 
-%p
-  %b Type:
-  = @event.type
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Event date:
-  = @event.event_date
-
-%ul.list-group
-  - @participations.each do |participation|
-    %li.list-group-item{class: participation.participated ? 'list-group-item-success' : 'list-group-item-warning'}= participation.player.full_name
-
-= link_to 'Edit', edit_team_event_path(@event.team, @event)
-\|
-= link_to 'Back', team_events_path(@team)
+.row
+  .col-sm-12
+    = link_to t('.actions.edit'), edit_team_event_path(@event.team, @event), class: 'btn btn-primary'
+    = link_to t('.actions.back'), team_practices_path(@team), class: 'btn btn-default'

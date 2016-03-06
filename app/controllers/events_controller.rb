@@ -18,18 +18,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @participations = @event.participations.sort { |one, other| one.player.full_name <=> other.player.full_name }
+    @participations = event_participations
   end
 
   # GET /events/new
   def new
     @event = Event.new(event_date: Time.now, type: @event_type)
-    @participations = @team.players.map { |p| Participation.new(player: p, event: @event) }
+    @participations = @team.players.sorted.map { |p| Participation.new(player: p, event: @event) }
   end
 
   # GET /events/1/edit
   def edit
-    @participations = @event.participations
+    @participations = event_participations
   end
 
   # POST /events
@@ -106,5 +106,9 @@ class EventsController < ApplicationController
 
     def participation_params
       params.require(:participation)
+    end
+
+    def event_participations
+      @event.participations.sort { |one, other| one.player.last_name <=> other.player.last_name }      
     end
 end

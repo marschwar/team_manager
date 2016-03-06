@@ -47,8 +47,23 @@ de:
       actions:
         upload: Importieren
     show:
+      contacts: Kontaktadressen
       actions:
         add_contact: Add Contact
+  events:
+    show:
+      headline:
+        practice: Training vom %{date}
+      actions:
+        edit: Teilnahme bearbeiten
+        back: Zurück zur Übersicht
+    index_practice:
+      headline: Trainingsbeteiligung %{name}
+      actions:
+        new: Neues Training
+    form:
+      actions:
+        save: Training speichern
   activerecord:
     models:
       player: Spieler

@@ -1,6 +1,6 @@
 module PlayersHelper
   def birthday_of(person)
-    I18n.localize person.birthday if person.birthday
+    format_date person.birthday
   end
 
   def year_class_element(player)

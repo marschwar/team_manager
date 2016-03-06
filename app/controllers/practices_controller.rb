@@ -25,8 +25,12 @@ private
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def event_params
+  def practice_params
     params.require(:practice).permit(:type, :name, :event_date, :participation)
+  end
+
+  def event_params
+    practice_params
   end
 
 end

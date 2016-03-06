@@ -1,13 +1,18 @@
-%h1= t('.header', team: @team.name)
+%h1= t('.headline', name: @team.name)
 
 - if @events 
+  = link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
+  %br
   %table.table.table-condensed
     %thead
       %tr
         %th
         %th
         - @events.each do |event|
-          %th.text-center= event.event_date.strftime('%m-%d')
+          %th.text-center
+            = event.event_date.strftime('%m-%d')
+            %a{href: "#{edit_team_event_path @team, event}"}
+              %span.glyphicon.glyphicon-edit
       %tr
         %th
         %th
@@ -26,4 +31,4 @@
 
 %br
 
-= link_to t('.new'), new_team_practice_path(@current_team)
+= link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
