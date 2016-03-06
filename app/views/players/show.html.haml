@@ -1,31 +1,31 @@
-%p#notice= notice
-
-%p
-  %b Name:
+%h1
   = @player.full_name
-%p
-  %b Team:
-  = @player.actual_team_name
-%p
-  %b Birthday:
-  = @player.birthday
+  = year_class_element(@player)
+%p.text-muted= @player.actual_team_name
+%dl
+  %dt= Player.human_attribute_name('birthday')
+  %dd= birthday_of(@player)
+  %dt= Player.human_attribute_name('position')
+  %dd= @player.position
 
-%h2= t('.contacts')
-- unless @player.contacts.empty?
-  %ul
-  - @player.contacts.each do |contact|
-    %li
-      = contact.email
-      = link_to 'Destroy',  [@player, contact], :method => :delete
-
-
-= form_for [@player, @contact], :html => { :class => 'form-horizontal' }  do |f|
+.panel.panel-default
+  .panel-heading= t('.contacts')
+  %ul.list-group
+    - @player.contacts.each do |contact|
+      %li.list-group-item
+        = contact.email
+        %a{href: "#{player_path @player}", class: 'pull-right', data: {method: :delete, confirm: 'Are you sure?'}}
+          %span.glyphicon.glyphicon-trash
+= form_for [@player, @contact], :html => { :class => 'form-inline' }  do |f|
   .form-group
-    = f.label :email, :class => 'control-label'
-    .controls
-      = f.text_field :email, :class => 'form-control', maxlength: 100
-  .actions
-    = f.submit t('.actions.add_contact'), class: 'btn btn-primary'
-= link_to 'Edit', edit_player_path(@player)
-\|
-= link_to 'Back', players_path
+    = f.label :email
+    = f.text_field :email, :class => 'form-control', maxlength: 100, size: 25
+  = f.submit t('.actions.add_contact'), class: 'btn btn-primary'
+
+%br
+.actions
+  = link_to t('.actions.edit'), edit_player_path(@player), class: 'btn btn-default'
+  - if @player.actual_team
+    = link_to t('actions.back'), team_players_path(@player.actual_team), class: 'btn btn-default'
+  - else
+    = link_to t('actions.back'), players_path, class: 'btn btn-default'

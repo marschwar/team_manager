@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  date:
+    formats:
+      default: "%d.%m.%Y"
   navbar:
     teams: Teams
     team:
@@ -31,6 +34,29 @@ de:
       subheadline: Melde dich mit deinem Facebook Account an und lass dich freischalten.
       salutation: Moin %{name}, nach deiner Freischaltung gehts weiter!
   players:
+    index:
+      headline: Alle Spieler
+      headline_team: Spieler der %{name}
+      upload:
+        headline: Spielerliste importieren
+        instructions_html: Anstatt alle Spieler einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nachname;Vorname;Geburtstag;Position;Email-Adresse1;Email-Adresse2</code>.<br />Wenn Daten nicht vorhanden sind, dann einfach leer lassen, also z.B. <code>Peter;;;OL;</code>
+        prompt: Team wählen
+        errors:
+          team_missing: Bitte wähle das Team aus
+          file_missing: Wähle die Datei die du importieren willst
+      actions:
+        upload: Importieren
     show:
       actions:
         add_contact: Add Contact
+  activerecord:
+    models:
+      player: Spieler
+    attributes:
+      player:
+        last_name: Nachname
+        first_name: Vorname
+        birthday: Geburtstag
+        position: Position
+        year_class: Jahrgang
+        team_overwritten: Team überschrieben

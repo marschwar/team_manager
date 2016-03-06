@@ -13,11 +13,11 @@ class Team < ActiveRecord::Base
 	end
 
 	def first_day
-		Date.new year_from, 1, 1
+		year_from ? Date.new(year_from, 1, 1) : Date.new(1900, 1, 1)
 	end
 
 	def last_day
-		Date.new year_until, 12, 31
+		year_until ? Date.new(year_until, 12, 31) : Date.new
 	end
 
 	def players

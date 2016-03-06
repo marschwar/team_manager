@@ -4,7 +4,7 @@ class PracticesController < EventsController
   def index
     @events = Event.eager_load(:participations).practices.for_team(@team).by_date.to_a
     player_ids = @events.map { |e| e.participations.map { |p| p.player_id }}.flatten.uniq
-    @players = Player.list(player_ids)
+    @players = Player.list(player_ids).sorted
     @participants = @events.map { |e| e.participations.where(participated: true).count }
 
     @practice_participation = @players.map do |player|

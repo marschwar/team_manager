@@ -7,14 +7,15 @@ class Player < ActiveRecord::Base
 	has_many :contacts
 
 	scope :of_team, -> (team) { where('team_id = ? or (birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
-	scope :list, -> (ids) {where(id: ids).order([:first_name, :last_name])}
+	scope :list, -> (ids) {where(id: ids)}
+	scope :sorted, -> {order([:last_name, :first_name])}
 
 	def team
 		Team.find team_id if team_id
 	end
 
 	def actual_team
-		team || Team.any_with_birthday(birthday) 
+		@actual_team ||= (team || Team.any_with_birthday(birthday))
 	end
 
 	def actual_team_name
@@ -31,7 +32,7 @@ class Player < ActiveRecord::Base
 
 	# In Ermangelung eines besseren Names. Dies ist der Jahrgang
 	def year_class
-		if birthday
+		if birthday && actual_team
 			year_index = birthday.year - actual_team.year_from
 			YEAR_CLASSES[year_index] if year_index.between?(0, 3)
 		end

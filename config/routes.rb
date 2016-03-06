@@ -9,9 +9,11 @@ Rails.application.routes.draw do
       get 'select'
     end
   end
+
   resources :players do
     resources :contacts, only: [:create, :destroy]
   end
+  post 'players/upload', controller: 'players', action: 'upload'
 
   resources :sessions, only: [:create]
   get '/logout', to: 'sessions#clear'

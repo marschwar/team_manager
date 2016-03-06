@@ -1,3 +1,23 @@
 // Place all the styles related to the players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$primary-color: #337ab7;
+$success-color: #5cb85c;
+$info-color: #5bc0de;
+$warning-color: #f0ad4e;
+
+.label {
+  &.label-sr {
+    background-color: $primary-color;
+  }
+  &.label-jr {
+    background-color: $info-color;
+  }
+  &.label-so {
+    background-color: $success-color;
+  }
+  &.label-fr {
+    background-color: $warning-color;
+  }
+}
