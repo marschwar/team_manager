@@ -6,11 +6,11 @@ class AuthService
     unless user
       user = User.new
       user.social_id = auth_hash[:uid]
+      user.role = 'guest'
     end
     info = auth_hash[:info]
     user.common_name = info[:name]
     user.email = info[:email]
-    user.role = 'guest'
 
     user.save!
 
