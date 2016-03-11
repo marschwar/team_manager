@@ -5,6 +5,7 @@ class Player < ActiveRecord::Base
 	YEAR_CLASSES = %w(Sr Jr So Fr)
 
 	has_many :contacts
+	has_many :rental_equipments
 
 	scope :of_team, -> (team) { where('team_id = ? or (birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
 	scope :list, -> (ids) {where(id: ids)}

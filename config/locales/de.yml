@@ -48,8 +48,12 @@ de:
         upload: Importieren
     show:
       contacts: Kontaktadressen
+      contact:
+        email:
+          placeholder: Email Adresse
+      equipment: Leihausrüstung
       actions:
-        add_contact: Add Contact
+        add_contact: Neuer Kontakt
   events:
     show:
       headline:
@@ -64,9 +68,18 @@ de:
     form:
       actions:
         save: Training speichern
+  rental_equipments:
+    new:
+      headline: Neues Equipment ausleihen
+    edit:
+      headline: Equipment bearbeiten
+    actions:
+      save: Speichern
+      destroy: Löschen
   activerecord:
     models:
       player: Spieler
+      rental_equipment: Leihausrüstung
     attributes:
       player:
         last_name: Nachname
@@ -75,3 +88,14 @@ de:
         position: Position
         year_class: Jahrgang
         team_overwritten: Team überschrieben
+      rental_equipment:
+        brand: Marke/Model
+        size: Größe
+        rental_date: Ausleihdatum
+        return_date: Rückgabedatum
+    errors:
+      models:
+        contact:
+          attributes:
+            email:
+              invalid: Die E-Mail Adresse ist nicht gültig

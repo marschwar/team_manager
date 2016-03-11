@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new contact_params
     @contact.player = @player
     @contact.save
-    flash[:error] = 'foo' if @contact.errors
+    flash[:error] = @contact.errors.full_messages.first if @contact.errors.present?
 
     redirect_to @player
   end

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   resources :players do
     resources :contacts, only: [:create, :destroy]
+    resources :rental_equipments, only: [:new, :create, :edit, :update, :destroy]
+    resources :helmets, controller: 'rental_equipments', type: 'Helmet'
+    resources :pads, controller: 'rental_equipments', type: 'Pad'
   end
   post 'players/upload', controller: 'players', action: 'upload'
 

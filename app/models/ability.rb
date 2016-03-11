@@ -24,13 +24,17 @@ private
 
     def manager
       user
+
       can :manage, Team
       can :manage, Player
       can :manage, Event
+      can :manage, Contact
+      can [:read, :create, :edit, :update], RentalEquipment
     end
 
     def admin
       manager
       can :manage, User
+      can :manage, RentalEquipment
     end
 end
