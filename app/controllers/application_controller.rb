@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
 
 private
   def set_locale
-    custom_locale = params[:locale] || extract_locale_from_accept_language_header
     I18n.locale = custom_locale || I18n.default_locale
+  end
+
+  def custom_locale
+    # disabled for now
+    # params[:locale] || extract_locale_from_accept_language_header    
   end
 
   def extract_locale_from_accept_language_header
