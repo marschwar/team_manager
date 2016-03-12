@@ -7,12 +7,14 @@ class PracticesController < EventsController
     @players = Player.list(player_ids).sorted
     @participants = @events.map { |e| e.participations.where(participated: true).count }
 
+    all_participations = Participation.where(event: @events).to_a.group_by(&:player_id)
+
     @practice_participation = @players.map do |player|
       player_participations = @events.map do |event|
-        event.participations.find { |p| p.player == player }
+        all_participations[player.id].find {|p| p.event_id == event.id}
       end
-      possible = Participation.where(event: @events, player: player).count
-      participated = Participation.where(event: @events, player: player, participated: true).count
+      possible = player_participations.count {|p| p.present?}
+      participated = player_participations.count {|p| p.present? && p.participated}
       percentage = possible == 0 ? 0 : participated.to_f / possible.to_f * 100.0
       { name: player.full_name, participations: player_participations, percentage: percentage }
     end
