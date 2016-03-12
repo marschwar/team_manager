@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310203454) do
+ActiveRecord::Schema.define(version: 20160312213248) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160310203454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "position"
+    t.integer  "number"
   end
 
   create_table "rental_equipments", force: :cascade do |t|
@@ -70,6 +71,15 @@ ActiveRecord::Schema.define(version: 20160310203454) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "team_equipments", force: :cascade do |t|
+    t.integer  "team_id"
+    t.string   "type"
+    t.string   "size"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       null: false

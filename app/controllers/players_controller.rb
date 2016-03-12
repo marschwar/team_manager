@@ -87,8 +87,8 @@ class PlayersController < ApplicationController
     end
     redirect_to team_players_path(team)
   end
-
-  private
+  
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
@@ -96,7 +96,7 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      my_params = params.require(:player).permit(:first_name, :last_name, :birthday, :position, :team_id, :team_overwritten)
+      my_params = params.require(:player).permit(:first_name, :last_name, :birthday, :position, :number, :team_id, :team_overwritten)
       my_params[:team_id] = nil if my_params[:team_overwritten] == '0'
       my_params.delete :team_overwritten
       my_params
@@ -120,7 +120,7 @@ class PlayersController < ApplicationController
         UPLOAD_ATTRIBUTES.each_with_index do |attr, idx|
           player_attributes[attr.to_sym] = player_data[idx].encode('UTF-8')
         end
-        player = Player.where(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name]).first || Player.new
+        player = Player.find_or_create_by(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name])
         player.update_attributes player_attributes
         player.team_id = player.birthday && player.actual_team == team ? nil : team.id
         player.save

@@ -1,0 +1,34 @@
+%h1= t(".headline", name: @team.name)
+= form_for [@team, @jersey], html: {class: 'form-inline'} do |f|
+  = f.hidden_field :type
+  .form-group
+    = label_tag :number
+    = f.number_field :number, class: 'form-control', maxlength: 2, size: 2, min: 1, max: 99
+    = f.label :size
+    = f.text_field :size, class: 'form-control', maxlength: 5, size: 5
+    = f.submit t('.actions.save'), class: 'btn btn-primary'
+
+- if @jerseys.present?
+  %br
+  %table.table.table-striped
+    %thead
+      %th= GameJersey.human_attribute_name('number')
+      %th= GameJersey.human_attribute_name('size')
+      %th= Player.model_name.human
+      %th= Player.human_attribute_name('position')
+      %tbody
+        - @jerseys.each do |jersey|
+          %tr
+            %td= jersey.number
+            %td= jersey.size
+            %td= link_to jersey.player.full_name, player_path(jersey.player) if jersey.player
+            %td= jersey.player.position if jersey.player
+
+- if can? :create, GameJersey
+  %h2= t('.upload.headline')
+  %p.muted= t('.upload.instructions_html')
+  = form_tag team_game_jerseys_upload_path(@team), class: 'form-inline', multipart: true do
+    .form-group
+      = label_tag 'upload[file]', 'File'
+      = file_field_tag 'upload[file]', :class => 'form-control'
+      = submit_tag t('.actions.upload'), class: 'btn btn-default'

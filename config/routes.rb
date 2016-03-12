@@ -5,10 +5,13 @@ Rails.application.routes.draw do
     resources :players, only: [:index]
     resources :events
     resources :practices
+    resources :team_equipments, only: [:index]
+    resources :game_jerseys, only: [:index, :create, :destroy]
     member do
       get 'select'
       get 'depth-chart', to: 'teams#depth_chart'
     end
+    post 'game_jerseys_upload', to: 'game_jerseys#upload'
   end
 
   resources :players do

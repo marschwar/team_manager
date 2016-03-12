@@ -29,6 +29,7 @@ private
       can :manage, Player
       can :manage, Event
       can :manage, Contact
+      can :manage, TeamEquipment
       can [:read, :create, :edit, :update], RentalEquipment
     end
 

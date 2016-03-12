@@ -95,10 +95,24 @@ de:
     actions:
       save: Speichern
       destroy: Löschen
+  game_jerseys:
+    index:
+      headline: "%{name} Jerseys"
+      actions:
+        save: Jersey hinzufügen
+        upload: Jerseyliste hochladen
+      upload:
+        headline: Jerseyliste importieren
+        instructions_html: Anstatt alle Jerseys einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nummer;Größe</code>.<br />Wenn du die Größe nicht weisst, dann einfach leer lassen, also z.B. <code>42;</code>
+        errors:
+          file_missing: Wähle die Datei die du importieren willst
   activerecord:
     models:
       player: Spieler
-      rental_equipment: Leihausrüstung
+      game_jersey: 
+        one: Spieljersey
+        other: Spieljerseys
+      game_pants: Spielhose
     attributes:
       player:
         last_name: Nachname
@@ -107,11 +121,15 @@ de:
         position: Position
         year_class: Jahrgang
         team_overwritten: Team überschrieben
+        number: Spielernummer
       rental_equipment:
         brand: Marke/Model
         size: Größe
         rental_date: Ausleihdatum
         return_date: Rückgabedatum
+      team_equipment:
+        number: Nummer
+        size: Größe
     errors:
       models:
         contact:
