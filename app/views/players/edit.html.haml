@@ -1,8 +1,12 @@
-%h1 Editing player
+%h1= t('.headline')
 
 .container
-  = render 'form'
+  .row
+    .col-md-4
+      = render 'form'
 
-= link_to 'Show', @player
-\|
-= link_to 'Back', players_path
+  %br
+  .row
+    = link_to 'Show', @player
+    \|
+    = link_to 'Back', players_path

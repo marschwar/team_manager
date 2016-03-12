@@ -3,39 +3,34 @@
 - else
   %h1= t('.headline')
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th #
-      %th= Player.human_attribute_name('last_name')
-      %th= Player.human_attribute_name('first_name')
-      %th= Player.human_attribute_name('birthday')
-      %th= Player.human_attribute_name('position')
-      %th= Player.human_attribute_name('year_class') 
+- unless @players.empty?
+  - if can? :create, Player
+    .actions
+      = link_to t('.actions.new'), new_player_path, class: 'btn btn-default'
+    %br
 
-  %tbody
-    - @players.each_with_index do |player, idx|
+  %table.table.table-striped
+    %thead
       %tr
-        %td= idx + 1
-        %td= link_to player.last_name, player_path(player)
-        %td= player.first_name
-        %td= birthday_of(player)
-        %td= player.position
-        %td= year_class_element(player)
-        %td
-          %a{href: "#{player_path player}"}
-            %span.glyphicon.glyphicon-eye-open
-          &nbsp;
-          %a{href: "#{edit_player_path player}"}
-            %span.glyphicon.glyphicon-edit
-          &nbsp;
-          %a{href: "#{player_path player}", data: {method: :delete, confirm: 'Are you sure?'}}
-            %span.glyphicon.glyphicon-trash
+        %th #
+        %th= Player.human_attribute_name('last_name')
+        %th= Player.human_attribute_name('first_name')
+        %th= Player.human_attribute_name('position')
+        %th= Player.human_attribute_name('year_class') 
+
+    %tbody
+      - @players.each_with_index do |player, idx|
+        %tr
+          %td= idx + 1
+          %td= link_to player.last_name, player_path(player)
+          %td= player.first_name
+          %td= player.position
+          %td= year_class_element(player)
 
 %br
-
-- if can? :create, Player
-  = link_to t('.actions.new'), new_player_path, class: 'btn btn-default'
+.actions
+  - if can? :create, Player
+    = link_to t('.actions.new'), new_player_path, class: 'btn btn-default'
 
 - if can? :create, Player
   %h2= t('.upload.headline')

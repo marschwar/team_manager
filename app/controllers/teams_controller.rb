@@ -11,7 +11,15 @@ class TeamsController < ApplicationController
 
   def select
     session[:current_team_id] = @team.id
-    redirect_to team_path(@team)
+    redirect_to team_players_path(@team)
+  end
+
+  def depth_chart
+    @team = Team.find params[:team_id] if params[:team_id]
+    players = @team ? Player.of_team(@team).sorted : Player.all.sorted
+
+    @offense = Player::OFFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
+    @defense = Player::DEFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
   end
 
   # GET /teams/1

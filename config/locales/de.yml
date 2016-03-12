@@ -27,12 +27,18 @@ de:
     teams: Teams
     team:
       players: Roster
-      practices: Practice
+      depth_chart: Depth Chart
+      practices: Training
+      practice_participation: Trainingsbeteiligung
+      new_practice: Neues Training
   startpage:
     show:
       headline: FPE Team Manager
       subheadline: Melde dich mit deinem Facebook Account an und lass dich freischalten.
       salutation: Moin %{name}, nach deiner Freischaltung gehts weiter!
+  teams:
+    depth_chart:
+      headline: "%{name} Depth Chart"
   players:
     index:
       headline: Alle Spieler
@@ -46,6 +52,7 @@ de:
           file_missing: Wähle die Datei die du importieren willst
       actions:
         upload: Importieren
+        new: Neuer Spieler
     show:
       contacts: Kontaktadressen
       contact:
@@ -54,10 +61,22 @@ de:
       equipment: Leihausrüstung
       actions:
         add_contact: Neuer Kontakt
+        edit: Spieler bearbeiten
+        destroy: Spieler vollständig löschen
+        back: Zurück
+    edit:
+      headline: Spieler bearbeiten
+    form:
+      team_overwritten:
+        hint: Aktiviere diese Checkbox und wähle das Team des Spielers wenn du den Geburtstag nicht kennst oder aber der Spieler eigentlich noch zu jung für das Team ist in dem er spielt.
+    actions:
+      save: Speichern
   events:
     show:
       headline:
         practice: Training vom %{date}
+      participants: "%{count} Teilnehmer"
+      non_participants: "%{count} abwesend"
       actions:
         edit: Teilnahme bearbeiten
         back: Zurück zur Übersicht

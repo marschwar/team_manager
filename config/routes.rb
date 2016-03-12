@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :practices
     member do
       get 'select'
+      get 'depth-chart', to: 'teams#depth_chart'
     end
   end
 

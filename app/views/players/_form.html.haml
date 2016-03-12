@@ -29,5 +29,6 @@
       = "(#{@player.actual_team_name})" if @player.actual_team_name
     .controls
       = f.collection_select :team_id, @all_teams, :id, :name, {include_blank: true}, {class: 'form-control'}
-  .actions
-    = f.submit 'Save'
+    %p.help-block= t('players.form.team_overwritten.hint')
+  .actions.form-group
+    = f.submit t('players.actions.save'), class: 'btn btn-primary'

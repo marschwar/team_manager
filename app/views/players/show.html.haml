@@ -12,7 +12,8 @@
 
   .col-sm-4
     .panel.panel-default
-      .panel-heading= t('.contacts')
+      .panel-heading
+        %h3.panel-title= t('.contacts')
       %ul.list-group
         - @player.contacts.each do |contact|
           %li.list-group-item
@@ -27,28 +28,31 @@
         %button.btn.btn-default{type: 'submit'}
           %span.glyphicon.glyphicon-plus
     %br
-  .col-sm-4
-    .panel.panel-default
-      .panel-heading
-        = t('.equipment')
-        - if can? :create, RentalEquipment
-          %a{href: "#{new_player_rental_equipment_path @player}", class: 'pull-right'}
-            %span.glyphicon.glyphicon-plus
-      %ul.list-group
-        - @player.rental_equipments.each do |equipment|
-          %li.list-group-item
-            - if can? :edit, equipment
-              %a{href: "#{edit_player_rental_equipment_path @player, equipment}", class: 'pull-right'}
-                %span.glyphicon.glyphicon-edit
-            = equipment_detail(equipment)
-    %br
+  - if can? :show, RentalEquipment
+    .col-sm-4
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = t('.equipment')
+            - if can? :create, RentalEquipment
+              %a{href: "#{new_player_rental_equipment_path @player}", class: 'pull-right'}
+                %span.glyphicon.glyphicon-plus
+        %ul.list-group
+          - @player.rental_equipments.each do |equipment|
+            %li.list-group-item
+              - if can? :edit, equipment
+                %a{href: "#{edit_player_rental_equipment_path @player, equipment}", class: 'pull-right'}
+                  %span.glyphicon.glyphicon-edit
+              = equipment_detail(equipment)
+      %br
 .row
   .col-sm-12
-    %br
     .actions
+      - if @player.actual_team
+        = link_to t('.actions.back'), team_players_path(@player.actual_team), class: 'btn btn-default'
+      - else
+        = link_to t('.actions.back'), players_path, class: 'btn btn-default'
       - if can? :edit, @player
         = link_to t('.actions.edit'), edit_player_path(@player), class: 'btn btn-primary'
-      - if @player.actual_team
-        = link_to t('actions.back'), team_players_path(@player.actual_team), class: 'btn btn-default'
-      - else
-        = link_to t('actions.back'), players_path, class: 'btn btn-default'
+      - if can? :destroy, @player
+        = link_to t('.actions.destroy'), player_path(@player), class: 'btn btn-danger', data: {method: :delete, confirm: 'Are you sure?'}

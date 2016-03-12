@@ -18,7 +18,9 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @participations = event_participations
+    participations = event_participations
+    @participants = participations.select {|p| p.participated}
+    @non_participants = participations - @participants
   end
 
   # GET /events/new

@@ -1,0 +1,12 @@
+.row
+  - position_groups.each do |hash|
+    - hash.each_pair do |position, players|
+      .col-sm-3
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title= position
+          %ul.list-group
+            - players.each do |player|
+              %li.list-group-item
+                %span= year_class_element(player)
+                = player.full_name

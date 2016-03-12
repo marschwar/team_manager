@@ -26,6 +26,10 @@ private
   end
   
   def load_teams
-  	@all_teams = Team.all
+  	@all_teams = all_teams
+  end
+
+  def all_teams
+    @all_teams ||= Team.all
   end
 end

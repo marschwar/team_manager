@@ -1,0 +1,6 @@
+%h1= t('.headline', name: @current_team.name)
+%h2 Offense
+= render 'position_groups', position_groups: @offense
+%br
+%h2 Defense
+= render 'position_groups', position_groups: @defense
