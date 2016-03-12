@@ -34,6 +34,12 @@
               %ul.dropdown-menu
                 %li= link_to t("navbar.team.practice_participation"), team_practices_path(@current_team)
                 %li= link_to t("navbar.team.new_practice"), new_team_practice_path(@current_team)
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
+                = t("navbar.team.equipment")
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to t("navbar.team.jerseys"), team_game_jerseys_path(@current_team)
           - if can? :index, User
             %li= link_to t("navbar.users"), users_path
           %li.dropdown

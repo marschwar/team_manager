@@ -17,11 +17,14 @@
         %th= Player.human_attribute_name('first_name')
         %th= Player.human_attribute_name('position')
         %th= Player.human_attribute_name('year_class') 
+    %tfoot
+      %tr
+        %td{colspan: 5}= t('.player_count', count: @players.count)
 
     %tbody
-      - @players.each_with_index do |player, idx|
+      - @players.each do |player|
         %tr
-          %td= idx + 1
+          %td= player.number
           %td= link_to player.last_name, player_path(player)
           %td= player.first_name
           %td= player.position

@@ -9,6 +9,9 @@
       %dd= birthday_of(@player)
       %dt= Player.human_attribute_name('position')
       %dd= @player.position
+      - if @player.number
+        %dt= Player.human_attribute_name('number')
+        %dd= @player.number
 
   .col-sm-4
     .panel.panel-default
