@@ -95,7 +95,7 @@ class EventsController < ApplicationController
       participation_params.each_pair do |id, participation|
         player = Player.find id
         participated = participation[:participated] == '1'
-        participation = Participation.where(event: event, player: player).first || Participation.new
+        participation = Participation.find_or_create_by(event: event, player: player)
         participation.update_attributes(event: event, player: player, participated: participated)
         participation.save
       end
