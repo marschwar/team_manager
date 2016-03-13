@@ -62,6 +62,7 @@ private
       jersey = GameJersey.find_or_create_by(number: jersey_attributes[:number], team_id: @team)
       jersey.update_attributes jersey_attributes
       jersey.team = @team
+      jersey.save
     end
   end
 
