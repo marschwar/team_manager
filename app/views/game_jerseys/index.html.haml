@@ -18,11 +18,11 @@
       %th= Player.human_attribute_name('position')
       %tbody
         - @jerseys.each do |jersey|
-          %tr
+          %tr{class: "#{(jersey.players.count > 1) ? 'danger' : ''}"}
             %td= jersey.number
             %td= jersey.size
-            %td= link_to jersey.player.full_name, player_path(jersey.player) if jersey.player
-            %td= jersey.player.position if jersey.player
+            %td= jersey_players(jersey)
+            %td= jersey_positions(jersey)
 
 - if can? :create, GameJersey
   %h2= t('.upload.headline')

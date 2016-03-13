@@ -5,7 +5,7 @@ class GameJersey < TeamEquipment
 
   scope :sorted, -> {order :number}
 
-  def player
-    @player ||= Player.of_team(team).find_by(number: number)
+  def players
+    @players ||= Player.of_team(team).active.where(number: number).to_a
   end
 end
