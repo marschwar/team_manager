@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     render 'index'
   end
 
-  def players
-    @users = User.with_role('player')
+  def all
+    @users = User.all
     render 'index'
   end
 
@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes user_params
+    @user.update user_params
+    if @user.save
       flash[:notice] = "#{@user.common_name} aktualisiert"
       redirect_to users_path
     else

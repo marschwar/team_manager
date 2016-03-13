@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update] do
     collection do
       get :guests
-      get :players
       get :managers
+      get :all
     end    
   end
 

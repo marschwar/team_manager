@@ -109,6 +109,9 @@ de:
         instructions_html: Anstatt alle Jerseys einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nummer;Größe</code>.<br />Wenn du die Größe nicht weisst, dann einfach leer lassen, also z.B. <code>42;</code>
         errors:
           file_missing: Wähle die Datei die du importieren willst
+  users:
+    actions:
+      save: Benutzer speichern 
   activerecord:
     models:
       player: Spieler
@@ -133,6 +136,8 @@ de:
       team_equipment:
         number: Nummer
         size: Größe
+      user:
+        role: Rolle
     errors:
       models:
         contact:
