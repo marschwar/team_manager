@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new(event_date: Time.now, type: @event_type)
-    @participations = @team.players.sorted.map { |p| Participation.new(player: p, event: @event) }
+    @participations = @team.players.active.sorted.map { |p| Participation.new(player: p, event: @event) }
   end
 
   # GET /events/1/edit
