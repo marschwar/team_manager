@@ -16,7 +16,7 @@ class PracticesController < EventsController
       possible = player_participations.count {|p| p.present?}
       participated = player_participations.count {|p| p.present? && p.participated}
       percentage = possible == 0 ? 0 : participated.to_f / possible.to_f * 100.0
-      { name: player.full_name, participations: player_participations, percentage: percentage }
+      { name: player.full_name, participations: player_participations, percentage: percentage, active: player.active }
     end
     render "index_#{@event_type.downcase}"
   end

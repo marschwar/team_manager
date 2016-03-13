@@ -1,5 +1,6 @@
 %h1
   = @player.full_name
+  = t('.inactive') unless @player.active
   = year_class_element(@player)
 %p.text-muted= @player.actual_team_name
 .row

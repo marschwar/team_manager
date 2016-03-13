@@ -7,7 +7,9 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @team = Team.find params[:team_id] if params[:team_id]
-    @players = @team ? Player.of_team(@team).sorted : Player.all.sorted
+    all = @team ? Player.of_team(@team).sorted : Player.all.sorted
+    @players = all.select { |p| p.active  }
+    @inactive_players = all.select { |p| !p.active  }
   end
 
   # GET /players/1
@@ -96,7 +98,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      my_params = params.require(:player).permit(:first_name, :last_name, :birthday, :position, :number, :team_id, :team_overwritten)
+      my_params = params.require(:player).permit(:active, :first_name, :last_name, :birthday, :position, :number, :team_id, :team_overwritten)
       my_params[:team_id] = nil if my_params[:team_overwritten] == '0'
       my_params.delete :team_overwritten
       my_params

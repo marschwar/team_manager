@@ -15,8 +15,7 @@ class TeamsController < ApplicationController
   end
 
   def depth_chart
-    @team = Team.find params[:team_id] if params[:team_id]
-    players = @team ? Player.of_team(@team).sorted : Player.all.sorted
+    players = Player.of_team(@team).active.sorted
 
     @offense = Player::OFFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
     @defense = Player::DEFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}

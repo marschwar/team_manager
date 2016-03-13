@@ -17,10 +17,16 @@
         %th
         %th
         - @participants.each do |count|
-          %th= count
+          %th.text-center= count
+    %tfoot
+      %tr
+        %th
+        %th
+        - @participants.each do |count|
+          %th.text-center= count
     %tbody
       - @practice_participation.each do |player|
-        %tr
+        %tr{class: "#{player[:active] ? '' : 'text-muted'}"}
           %td= player[:name]
           %td= number_to_percentage(player[:percentage], precision: 1)
           - player[:participations].each do |participation|

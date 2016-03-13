@@ -6,6 +6,10 @@
         - @player.errors.full_messages.each do |msg|
           %li= msg
 
+  .form-group{class: "#{'has-error' if @player.errors[:active].present?}"}
+    %label
+      = f.check_box :active
+      = Player.human_attribute_name('active')
   .form-group{class: "#{'has-error' if @player.errors[:first_name].present?}"}
     = f.label :first_name, :class => 'control-label'
     .controls
@@ -36,3 +40,7 @@
     %p.help-block= t('players.form.team_overwritten.hint')
   .actions.form-group
     = f.submit t('players.actions.save'), class: 'btn btn-primary'
+    - if @current_team
+      = link_to t('general.actions.cancel'), team_players_path(@current_team), class: 'btn btn-default'
+    - else
+      = link_to t('general.actions.cancel'), players_path, class: 'btn btn-default'

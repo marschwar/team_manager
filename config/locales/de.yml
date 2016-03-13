@@ -45,6 +45,7 @@ de:
     index:
       headline: Alle Spieler
       headline_team: Spieler der %{name}
+      headline_inactive: Inaktive Spieler
       player_count: Insgesamt %{count} Spieler
       upload:
         headline: Spielerliste importieren
@@ -57,6 +58,7 @@ de:
         upload: Importieren
         new: Neuer Spieler
     show:
+      inactive: (inaktiv)
       contacts: Kontaktadressen
       contact:
         email:
@@ -69,6 +71,8 @@ de:
         back: Zurück
     edit:
       headline: Spieler bearbeiten
+    new:
+      headline: Neuen Spieler anlegen
     form:
       team_overwritten:
         hint: Aktiviere diese Checkbox und wähle das Team des Spielers wenn du den Geburtstag nicht kennst oder aber der Spieler eigentlich noch zu jung für das Team ist in dem er spielt.
@@ -111,7 +115,10 @@ de:
           file_missing: Wähle die Datei die du importieren willst
   users:
     actions:
-      save: Benutzer speichern 
+      save: Benutzer speichern
+  general:
+    actions:
+      cancel: Abbrechen 
   activerecord:
     models:
       player: Spieler
@@ -121,6 +128,7 @@ de:
       game_pants: Spielhose
     attributes:
       player:
+        active: Aktiver Spieler
         last_name: Nachname
         first_name: Vorname
         birthday: Geburtstag
