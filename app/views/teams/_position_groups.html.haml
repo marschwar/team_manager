@@ -4,7 +4,9 @@
       .col-sm-3
         .panel.panel-default
           .panel-heading
-            %h3.panel-title= position
+            %h3.panel-title
+              = position
+              %span.pull-right.badge= players.count
           %ul.list-group
             - players.each do |player|
               %li.list-group-item
