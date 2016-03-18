@@ -4,3 +4,17 @@
 %br
 %h2 Defense
 = render 'position_groups', position_groups: @defense
+
+%h2= t('.by_year.headline')
+.row
+  .col-sm-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Spieler
+      %ul.list-group
+        - @by_year.each do |hash|
+          - hash.each_pair do |year, players|
+            %li.list-group-item
+              = "&nbsp;#{year}".html_safe
+              %span.pull-left= year_class_element_for_year(year)
+              %span.pull-right.badge= players.count

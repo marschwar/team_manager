@@ -41,6 +41,8 @@ de:
   teams:
     depth_chart:
       headline: "%{name} Depth Chart"
+      by_year:
+        headline: Spieler pro Jahrgang
   players:
     index:
       headline: Alle Spieler

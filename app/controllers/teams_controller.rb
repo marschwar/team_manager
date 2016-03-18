@@ -17,6 +17,7 @@ class TeamsController < ApplicationController
   def depth_chart
     players = Player.of_team(@team).active.sorted
 
+    @by_year = Player::YEAR_CLASSES.map{ |year| {"#{year}": players.select { |p| year == p.year_class }}}
     @offense = Player::OFFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
     @defense = Player::DEFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
   end

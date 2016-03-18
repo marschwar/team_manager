@@ -4,10 +4,14 @@ module PlayersHelper
   end
 
   def year_class_element(player)
-    return unless player.year_class
+    year_class_element_for_year player.year_class if player.year_class
+  end
 
-    content_tag :span, class: "label label-#{player.year_class.downcase} " do      
-      player.year_class
+  def year_class_element_for_year(year)
+    return unless year
+
+    content_tag :span, class: "label label-#{year.downcase} " do      
+      concat year
     end
   end
 end
