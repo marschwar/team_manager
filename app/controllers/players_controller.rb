@@ -120,7 +120,7 @@ private
         next unless player_data.count > 1
         player_attributes = {}
         UPLOAD_ATTRIBUTES.each_with_index do |attr, idx|
-          player_attributes[attr.to_sym] = player_data[idx].encode('UTF-8')
+          player_attributes[attr.to_sym] = player_data[idx].encode('UTF-8') if player_data.count > idx
         end
         player = Player.find_or_create_by(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name])
         player.update_attributes player_attributes
@@ -128,7 +128,8 @@ private
         player.save
 
         Contact.where(player: player).destroy_all
-        player_data.slice(UPLOAD_ATTRIBUTES.count, player_data.count - UPLOAD_ATTRIBUTES.count).each do |email|
+        addresses = player_data.slice(UPLOAD_ATTRIBUTES.count, player_data.count - UPLOAD_ATTRIBUTES.count) || []
+        addresses.each do |email|
           Contact.new(player: player, email: email).save
         end
       end
