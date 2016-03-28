@@ -11,4 +11,8 @@ module TeamEquipmentsHelper
   def jersey_positions(jersey)
     jersey.players.first.position if jersey.players.count == 1
   end
+
+  def jersey_pants_size(jersey)
+    jersey.players.first.pants_size if jersey.players.count == 1
+  end
 end

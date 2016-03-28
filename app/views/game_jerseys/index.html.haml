@@ -1,20 +1,22 @@
 %h1= t(".headline", name: @team.name)
-= form_for [@team, @jersey], html: {class: 'form-inline'} do |f|
+%p.text-muted.visible-print= t('.date', date: format_date(Date.today))
+= form_for [@team, @jersey], html: {class: 'form-inline hidden-print'} do |f|
   = f.hidden_field :type
   .form-group
     = label_tag :number
     = f.number_field :number, class: 'form-control', maxlength: 2, size: 2, min: 1, max: 99
     = f.label :size
-    = f.text_field :size, class: 'form-control', maxlength: 5, size: 5
+    = f.select :size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
     = f.submit t('.actions.save'), class: 'btn btn-primary'
 
 - if @jerseys.present?
   %br
-  %table.table.table-striped
+  %table.table.table-condensed
     %thead
       %th= GameJersey.human_attribute_name('number')
       %th= GameJersey.human_attribute_name('size')
       %th= Player.model_name.human
+      %th= Player.human_attribute_name('pants_size')
       %th= Player.human_attribute_name('position')
       %tbody
         - @jerseys.each do |jersey|
@@ -22,14 +24,16 @@
             %td= jersey.number
             %td= jersey.size
             %td= jersey_players(jersey)
+            %td= jersey_pants_size(jersey)
             %td= jersey_positions(jersey)
 
 - if can? :create, GameJersey
-  %h2= t('.upload.headline')
-  %p.muted= t('.upload.instructions_html')
-  = form_tag team_game_jerseys_upload_path(@team), class: 'form-inline', multipart: true do
-    .form-group
-      = label_tag 'upload[file]', 'File'
-      = file_field_tag 'upload[file]', :class => 'form-control'
-      = submit_tag t('.actions.upload'), class: 'btn btn-default'
-  %br
+  .row.hidden-print
+    %h2= t('.upload.headline')
+    %p.muted= t('.upload.instructions_html')
+    = form_tag team_game_jerseys_upload_path(@team), class: 'form-inline', multipart: true do
+      .form-group
+        = label_tag 'upload[file]', 'File'
+        = file_field_tag 'upload[file]', :class => 'form-control'
+        = submit_tag t('.actions.upload'), class: 'btn btn-default'
+    %br

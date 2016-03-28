@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th= GamePants.human_attribute_name('size')
+      %th= t('team_equipments.count')
+  %tfoot
+    %tr
+      %td= t('team_equipments.sum')
+      %td= pants.inject(0) { |sum, p| sum + p.count }
+      %td
+  %tbody
+    - pants.each do |pants|
+      %tr
+        %td= pants.size
+        %td= pants.count
+        %td= link_to 'edit', edit_team_game_pants_path(pants.team, pants)

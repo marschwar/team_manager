@@ -1,0 +1,14 @@
+%h1= t(".headline", name: @team.name)
+- if can? :create, GameJersey
+  = form_for [@team, @pants], html: {class: 'form-inline'} do |f|
+    = f.hidden_field :type
+    .form-group
+      = f.label :size
+      = f.select :size, GamePants::SIZES, {include_blank: true}, {class: 'form-control'}
+      = label_tag :count
+      = f.number_field :count, class: 'form-control', maxlength: 2, size: 2, min: 0, max: 99
+      = f.submit t('.actions.save'), class: 'btn btn-primary'
+
+- if @all_pants.present?
+  %br
+  = render 'list', pants: @all_pants

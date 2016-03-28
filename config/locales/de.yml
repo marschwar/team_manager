@@ -32,6 +32,7 @@ de:
       practice_participation: Trainingsbeteiligung
       new_practice: Neues Training
       equipment: Ausrüstung
+      equipments: Übersicht
       jerseys: Jerseys
   startpage:
     show:
@@ -104,9 +105,22 @@ de:
     actions:
       save: Speichern
       destroy: Löschen
+  team_equipments:
+    count: Anzahl
+    sum: Summe
+    in_use: Verwendet
+    index:
+      headline: Ausrüstung der %{name}
+      count: Anzahl
+      in_use: Verwendet
+      sum: Summe
+      actions:
+        jerseys: Zur Jerseyliste
+        pants: Zu den Hosen
   game_jerseys:
     index:
       headline: "%{name} Jerseys"
+      date: "Stand: %{date}"
       actions:
         save: Jersey hinzufügen
         upload: Jerseyliste hochladen
@@ -115,6 +129,15 @@ de:
         instructions_html: Anstatt alle Jerseys einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nummer;Größe</code>.<br />Wenn du die Größe nicht weisst, dann einfach leer lassen, also z.B. <code>42;</code>
         errors:
           file_missing: Wähle die Datei die du importieren willst
+  game_pants:
+    actions:
+      save: Speichern
+    index:
+      headline: "%{name} Spielhosen"
+      actions:
+        save: Hinzufügen
+    edit:
+      headline: Spielhosengröße bearbeiten
   users:
     actions:
       save: Benutzer speichern
@@ -127,7 +150,9 @@ de:
       game_jersey: 
         one: Spieljersey
         other: Spieljerseys
-      game_pants: Spielhose
+      game_pants: 
+        one: Spielhose
+        other: Spielhosen
     attributes:
       player:
         active: Aktiver Spieler
@@ -138,6 +163,7 @@ de:
         year_class: Jahrgang
         team_overwritten: Team überschrieben
         number: Spielernummer
+        pants_size: Hosengröße
       rental_equipment:
         brand: Marke/Model
         size: Größe
@@ -146,6 +172,8 @@ de:
       team_equipment:
         number: Nummer
         size: Größe
+      game_pants:
+        count: Anzahl
       user:
         role: Rolle
     errors:

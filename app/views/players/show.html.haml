@@ -2,7 +2,9 @@
   = @player.full_name
   = t('.inactive') unless @player.active
   = year_class_element(@player)
-%p.text-muted= @player.actual_team_name
+%p.text-muted
+  = @player.actual_team_name
+  = "##{@player.number}" if @player.number
 .row
   .col-sm-4
     %dl
@@ -10,9 +12,9 @@
       %dd= birthday_of(@player)
       %dt= Player.human_attribute_name('position')
       %dd= @player.position
-      - if @player.number
-        %dt= Player.human_attribute_name('number')
-        %dd= @player.number
+      - if @player.pants_size
+        %dt= Player.human_attribute_name('pants_size')
+        %dd= @player.pants_size
 
   .col-sm-4
     .panel.panel-default

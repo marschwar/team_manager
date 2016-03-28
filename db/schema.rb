@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316215931) do
+ActiveRecord::Schema.define(version: 20160328111843) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160316215931) do
     t.string   "position"
     t.integer  "number"
     t.boolean  "active",     default: true, null: false
+    t.string   "pants_size"
   end
 
   create_table "rental_equipments", force: :cascade do |t|
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160316215931) do
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "count"
   end
 
   create_table "teams", force: :cascade do |t|

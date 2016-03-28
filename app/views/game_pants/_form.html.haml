@@ -1,0 +1,18 @@
+= form_for [@game_pants.team, @game_pants], :html => { class: 'form-horizontal' } do |f|
+  - if @game_pants.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@game_pants.errors.count, "error")} prohibited this player from being saved:"
+      %ul
+        - @game_pants.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group{class: "#{'has-error' if @game_pants.errors[:size].present?}"}
+    = f.label :size, :class => 'control-label'
+    .controls
+      = f.select :size, GamePants::SIZES, {include_blank: true}, {class: 'form-control'}
+  .form-group{class: "#{'has-error' if @game_pants.errors[:count].present?}"}
+    = f.label :count, :class => 'control-label'
+    .controls
+      = f.number_field :count, class: 'form-control', maxlength: 2, size: 2, min: 0, max: 99
+  .actions.form-group
+    = f.submit t('game_pants.actions.save'), class: 'btn btn-primary'
