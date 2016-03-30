@@ -3,7 +3,8 @@ module TeamEquipmentsHelper
     capture do
       jersey.players.each_with_index do |player, idx|
         concat ', ' if idx > 0
-        concat link_to player.full_name, player_path(player) 
+        concat link_to player.full_name, player_path(player), class: 'hidden-print'
+        concat content_tag :span, player.full_name, class: 'visible-print'
       end
     end
   end
