@@ -15,6 +15,9 @@
       - if @player.pants_size
         %dt= Player.human_attribute_name('pants_size')
         %dd= @player.pants_size
+      - if @player.licence
+        %dt= Player.human_attribute_name('licence')
+        %dd= @player.licence
 
   .col-sm-4
     .panel.panel-default

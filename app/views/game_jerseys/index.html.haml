@@ -17,6 +17,7 @@
       %th= GameJersey.human_attribute_name('size')
       %th= Player.model_name.human
       %th= Player.human_attribute_name('pants_size')
+      %th= Player.human_attribute_name('licence')
       %th= Player.human_attribute_name('position')
       %tbody
         - @jerseys.each do |jersey|
@@ -25,6 +26,7 @@
             %td= jersey.size
             %td= jersey_players(jersey)
             %td= jersey_pants_size(jersey)
+            %td= jersey_licence_number(jersey)
             %td= jersey_positions(jersey)
 
 - if can? :create, GameJersey

@@ -16,4 +16,15 @@ module TeamEquipmentsHelper
   def jersey_pants_size(jersey)
     jersey.players.first.pants_size if jersey.players.count == 1
   end
+
+  def jersey_licence_number(jersey)
+    player_attribute jersey, :licence
+  end
+
+private
+  def player_attribute(jersey, attribute)
+    return unless jersey && jersey.players.count == 1
+    jersey.players.first.send(attribute)
+  end
+
 end

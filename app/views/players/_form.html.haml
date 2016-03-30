@@ -29,11 +29,15 @@
   .form-group{class: "#{'has-error' if @player.errors[:number].present?}"}
     = f.label :number, :class => 'control-label'
     .controls
-      = f.text_field :number, :class => 'form-control', min: 1, max: 99
+      = f.number_field :number, :class => 'form-control', min: 1, max: 99
   .form-group{class: "#{'has-error' if @player.errors[:pants_size].present?}"}
     = f.label :pants_size, :class => 'control-label'
     .controls
       = f.select :pants_size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
+  .form-group{class: "#{'has-error' if @player.errors[:licence].present?}"}
+    = f.label :licence, :class => 'control-label'
+    .controls
+      = f.text_field :licence, :class => 'form-control'
   .form-group{class: "#{'has-error' if @player.errors[:team].present?}"}
     %label
       = f.check_box :team_overwritten
