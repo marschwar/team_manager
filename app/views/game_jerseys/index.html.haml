@@ -1,13 +1,14 @@
 %h1= t(".headline", name: @team.name)
 %p.text-muted.visible-print= t('.date', date: format_date(Date.today))
-= form_for [@team, @jersey], html: {class: 'form-inline hidden-print'} do |f|
-  = f.hidden_field :type
-  .form-group
-    = label_tag :number
-    = f.number_field :number, class: 'form-control', maxlength: 2, size: 2, min: 1, max: 99
-    = f.label :size
-    = f.select :size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
-    = f.submit t('.actions.save'), class: 'btn btn-primary'
+- if can? :create, [@team, @jersey]
+  = form_for [@team, @jersey], html: {class: 'form-inline hidden-print'} do |f|
+    = f.hidden_field :type
+    .form-group
+      = label_tag :number
+      = f.number_field :number, class: 'form-control', maxlength: 2, size: 2, min: 1, max: 99
+      = f.label :size
+      = f.select :size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
+      = f.submit t('.actions.save'), class: 'btn btn-primary'
 
 - if @jerseys.present?
   %br

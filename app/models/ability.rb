@@ -18,11 +18,19 @@ private
       guest
     end
 
-    def manager
+    def staff
       player
 
+      can :read, Player
+      can :select, Team
+      can :read, TeamEquipment
+    end
+
+    def manager
+      staff
+
       can [:read, :create, :edit, :update], Player
-      can [:change, :depth_chart], Team
+      can [:select, :depth_chart], Team
       can :manage, Event
       can :manage, Contact
       can :manage, TeamEquipment
