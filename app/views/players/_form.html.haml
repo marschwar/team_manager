@@ -1,61 +1,79 @@
 = form_for @player, :html => { class: 'form-horizontal' } do |f|
   - if @player.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@player.errors.count, "error")} prohibited this player from being saved:"
-      %ul
-        - @player.errors.full_messages.each do |msg|
-          %li= msg
+    .row
+      #error_explanation
+        %h2= "#{pluralize(@player.errors.count, "error")} prohibited this player from being saved:"
+        %ul
+          - @player.errors.full_messages.each do |msg|
+            %li= msg
 
-  .form-group{class: "#{'has-error' if @player.errors[:active].present?}"}
-    %label
-      = f.check_box :active
-      = Player.human_attribute_name('active')
-  .form-group{class: "#{'has-error' if @player.errors[:first_name].present?}"}
-    = f.label :first_name, :class => 'control-label'
-    .controls
-      = f.text_field :first_name, :class => 'form-control', maxlength: 100
-  .form-group{class: "#{'has-error' if @player.errors[:last_name].present?}"}
-    = f.label :last_name, :class => 'control-label'
-    .controls
-      = f.text_field :last_name, :class => 'form-control', maxlength: 100
-  .form-group{class: "#{'has-error' if @player.errors[:birthday].present?}"}
-    = f.label :birthday, :class => 'control-label'
-    .controls
-      = f.date_field :birthday, :class => 'form-control', maxlength: 100
-  .form-group{class: "#{'has-error' if @player.errors[:position].present?}"}
-    = f.label :position, :class => 'control-label'
-    .controls
-      = f.select :position, Player::POSITIONS, {include_blank: true}, {class: 'form-control'}
-  .form-group{class: "#{'has-error' if @player.errors[:number].present?}"}
-    = f.label :number, :class => 'control-label'
-    .controls
-      = f.number_field :number, :class => 'form-control', min: 1, max: 99
-  .form-group{class: "#{'has-error' if @player.errors[:pants_size].present?}"}
-    = f.label :pants_size, :class => 'control-label'
-    .controls
-      = f.select :pants_size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
-  .form-group{class: "#{'has-error' if @player.errors[:licence].present?}"}
-    = f.label :licence, :class => 'control-label'
-    .controls
-      = f.text_field :licence, :class => 'form-control'
-  .form-group{class: "#{'has-error' if @player.errors[:team].present?}"}
-    %label
-      = f.check_box :team_overwritten
-      = Player.human_attribute_name('team_overwritten')
-      = "(#{@player.actual_team_name})" if @player.actual_team_name
-    .controls
-      = f.collection_select :team_id, @all_teams, :id, :name, {include_blank: true}, {class: 'form-control'}
-    %p.help-block= t('players.form.team_overwritten.hint')
+  .row
+    .col-md-12
+      .form-group{class: "#{'has-error' if @player.errors[:active].present?}"}
+        %label
+          = f.check_box :active
+          = Player.human_attribute_name('active')
+  .row
+    .col-sm-5
+      .form-group{class: "#{'has-error' if @player.errors[:first_name].present?}"}
+        = f.label :first_name, :class => 'control-label'
+        .controls
+          = f.text_field :first_name, :class => 'form-control', maxlength: 100
+    .col-sm-5.col-sm-offset-1
+      .form-group{class: "#{'has-error' if @player.errors[:last_name].present?}"}
+        = f.label :last_name, :class => 'control-label'
+        .controls
+          = f.text_field :last_name, :class => 'form-control', maxlength: 100
+  .row
+    .col-sm-5
+      .form-group{class: "#{'has-error' if @player.errors[:birthday].present?}"}
+        = f.label :birthday, :class => 'control-label'
+        .controls
+          = f.date_field :birthday, :class => 'form-control', maxlength: 100
+    .col-sm-5.col-sm-offset-1
+      .form-group{class: "#{'has-error' if @player.errors[:position].present?}"}
+        = f.label :position, :class => 'control-label'
+        .controls
+          = f.select :position, Player::POSITIONS, {include_blank: true}, {class: 'form-control'}
+  .row
+    .col-sm-5
+      .form-group{class: "#{'has-error' if @player.errors[:number].present?}"}
+        = f.label :number, :class => 'control-label'
+        .controls
+          = f.number_field :number, :class => 'form-control', min: 1, max: 99
+    .col-sm-5.col-sm-offset-1
+      .form-group{class: "#{'has-error' if @player.errors[:pants_size].present?}"}
+        = f.label :pants_size, :class => 'control-label'
+        .controls
+          = f.select :pants_size, TeamEquipment::SIZES, {include_blank: true}, {class: 'form-control'}
+  .row
+    .col-sm-5
+      .form-group{class: "#{'has-error' if @player.errors[:licence].present?}"}
+        = f.label :licence, :class => 'control-label'
+        .controls
+          = f.text_field :licence, :class => 'form-control'
+    .col-sm-5.col-sm-offset-1
+      .form-group{class: "#{'has-error' if @player.errors[:team].present?}"}
+        %label
+          = f.check_box :team_overwritten
+          = Player.human_attribute_name('team_overwritten')
+          = "(#{@player.actual_team_name})" if @player.actual_team_name
+        .controls
+          = f.collection_select :team_id, @all_teams, :id, :name, {include_blank: true}, {class: 'form-control'}
+        %p.help-block= t('players.form.team_overwritten.hint')
   - if can? :read_note, @player
-    .form-group{class: "#{'has-error' if @player.errors[:note].present?}"}
-      %label
-        = Player.human_attribute_name('note')
-      %p.help-block= t('players.form.note.hint')
-      .controls
-        = f.text_area :note, {rows: 3, class: 'form-control'}
-  .actions.form-group
-    = f.submit t('players.actions.save'), class: 'btn btn-primary'
-    - if @current_team
-      = link_to t('general.actions.cancel'), team_players_path(@current_team), class: 'btn btn-default'
-    - else
-      = link_to t('general.actions.cancel'), players_path, class: 'btn btn-default'
+    .row
+      .col-sm-11
+        .form-group{class: "#{'has-error' if @player.errors[:note].present?}"}
+          %label
+            = Player.human_attribute_name('note')
+          %p.help-block= t('players.form.note.hint')
+          .controls
+            = f.text_area :note, {rows: 3, class: 'form-control'}
+  .row
+    .col-sm-11.actions.form-group
+      = f.submit t('players.actions.save'), class: 'btn btn-primary'
+      - if @current_team
+        = link_to t('general.actions.cancel'), team_players_path(@current_team), class: 'btn btn-default'
+      - else
+        = link_to t('general.actions.cancel'), players_path, class: 'btn btn-default'
