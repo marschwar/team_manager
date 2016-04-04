@@ -1,0 +1,13 @@
+.actions
+  - if can? :create, Player
+    %a.btn.btn-default{href: new_player_path}
+      %span.glyphicon.glyphicon-plus
+      = t('players.index.actions.new')
+  - if team
+    %a.btn.btn-default{href: "#{team_players_path(team)}.csv"}
+      %span.glyphicon.glyphicon-download
+      = t('players.index.actions.download')
+  - else
+    %a.btn.btn-default{href: "#{players_path}.csv"}
+      %span.glyphicon.glyphicon-download
+      = t('players.index.actions.download')

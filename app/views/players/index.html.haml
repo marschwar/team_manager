@@ -4,10 +4,8 @@
   %h1= t('.headline')
 
 - unless @players.empty?
-  - if can? :create, Player
-    .actions
-      = link_to t('.actions.new'), new_player_path, class: 'btn btn-default'
-    %br
+  = render 'index_actions', team: @team
+  %br
 
   %table.table.table-striped
     %thead
@@ -30,12 +28,10 @@
           %td= player.position
           %td= year_class_element(player)
 %br
-.actions
-  - if can? :create, Player
-    = link_to t('.actions.new'), new_player_path, class: 'btn btn-default'
+= render 'index_actions', team: @team
 
 
-- unless @inactive_players.empty?
+- if @inactive_players.present?
   %br
   %h2= t('.headline_inactive') 
   %table.table.table-striped
@@ -60,4 +56,7 @@
       = collection_select :upload, :team_id, @all_teams, :id, :name, {prompt: t('.upload.prompt'), selected: @team ? @team.id : nil }, {class: 'form-control'}
       = label_tag 'upload[file]', 'File'
       = file_field_tag 'upload[file]', :class => 'form-control'
-      = submit_tag t('.actions.upload'), class: 'btn btn-default'
+      %button.btn.btn-default{type: 'submit'}
+        %span.glyphicon.glyphicon-upload
+        = t('.actions.upload')
+

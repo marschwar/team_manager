@@ -12,10 +12,10 @@
       %dd= birthday_of(@player)
       %dt= Player.human_attribute_name('position')
       %dd= @player.position
-      - if @player.pants_size
+      - if @player.pants_size.present?
         %dt= Player.human_attribute_name('pants_size')
         %dd= @player.pants_size
-      - if @player.licence
+      - if @player.licence.present?
         %dt= Player.human_attribute_name('licence')
         %dd= @player.licence
 

@@ -1,0 +1,4 @@
+<%= Player.human_attribute_name('last_name') %>;<%= Player.human_attribute_name('first_name') %>;<%= Player.human_attribute_name('position') %>;<%= Player.human_attribute_name('birthday') %>
+<% @players.each do |player| %>
+<%= player.last_name %>;<%= player.first_name %>;<%= player.position %>;<%= format_date player.birthday %>
+<% end %>

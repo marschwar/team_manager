@@ -10,6 +10,13 @@ class PlayersController < ApplicationController
     all = @team ? Player.of_team(@team).sorted : Player.all.sorted
     @players = all.select { |p| p.active  }
     @inactive_players = all.select { |p| !p.active  }
+    respond_to do |format|
+      format.html {}
+      format.csv { 
+        filename = @team ? @team.name.gsub(/\s+/, '_').downcase : 'players'
+        response.headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
+      }
+    end
   end
 
   # GET /players/1

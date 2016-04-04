@@ -60,6 +60,7 @@ de:
       actions:
         upload: Importieren
         new: Neuer Spieler
+        download: Herunterladen
     show:
       inactive: (inaktiv)
       contacts: Kontaktadressen
