@@ -18,6 +18,10 @@
       - if @player.licence.present?
         %dt= Player.human_attribute_name('licence')
         %dd= @player.licence
+      - if can? :read_note, @player
+        - if @player.note.present?
+          %dt= Player.human_attribute_name('note')
+          %dd= @player.note
 
   .col-sm-4
     .panel.panel-default

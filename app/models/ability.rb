@@ -14,27 +14,30 @@ private
     def guest
     end
 
-    def user
-      guest
-    end
-
     def player
       guest
     end
 
     def manager
-      user
+      player
 
-      can :manage, Team
-      can :manage, Player
+      can [:read, :create, :edit, :update], Player
+      can [:change, :depth_chart], Team
       can :manage, Event
       can :manage, Contact
       can :manage, TeamEquipment
       can [:read, :create, :edit, :update], RentalEquipment
     end
 
-    def admin
+    def headcoach
       manager
+
+      can [:destroy, :read_note], Player
+    end
+
+    def admin
+      headcoach
+      can :manage, Team
       can :manage, User
       can :manage, RentalEquipment
     end

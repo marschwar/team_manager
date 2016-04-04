@@ -46,6 +46,13 @@
     .controls
       = f.collection_select :team_id, @all_teams, :id, :name, {include_blank: true}, {class: 'form-control'}
     %p.help-block= t('players.form.team_overwritten.hint')
+  - if can? :read_note, @player
+    .form-group{class: "#{'has-error' if @player.errors[:note].present?}"}
+      %label
+        = Player.human_attribute_name('note')
+      %p.help-block= t('players.form.note.hint')
+      .controls
+        = f.text_area :note, {rows: 3, class: 'form-control'}
   .actions.form-group
     = f.submit t('players.actions.save'), class: 'btn btn-primary'
     - if @current_team
