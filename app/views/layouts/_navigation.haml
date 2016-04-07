@@ -28,7 +28,7 @@
             %li= link_to t("navbar.team.players"), team_players_path(@current_team)
             - if can? :depth_chart, @current_team
               %li= link_to t("navbar.team.depth_chart"), depth_chart_team_path(@current_team)
-            - if can? :read, [@current_team, Practice]
+            - if can? :read, Practice
               %li.practice-dropdown
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
                   = t("navbar.team.practices")
