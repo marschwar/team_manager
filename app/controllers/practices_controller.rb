@@ -1,8 +1,12 @@
 class PracticesController < EventsController
+  FILTER = %w(4 8 12 24)
+
   # GET /events
   # GET /events.json
   def index
-    @events = Event.eager_load(:participations).practices.for_team(@team).by_date.to_a
+    @filter = FILTER
+    @since = since
+    @events = Practice.eager_load(:participations).after(events_since_date).for_team(@team).by_date.to_a
     player_ids = @events.map { |e| e.participations.map { |p| p.player_id }}.flatten.uniq
     @players = Player.list(player_ids).sorted
     @participants = @events.map { |e| e.participations.where(participated: true).count }
@@ -33,6 +37,14 @@ private
 
   def event_params
     practice_params
+  end
+
+  def since
+    params[:since] || FILTER[0]
+  end
+
+  def events_since_date
+    since.to_i.weeks.ago.to_date
   end
 
 end

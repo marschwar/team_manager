@@ -98,6 +98,12 @@ de:
       headline: Trainingsbeteiligung %{name}
       actions:
         new: Neues Training
+      filter:
+        since: Zeitraum
+        4_weeks: "4 Wochen"
+        8_weeks: "2 Monate"
+        12_weeks: "3 Monate"
+        24_weeks: "6 Monate"
     form:
       actions:
         save: Training speichern

@@ -1,8 +1,15 @@
 %h1= t('.headline', name: @team.name)
 
+= link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
+%hr
+
+%form.form-inline
+  .form-group
+    %label{for: 'since'}= t('.filter.since')
+    = select_tag :since, options_for_select(@filter.collect{ |f| [t(".filter.#{f}_weeks"), f] }, @since), {class: 'form-control', onchange: 'this.form.submit();'}
+%br
+
 - if @events 
-  = link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
-  %br
   %table.table.table-condensed
     %thead
       %tr
@@ -35,6 +42,6 @@
             - else
               %td
 
-%br
+  %br
 
-= link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
+  = link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
