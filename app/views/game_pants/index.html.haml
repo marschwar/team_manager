@@ -1,6 +1,6 @@
 %h1= t(".headline", name: @team.name)
 - if can? :create, GameJersey
-  = form_for [@team, @pants], html: {class: 'form-inline'} do |f|
+  = form_for [@team, @pants], html: {class: 'form-inline hidden-print'} do |f|
     = f.hidden_field :type
     .form-group
       = f.label :size
@@ -10,5 +10,5 @@
       = f.submit t('.actions.save'), class: 'btn btn-primary'
 
 - if @all_pants.present?
-  %br
+  %br.hidden-print
   = render 'list', pants: @all_pants

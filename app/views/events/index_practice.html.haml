@@ -1,13 +1,14 @@
 %h1= t('.headline', name: @team.name)
 
-= link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
+.actions.hidden-print
+  = link_to t('.actions.new'), new_team_practice_path(@current_team), class: 'btn btn-primary'
 %hr
 
-%form.form-inline
+%form.form-inline.hidden-print
   .form-group
     %label{for: 'since'}= t('.filter.since')
     = select_tag :since, options_for_select(@filter.collect{ |f| [t(".filter.#{f}_weeks"), f] }, @since), {class: 'form-control', onchange: 'this.form.submit();'}
-%br
+%br.hidden-print
 
 - if @events 
   %table.table.table-condensed
@@ -18,7 +19,7 @@
         - @events.each do |event|
           %th.text-center
             = event.event_date.strftime('%m-%d')
-            %a{href: "#{edit_team_event_path @team, event}"}
+            %a.hidden-print{href: "#{edit_team_event_path @team, event}"}
               %span.glyphicon.glyphicon-edit
       %tr
         %th
@@ -39,6 +40,7 @@
           - player[:participations].each do |participation|
             - if participation
               %td{class: participation.participated ? 'success' : 'warning'}
+                %span.text-center.visible-print= participation.participated ? '+' : '-'
             - else
               %td
 

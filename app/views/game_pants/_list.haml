@@ -7,10 +7,10 @@
     %tr
       %td= t('team_equipments.sum')
       %td= pants.inject(0) { |sum, p| sum + p.count }
-      %td
+      %td.hidden-print
   %tbody
     - pants.each do |pants|
       %tr
         %td= pants.size
         %td= pants.count
-        %td= link_to 'edit', edit_team_game_pants_path(pants.team, pants)
+        %td.hidden-print= link_to 'edit', edit_team_game_pants_path(pants.team, pants)
