@@ -50,6 +50,7 @@ de:
       headline: Alle Spieler
       headline_team: Spieler der %{name}
       headline_inactive: Inaktive Spieler
+      date: "Stand: %{date}"
       player_count: Insgesamt %{count} Spieler
       upload:
         headline: Spielerliste importieren

@@ -2,6 +2,7 @@
   %h1= t('.headline_team', name: @team.name)
 - else
   %h1= t('.headline')
+%p.text-muted.visible-print= t('.date', date: format_date(Date.today))
 
 - unless @players.empty?
   = render 'index_actions', team: @team
