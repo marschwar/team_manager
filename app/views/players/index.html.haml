@@ -34,31 +34,33 @@
 
 
 - if @inactive_players.present?
-  %br
-  %h2= t('.headline_inactive') 
-  %table.table.table-striped
-    %thead
-      %tr
-        %th= Player.human_attribute_name('last_name')
-        %th= Player.human_attribute_name('first_name')
-
-    %tbody
-      - @inactive_players.each do |player|
+  .inactive_players.hidden-print
+    %br
+    %h2= t('.headline_inactive') 
+    %table.table.table-striped
+      %thead
         %tr
-          %td= link_to player.last_name, player_path(player)
-          %td= player.first_name
+          %th= Player.human_attribute_name('last_name')
+          %th= Player.human_attribute_name('first_name')
+
+      %tbody
+        - @inactive_players.each do |player|
+          %tr
+            %td= link_to player.last_name, player_path(player)
+            %td= player.first_name
 
 
 - if can? :create, Player
-  %h2= t('.upload.headline')
-  %p.muted= t('.upload.instructions_html')
-  = form_tag players_upload_path, class: 'form-inline', multipart: true do
-    .form-group
-      = label_tag :team_id
-      = collection_select :upload, :team_id, @all_teams, :id, :name, {prompt: t('.upload.prompt'), selected: @team ? @team.id : nil }, {class: 'form-control'}
-      = label_tag 'upload[file]', 'File'
-      = file_field_tag 'upload[file]', :class => 'form-control'
-      %button.btn.btn-default{type: 'submit'}
-        %span.glyphicon.glyphicon-upload
-        = t('.actions.upload')
+  .upload_player.hidden-print
+    %h2= t('.upload.headline')
+    %p.muted= t('.upload.instructions_html')
+    = form_tag players_upload_path, class: 'form-inline', multipart: true do
+      .form-group
+        = label_tag :team_id
+        = collection_select :upload, :team_id, @all_teams, :id, :name, {prompt: t('.upload.prompt'), selected: @team ? @team.id : nil }, {class: 'form-control'}
+        = label_tag 'upload[file]', 'File'
+        = file_field_tag 'upload[file]', :class => 'form-control'
+        %button.btn.btn-default{type: 'submit'}
+          %span.glyphicon.glyphicon-upload
+          = t('.actions.upload')
 
