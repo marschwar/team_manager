@@ -20,7 +20,9 @@
     %tbody
       - @equipment.each do |eq|
         %tr
-          %td= eq[:player].last_name
+          %td
+            = link_to eq[:player].last_name, player_path(eq[:player]), class: 'hidden-print'
+            %span.visible-print= eq[:player].last_name
           %td= eq[:player].first_name
           %td= equipment_detail(eq[:helmet])
           %td= equipment_detail(eq[:pad])
