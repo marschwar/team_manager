@@ -20,6 +20,7 @@
       %th= Player.human_attribute_name('pants_size')
       %th= Player.human_attribute_name('licence')
       %th= Player.human_attribute_name('position')
+      %th.hidden-print
       %tbody
         - @jerseys.each do |jersey|
           %tr{class: "#{(jersey.players.count > 1) ? 'danger' : ''}"}
@@ -29,6 +30,11 @@
             %td= jersey_pants_size(jersey)
             %td= jersey_licence_number(jersey)
             %td= jersey_positions(jersey)
+            - if can? :destroy, jersey
+              %td.hidden-print
+                %a{href: "#{team_game_jersey_path @team, jersey}", class: 'pull-right', data: {method: :delete, confirm: 'Are you sure?'}}
+                  %span.glyphicon.glyphicon-trash
+
 
 - if can? :create, GameJersey
   .row.hidden-print

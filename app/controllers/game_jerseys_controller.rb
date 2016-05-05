@@ -41,6 +41,11 @@ class GameJerseysController < ApplicationController
     redirect_to team_game_jerseys_path(@team)
   end
 
+  def destroy
+    @game_jersey.destroy
+    redirect_to team_game_jerseys_path @team
+  end
+
 private
 
   def game_jersey_params
