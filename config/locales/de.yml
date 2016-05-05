@@ -35,6 +35,7 @@ de:
       equipments: Übersicht
       jerseys: Spieljerseys
       pants: Spielhosen
+      rental_equipment: Leihausrüstung
   startpage:
     show:
       headline: FPE Team Manager
@@ -109,6 +110,9 @@ de:
       actions:
         save: Training speichern
   rental_equipments:
+    index:
+      headline: Verliehene Leihausrüstung
+      headline_team: Verliehene Leihausrüstung der %{name}
     new:
       headline: Neues Equipment ausleihen
     edit:
@@ -154,7 +158,10 @@ de:
       save: Benutzer speichern
   general:
     actions:
-      cancel: Abbrechen 
+      cancel: Abbrechen
+  shared:
+    date: "Stand: %{date}"
+ 
   activerecord:
     models:
       player: Spieler
@@ -164,6 +171,8 @@ de:
       game_pants: 
         one: Spielhose
         other: Spielhosen
+      helmet: Leihhelm
+      pad: Leihpad
     attributes:
       player:
         active: Aktiver Spieler

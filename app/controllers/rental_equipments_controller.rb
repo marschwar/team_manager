@@ -1,7 +1,26 @@
 class RentalEquipmentsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_player
+  before_action :set_player, except: [:index]
+
+  def index
+    if params[:id]
+      @team = Team.find params[:id]
+      data = RentalEquipment.of_team(@team).active.group_by(&:player)
+    else
+      data = RentalEquipment.joins(:player).active.group_by(&:player)
+    end
+
+    @equipment = data.map do |player, equipments|
+      {
+        player: player,
+        helmet: equipments.find { |e| e.type == 'Helmet' },
+        pad: equipments.find { |e| e.type == 'Pad' }
+      }
+    end
+
+    @equipment.sort_by! {|e| e[:player].last_name}
+  end
 
   def new
     @rental_equipment = RentalEquipment.new(player: @player, rental_date: Date.today, type: RentalEquipment::TYPES.first)
@@ -38,6 +57,7 @@ class RentalEquipmentsController < ApplicationController
     @rental_equipment.destroy
     redirect_to @player
   end
+
 private
   def set_player
     raise unless params[:player_id]

@@ -1,0 +1,27 @@
+- if @team
+  %h1= t('.headline_team', name: @team.name)
+- else
+  %h1= t('.headline')
+%p.text-muted.visible-print= t('shared.date', date: format_date(Date.today))
+
+- unless @equipment.empty?
+  %br
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= Player.human_attribute_name('last_name')
+        %th= Player.human_attribute_name('first_name')
+        %th= Helmet.model_name.human
+        %th= Pad.model_name.human
+    %tfoot
+      %tr
+
+    %tbody
+      - @equipment.each do |eq|
+        %tr
+          %td= eq[:player].last_name
+          %td= eq[:player].first_name
+          %td= equipment_detail(eq[:helmet])
+          %td= equipment_detail(eq[:pad])
+%br

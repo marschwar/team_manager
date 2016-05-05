@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     member do
       get 'select'
       get 'depth-chart', to: 'teams#depth_chart'
+      get 'rental_equipment', to: 'rental_equipments#index'
     end
     post 'game_jerseys_upload', to: 'game_jerseys#upload'
   end
+  get 'rental_equipment', to: 'rental_equipments#index'
 
   resources :players do
     resources :contacts, only: [:create, :destroy]
