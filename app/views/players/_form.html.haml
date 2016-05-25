@@ -18,18 +18,18 @@
       .form-group{class: "#{'has-error' if @player.errors[:first_name].present?}"}
         = f.label :first_name, :class => 'control-label'
         .controls
-          = f.text_field :first_name, :class => 'form-control', maxlength: 100
+          = f.text_field :first_name, :class => 'form-control', maxlength: 100, autocomplete: :off
     .col-sm-5.col-sm-offset-1
       .form-group{class: "#{'has-error' if @player.errors[:last_name].present?}"}
         = f.label :last_name, :class => 'control-label'
         .controls
-          = f.text_field :last_name, :class => 'form-control', maxlength: 100
+          = f.text_field :last_name, :class => 'form-control', maxlength: 100, autocomplete: :off
   .row
     .col-sm-5
       .form-group{class: "#{'has-error' if @player.errors[:birthday].present?}"}
         = f.label :birthday, :class => 'control-label'
         .controls
-          = f.date_field :birthday, :class => 'form-control', maxlength: 100
+          = f.date_field :birthday, :class => 'form-control', maxlength: 100, autocomplete: :off
     .col-sm-5.col-sm-offset-1
       .form-group{class: "#{'has-error' if @player.errors[:position].present?}"}
         = f.label :position, :class => 'control-label'
@@ -40,7 +40,7 @@
       .form-group{class: "#{'has-error' if @player.errors[:number].present?}"}
         = f.label :number, :class => 'control-label'
         .controls
-          = f.number_field :number, :class => 'form-control', min: 1, max: 99
+          = f.number_field :number, :class => 'form-control', min: 1, max: 99, autocomplete: :off
     .col-sm-5.col-sm-offset-1
       .form-group{class: "#{'has-error' if @player.errors[:pants_size].present?}"}
         = f.label :pants_size, :class => 'control-label'
@@ -51,7 +51,7 @@
       .form-group{class: "#{'has-error' if @player.errors[:licence].present?}"}
         = f.label :licence, :class => 'control-label'
         .controls
-          = f.text_field :licence, :class => 'form-control'
+          = f.text_field :licence, :class => 'form-control', autocomplete: :off
     .col-sm-5.col-sm-offset-1
       .form-group{class: "#{'has-error' if @player.errors[:team].present?}"}
         %label
