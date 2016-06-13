@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include CurrentUser
 	include CurrentTeam
 
+  before_action :redirect_to_startpage
   before_action :load_teams
   before_action :set_locale
   before_action :force_https
@@ -23,6 +24,10 @@ private
   def extract_locale_from_accept_language_header
     lang_header = request.env['HTTP_ACCEPT_LANGUAGE']
     lang_header.scan(/^[a-z]{2}/).first if lang_header
+  end
+
+  def redirect_to_startpage
+    redirect_to root_path unless @current_user.present?
   end
 
   def force_https

@@ -1,4 +1,7 @@
 class StartpageController < ApplicationController
+
+  skip_before_filter :redirect_to_startpage, only: [:show]
+
   def show
     if current_team
       redirect_to team_players_path(current_team) if can? :index, Player
