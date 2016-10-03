@@ -37,7 +37,7 @@
     - if can? :create, Contact
       = form_for [@player, @contact], :html => { :class => 'form-inline' }  do |f|
         .form-group
-          = f.text_field :email, class: 'form-control', maxlength: 100, size: 25, placeholder: t('.contact.email.placeholder')
+          = f.text_field :email, type: 'email', class: 'form-control', maxlength: 100, size: 25, placeholder: t('.contact.email.placeholder')
         %button.btn.btn-default{type: 'submit'}
           %span.glyphicon.glyphicon-plus
     %br
