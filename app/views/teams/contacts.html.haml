@@ -1,5 +1,5 @@
 %h1= t('.headline', name: @team.name)
-%p.text-muted.visible-print= t('shared.date', date: format_date(Date.today))
+%p.text-muted.visible-print= t('shared.current_date', date: format_date(Date.today))
 
 - unless @players.empty?
   %br
