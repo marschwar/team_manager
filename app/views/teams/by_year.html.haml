@@ -1,0 +1,31 @@
+%h1= t('.headline', name: @team.name)
+%p.text-muted.visible-print= t('shared.date', date: format_date(Date.today))
+
+- unless @by_year.empty?
+  - @by_year.each do |y|
+    - y.each do |year_class, players|
+      %h2
+        = t("masterdata.year_class.#{year_class}") 
+        = year_class_element_for_year(year_class)
+      - if players
+
+        %table.table.table-condensed
+          %thead
+            %tr
+              %th= Player.human_attribute_name('last_name')
+              %th= Player.human_attribute_name('first_name')
+              %th= Player.human_attribute_name('position')
+          %tfoot
+            %tr
+              %td{colspan: 3}= t('.player_count', count: players.count)
+
+          %tbody
+            - players.each do |player|
+              %tr
+                %td
+                  = link_to player.last_name, player_path(player), class: 'hidden-print'
+                  %span.visible-print= player.last_name
+                %td
+                  = link_to player.first_name, player_path(player), class: 'hidden-print'
+                  %span.visible-print= player.first_name
+                %td= player.position

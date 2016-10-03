@@ -1,5 +1,5 @@
 %h1= t(".headline", name: @team.name)
-%p.text-muted.visible-print= t('.date', date: format_date(Date.today))
+%p.text-muted.visible-print= t('shared.date', date: format_date(Date.today))
 - if can? :create, @jersey
   = form_for [@team, @jersey], html: {class: 'form-inline hidden-print'} do |f|
     = f.hidden_field :type

@@ -26,8 +26,10 @@ de:
   navbar:
     teams: Teams
     team:
+      header: Spieler
       players: Roster
       depth_chart: Depth Chart
+      by_year: Nach Jahrgang
       practices: Training
       practice_participation: Trainingsbeteiligung
       new_practice: Neues Training
@@ -39,6 +41,8 @@ de:
     admin:
       header: Adminstratives
       contacts: Kontakte
+  shared:
+    date: "Stand: %{date}"
   startpage:
     show:
       headline: FPE Team Manager
@@ -51,12 +55,13 @@ de:
         headline: Spieler pro Jahrgang
     contacts:
       headline: "%{name} Kontaktadressen"
+    by_year:
+      headline: "Spieler der %{name} nach Jahrgang"
   players:
     index:
       headline: Alle Spieler
       headline_team: Spieler der %{name}
       headline_inactive: Inaktive Spieler
-      date: "Stand: %{date}"
       player_count: Insgesamt %{count} Spieler
       upload:
         headline: Spielerliste importieren
@@ -140,7 +145,6 @@ de:
   game_jerseys:
     index:
       headline: "%{name} Jerseys"
-      date: "Stand: %{date}"
       actions:
         save: Jersey hinzufügen
         upload: Jerseyliste hochladen
@@ -166,6 +170,13 @@ de:
       cancel: Abbrechen
   shared:
     date: "Stand: %{date}"
+
+  masterdata:
+    year_class:
+      Sr: Senior
+      Jr: Junior
+      So: Sophomore
+      Fr: Freshman
  
   activerecord:
     models:

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get 'select'
       get 'depth-chart', to: 'teams#depth_chart'
+      get 'by_year', to: 'teams#by_year'
       get 'contacts', to: 'teams#contacts'
       get 'rental_equipment', to: 'rental_equipments#index'
     end

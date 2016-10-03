@@ -28,6 +28,12 @@ class TeamsController < ApplicationController
     @players = players.reject { |p| p.contacts.blank? }
   end
 
+  def by_year
+    players = Player.of_team(@team).active.sorted
+
+    @by_year = Player::YEAR_CLASSES.map{ |year| {"#{year}": players.select { |p| year == p.year_class }}}
+  end
+
   # GET /teams/1
   # GET /teams/1.json
   def show
