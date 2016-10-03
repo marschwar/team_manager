@@ -41,9 +41,9 @@ de:
     admin:
       header: Adminstratives
       contacts: Kontakte
-  shared:
+  misc:
     player_count: "Insgesamt %{count} Spieler"
-    current_date: "Standsss: %{date}"
+    current_date: "Stand: %{date}"
   startpage:
     show:
       headline: FPE Team Manager

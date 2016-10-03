@@ -2,7 +2,7 @@
   %h1= t('.headline_team', name: @team.name)
 - else
   %h1= t('.headline')
-%p.text-muted.visible-print= t('shared.current_date', date: format_date(Date.today))
+%p.text-muted.visible-print= t('misc.current_date', date: format_date(Date.today))
 
 - unless @equipment.empty?
   %br

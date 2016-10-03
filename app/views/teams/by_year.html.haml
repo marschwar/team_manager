@@ -1,5 +1,5 @@
 %h1= t('.headline', name: @team.name)
-%p.text-muted.visible-print= t('shared.current_date', date: format_date(Date.today))
+%p.text-muted.visible-print= t('misc.current_date', date: format_date(Date.today))
 
 - unless @by_year.empty?
   - @by_year.each do |y|
@@ -17,7 +17,7 @@
               %th= Player.human_attribute_name('position')
           %tfoot
             %tr
-              %td{colspan: 3}= t('shared.player_count', count: players.count)
+              %td{colspan: 3}= t('misc.player_count', count: players.count)
 
           %tbody
             - players.each do |player|
