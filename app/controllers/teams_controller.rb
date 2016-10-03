@@ -22,6 +22,12 @@ class TeamsController < ApplicationController
     @defense = Player::DEFENSE_POSITIONS.map{ |pos| {"#{pos}": players.select { |p| pos == p.position }}}
   end
 
+  def contacts
+    players = Player.of_team(@team).active.sorted
+
+    @players = players.reject { |p| p.contacts.blank? }
+  end
+
   # GET /teams/1
   # GET /teams/1.json
   def show

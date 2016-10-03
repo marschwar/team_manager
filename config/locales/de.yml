@@ -36,6 +36,9 @@ de:
       jerseys: Spieljerseys
       pants: Spielhosen
       rental_equipment: Leihausrüstung
+    admin:
+      header: Adminstratives
+      contacts: Kontakte
   startpage:
     show:
       headline: FPE Team Manager
@@ -46,6 +49,8 @@ de:
       headline: "%{name} Depth Chart"
       by_year:
         headline: Spieler pro Jahrgang
+    contacts:
+      headline: "%{name} Kontaktadressen"
   players:
     index:
       headline: Alle Spieler
@@ -173,6 +178,7 @@ de:
         other: Spielhosen
       helmet: Leihhelm
       pad: Leihpad
+      contact: Kontakt
     attributes:
       player:
         active: Aktiver Spieler

@@ -30,7 +30,7 @@ private
       staff
 
       can [:read, :create, :edit, :update], Player
-      can [:select, :depth_chart], Team
+      can [:select, :depth_chart, :contacts], Team
       can :manage, Event
       can :manage, Contact
       can :manage, TeamEquipment

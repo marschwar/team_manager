@@ -1,0 +1,28 @@
+%h1= t('.headline', name: @team.name)
+%p.text-muted.visible-print= t('shared.date', date: format_date(Date.today))
+
+- unless @players.empty?
+  %br
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= Player.human_attribute_name('last_name')
+        %th= Player.human_attribute_name('first_name')
+        %th= Contact.model_name.human
+    %tfoot
+      %tr
+
+    %tbody
+      - @players.each do |p|
+        %tr
+          %td
+            = link_to p.last_name, player_path(p), class: 'hidden-print'
+            %span.visible-print= p.last_name
+          %td= p.first_name
+          %td
+            - p.contacts.each_with_index do |c, idx|
+              - if idx > 0
+                %br
+              = c.email
+%br
