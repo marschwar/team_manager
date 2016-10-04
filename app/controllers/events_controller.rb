@@ -91,7 +91,6 @@ class EventsController < ApplicationController
     end
 
     def save_participations_for(event)
-      p participation_params
       participation_params.each_pair do |id, participation|
         player = Player.find id
         participated = participation[:participated] == '1'

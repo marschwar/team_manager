@@ -6,7 +6,7 @@
 
 (($) ->
 
-  $(document).on 'ready page:load', ->
+  $(document).on 'turbolinks:load', ->
     app.events.init()
 
   app.events =
