@@ -22,8 +22,9 @@
             %ul.dropdown-menu
               - @all_teams.each do |team|
                 %li= link_to team.name, select_team_path(team)
-              %li.divider{role: 'separator'}
-              %li= link_to t("navbar.new_team"), new_team_path
+              - if can? :create, 'Team'
+                %li.divider{role: 'separator'}
+                %li= link_to t("navbar.new_team"), new_team_path
           - if @current_team
             %li.dropdown
               %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
