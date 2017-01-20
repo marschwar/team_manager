@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  string: 
-  integer: 
-  integer: 
+  name: 'One'
+  year_from: '2000'
+  year_until: '2003'
 
 two:
-  string: 
-  integer: 
-  integer: 
+  name: 'One'
+  year_from: '2004'
+  year_until: '2007'

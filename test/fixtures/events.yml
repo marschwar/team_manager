@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  type: 'Practice'
+  team: :one
   name: MyString
   event_date: 2016-02-15
 
 two:
-  type: 
+  type: 'Practice'
+  team: :one
   name: MyString
   event_date: 2016-02-15

@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
 	has_many :contacts, dependent: :destroy
 	has_many :rental_equipments, dependent: :destroy
 
-	scope :of_team, -> (team) { where('team_id = ? or (birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
+	scope :of_team, -> (team) { where('team_id = ? or (team_is is null and birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
 	scope :with_number, -> (number) {where(number: number)}
 	scope :active, -> {where(active: true)}
 	scope :list, -> (ids) {where(id: ids)}

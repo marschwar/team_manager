@@ -1,13 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString
-  last_name: MyString
-  birthday: 2016-02-15
-  team_id: 1
+  first_name: Number
+  last_name: One
+  birthday: 2001-02-15
+  team_id: :one
 
 two:
-  first_name: MyString
-  last_name: MyString
-  birthday: 2016-02-15
-  team_id: 1
+  first_name: Number
+  last_name: One
+  birthday: 2001-02-15
