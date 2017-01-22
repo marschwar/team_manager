@@ -40,7 +40,7 @@ private
     def headcoach
       manager
 
-      can [:destroy, :read_note], Player
+      can [:destroy, :read_note, :upload], Player
     end
 
     def admin
