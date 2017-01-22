@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  UPLOAD_ATTRIBUTES = %w(last_name first_name birthday position)
+  UPLOAD_ATTRIBUTES = %w(last_name first_name position birthday)
 
   load_and_authorize_resource
 
@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
     @inactive_players = all.select { |p| !p.active  }
     respond_to do |format|
       format.html {}
-      format.csv { 
+      format.csv {
         filename = @team ? @team.name.gsub(/\s+/, '_').downcase : 'players'
         response.headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
       }
@@ -76,7 +76,7 @@ class PlayersController < ApplicationController
 
   def upload
     team = upload_team
-    flash[:error] = I18n.translate('players.index.upload.errors.team_missing') unless team    
+    flash[:error] = I18n.translate('players.index.upload.errors.team_missing') unless team
     redirect_to players_path and return if flash[:error]
 
     file = upload_file
@@ -96,7 +96,7 @@ class PlayersController < ApplicationController
     end
     redirect_to team_players_path(team)
   end
-  
+
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
