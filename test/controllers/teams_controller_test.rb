@@ -1,49 +1,55 @@
 require 'test_helper'
 
 class TeamsControllerTest < ActionController::TestCase
-  setup do
-    @team = teams(:one)
-  end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:teams)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create team" do
-    assert_difference('Team.count') do
-      post :create, team: { name: @team.name }
+  [:user, :manager, :admin].each do |role|
+    setup do
+      with_user role
+      @team = teams(:one)
     end
 
-    assert_redirected_to team_path(assigns(:team))
-  end
-
-  test "should show team" do
-    get :show, id: @team
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @team
-    assert_response :success
-  end
-
-  test "should update team" do
-    patch :update, id: @team, team: { name: @team.name }
-    assert_redirected_to team_path(assigns(:team))
-  end
-
-  test "should destroy team" do
-    assert_difference('Team.count', -1) do
-      delete :destroy, id: @team
+    test "should get index as #{role}" do
+      get :index
+      assert_response :success
+      assert_not_nil assigns(:teams)
     end
 
-    assert_redirected_to teams_path
+    test "should get new as #{role}" do
+      get :new
+      assert_response :success
+    end
+
+    test "should create team as #{role}" do
+      assert_difference('Team.count') do
+        post :create, team: { name: @team.name, year_from: 2000, year_until: 2003 }
+      end
+
+      assert_redirected_to team_path(assigns(:team))
+    end
+
+    test "should show team as #{role}" do
+      get :show, id: @team.id
+      assert_response :success
+    end
+
+    test "should get edit as #{role}" do
+      get :edit, id: @team
+      assert_response :success
+    end
+
+    test "should update team as #{role}" do
+      patch :update, id: @team, team: { name: @team.name }
+      assert_redirected_to team_path(assigns(:team))
+    end
+
+    test "should destroy team as #{role}" do
+      assert_difference('Team.count', -1) do
+        delete :destroy, id: @team
+      end
+
+      assert_redirected_to teams_path
+    end
+
   end
+
 end

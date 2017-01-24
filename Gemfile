@@ -48,13 +48,17 @@ gem 'lograge'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'byebug'
+end
+
+group :test do
+  gem 'mocha'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'
-  gem 'byebug'
 end
 
 group :production do
