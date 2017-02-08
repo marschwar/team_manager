@@ -34,6 +34,7 @@ private
       can :manage, Event
       can :manage, Contact
       can :manage, TeamEquipment
+      can :manage, RentalEquipment
       can [:read, :create, :edit, :update], Rental
     end
 

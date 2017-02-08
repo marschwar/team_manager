@@ -38,6 +38,7 @@ de:
       jerseys: Spieljerseys
       pants: Spielhosen
       rental: Leihausrüstung
+      rental_equipment: Leihausrüstung
     admin:
       header: Adminstratives
       contacts: Kontakte
@@ -131,6 +132,18 @@ de:
     actions:
       save: Speichern
       destroy: Löschen
+  rental_equipments:
+    index:
+      headline: Leihausrüstung der Jugend
+    new:
+      headline: Neues Equipment katalogisieren
+    edit:
+      headline: Equipment bearbeiten
+    actions:
+      save:
+        pad: Pad hinzufügen
+        helmet: Helm hinzufügen
+      destroy: Löschen
   team_equipments:
     count: Anzahl
     sum: Summe
@@ -188,8 +201,12 @@ de:
       game_pants:
         one: Spielhose
         other: Spielhosen
-      helmet: Leihhelm
-      pad: Leihpad
+      helmet:
+        one: Leihhelm
+        other: Leihhelme
+      pad:
+        one: Leihpad
+        other: Leihpads
       contact: Kontakt
     attributes:
       player:
@@ -209,6 +226,10 @@ de:
         size: Größe
         rental_date: Ausleihdatum
         return_date: Rückgabedatum
+      rental_equipment:
+        inventory_number: ID
+        brand: Marke/Model
+        size: Größe
       team_equipment:
         number: Nummer
         size: Größe

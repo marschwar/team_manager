@@ -1,0 +1,7 @@
+<%= RentalEquipment.human_attribute_name('type') %>;<%= RentalEquipment.human_attribute_name('inventory_number') %>;<%= RentalEquipment.human_attribute_name('brand') %>;<%= RentalEquipment.human_attribute_name('size') %>
+<% @pads.each do |equipment| %>
+Pad;<%= equipment.inventory_number %>;<%= equipment.brand %>;<%= equipment.size %>
+<% end %>
+<% @helmets.each do |equipment| %>
+Pad;<%= equipment.inventory_number %>;<%= equipment.brand %>;<%= equipment.size %>
+<% end %>

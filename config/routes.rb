@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   end
   post 'players/upload', controller: 'players', action: 'upload'
 
+  resources :rental_equipments
+
   resources :sessions, only: [:create]
   get '/logout', to: 'sessions#clear'
   # Omniauth success callback

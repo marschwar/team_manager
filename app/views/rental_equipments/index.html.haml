@@ -1,0 +1,68 @@
+%h1= t(".headline")
+= render 'index_actions', team: @team
+%br
+
+.row
+  .col-md-12
+    %h2= Pad.model_name.human(count: 2)
+    - if can? :create, RentalEquipment
+      = form_for [@pad], html: {class: 'form-inline hidden-print'} do |f|
+        .form-group
+          = f.label :inventory_number
+          = f.text_field :inventory_number, {class: 'form-control', maxlength: 5}
+          = f.label :brand
+          = f.text_field :brand, {class: 'form-control', maxlength: 20}
+          = f.label :size
+          = f.text_field :size, {class: 'form-control', maxlength: 6}
+          = f.submit t('rental_equipments.actions.save.pad'), class: 'btn btn-primary'
+    - if @pads.present?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= RentalEquipment.human_attribute_name('inventory_number')
+            %th= RentalEquipment.human_attribute_name('brand')
+            %th= RentalEquipment.human_attribute_name('size')
+            %th= t('.in_use')
+        %tfoot
+        %tbody
+          - @pads.each do |equipment|
+            %tr
+              %td= equipment.inventory_number
+              %td= equipment.brand
+              %td= equipment.size
+              %td TODO PLAYER_LINK
+
+%br
+
+.row
+  .col-md-12
+    %h2= Helmet.model_name.human(count: 2)
+    - if can? :create, RentalEquipment
+      = form_for [@helmet], html: {class: 'form-inline hidden-print'} do |f|
+        .form-group
+          = f.label :inventory_number
+          = f.text_field :inventory_number, {class: 'form-control', maxlength: 5}
+          = f.label :brand
+          = f.text_field :brand, {class: 'form-control', maxlength: 20}
+          = f.label :size
+          = f.text_field :size, {class: 'form-control', maxlength: 6}
+          = f.submit t('rental_equipments.actions.save.helmet'), class: 'btn btn-primary'
+    - if @helmets.present?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= RentalEquipment.human_attribute_name('inventory_number')
+            %th= RentalEquipment.human_attribute_name('brand')
+            %th= RentalEquipment.human_attribute_name('size')
+            %th= t('.in_use')
+        %tfoot
+        %tbody
+          - @helmets.each do |equipment|
+            %tr
+              %td= equipment.inventory_number
+              %td= equipment.brand
+              %td= equipment.size
+              %td TODO PLAYER_LINK
+
+%br
+= render 'index_actions', team: @team

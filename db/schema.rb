@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208195724) do
+ActiveRecord::Schema.define(version: 20170208201441) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20170208195724) do
     t.string   "licence"
     t.text     "note"
   end
+
+  create_table "rental_equipments", force: :cascade do |t|
+    t.string   "inventory_number",                null: false
+    t.string   "brand"
+    t.string   "size"
+    t.boolean  "active",           default: true, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "rental_equipments", ["inventory_number"], name: "index_rental_equipments_on_inventory_number", unique: true
 
   create_table "rentals", force: :cascade do |t|
     t.integer  "player_id",   null: false
