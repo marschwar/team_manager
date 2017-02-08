@@ -1,4 +1,4 @@
-class RentalEquipment < ActiveRecord::Base
+class Rental < ActiveRecord::Base
   TYPES = ['Helmet', 'Pad']
 
   belongs_to :player

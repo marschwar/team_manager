@@ -1,0 +1,35 @@
+= form_for [@player, @rental], html: { class: 'form-horizontal' } do |f|
+  - if @rental.errors.any?
+    .alert.alert-danger{role: 'alert'}
+      %ul
+        - @rental.errors.full_messages.each do |msg|
+          %li
+            %span.glyphicon.glyphicon-exclamation-sign
+            = msg
+  .form-group
+    .btn-group{data: {toggle: 'buttons'}}
+      - Rental::TYPES.each do |type|
+        %label.btn.btn-primary{class: "#{'active' if type == @rental.type}"}
+          = f.radio_button :type, type
+          = type
+  .form-group{class: "#{'has-error' if @rental.errors[:brand].present?}"}
+    = f.label :brand, :class => 'control-label'
+    .controls
+      = f.text_field :brand, :class => 'form-control', maxlength: 100
+  .form-group{class: "#{'has-error' if @rental.errors[:size].present?}"}
+    = f.label :size, :class => 'control-label'
+    .controls
+      = f.text_field :size, :class => 'form-control', maxlength: 100
+  .form-group{class: "#{'has-error' if @rental.errors[:rental_date].present?}"}
+    = f.label :rental_date, :class => 'control-label'
+    .controls
+      = f.date_field :rental_date, :class => 'form-control', maxlength: 100
+  .form-group{class: "#{'has-error' if @rental.errors[:return_date].present?}"}
+    = f.label :return_date, :class => 'control-label'
+    .controls
+      = f.date_field :return_date, :class => 'form-control', maxlength: 100
+  .form-group
+    - if can?(:edit, @rental)
+      = f.submit t('rentals.actions.save'), class: 'btn btn-primary'
+    - if @rental.id.present? && can?(:destroy, @rental)
+      = link_to t('rentals.actions.destroy'), player_rental_path(@player, @rental), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger'

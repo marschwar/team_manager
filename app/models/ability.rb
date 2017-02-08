@@ -34,7 +34,7 @@ private
       can :manage, Event
       can :manage, Contact
       can :manage, TeamEquipment
-      can [:read, :create, :edit, :update], RentalEquipment
+      can [:read, :create, :edit, :update], Rental
     end
 
     def headcoach
@@ -47,6 +47,6 @@ private
       headcoach
       can :manage, Team
       can :manage, User
-      can :manage, RentalEquipment
+      can :manage, Rental
     end
 end

@@ -1,2 +1,2 @@
-class Helmet < RentalEquipment
+class Helmet < Rental
 end

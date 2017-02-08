@@ -1,2 +1,2 @@
-class Pad < RentalEquipment
+class Pad < Rental
 end

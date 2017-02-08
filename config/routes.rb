@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'startpage#show'
-  
+
   resources :teams do
     resources :players, only: [:index]
     resources :events
@@ -13,17 +13,17 @@ Rails.application.routes.draw do
       get 'depth-chart', to: 'teams#depth_chart'
       get 'by_year', to: 'teams#by_year'
       get 'contacts', to: 'teams#contacts'
-      get 'rental_equipment', to: 'rental_equipments#index'
+      get 'rental', to: 'rentals#index'
     end
     post 'game_jerseys_upload', to: 'game_jerseys#upload'
   end
-  get 'rental_equipment', to: 'rental_equipments#index'
+  get 'rental', to: 'rentals#index'
 
   resources :players do
     resources :contacts, only: [:create, :destroy]
-    resources :rental_equipments, only: [:new, :create, :edit, :update, :destroy]
-    resources :helmets, controller: 'rental_equipments', type: 'Helmet'
-    resources :pads, controller: 'rental_equipments', type: 'Pad'
+    resources :rentals, only: [:new, :create, :edit, :update, :destroy]
+    resources :helmets, controller: 'rentals', type: 'Helmet'
+    resources :pads, controller: 'rentals', type: 'Pad'
   end
   post 'players/upload', controller: 'players', action: 'upload'
 
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       get :guests
       get :managers
       get :all
-    end    
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

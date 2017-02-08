@@ -37,7 +37,7 @@ de:
       equipments: Übersicht
       jerseys: Spieljerseys
       pants: Spielhosen
-      rental_equipment: Leihausrüstung
+      rental: Leihausrüstung
     admin:
       header: Adminstratives
       contacts: Kontakte
@@ -120,7 +120,7 @@ de:
     form:
       actions:
         save: Training speichern
-  rental_equipments:
+  rentals:
     index:
       headline: Verliehene Leihausrüstung
       headline_team: Verliehene Leihausrüstung der %{name}
@@ -178,14 +178,14 @@ de:
       Jr: Junior
       So: Sophomore
       Fr: Freshman
- 
+
   activerecord:
     models:
       player: Spieler
-      game_jersey: 
+      game_jersey:
         one: Spieljersey
         other: Spieljerseys
-      game_pants: 
+      game_pants:
         one: Spielhose
         other: Spielhosen
       helmet: Leihhelm
@@ -204,7 +204,7 @@ de:
         pants_size: Hosengröße
         licence: Passnummer
         note: Notizen
-      rental_equipment:
+      rental:
         brand: Marke/Model
         size: Größe
         rental_date: Ausleihdatum
