@@ -1,6 +1,6 @@
 %h1= t(".headline")
 = render 'index_actions', team: @team
-%br
+%hr
 
 .row
   .col-md-12
@@ -15,6 +15,7 @@
           = f.label :size
           = f.text_field :size, {class: 'form-control', maxlength: 6}
           = f.submit t('rental_equipments.actions.save.pad'), class: 'btn btn-primary'
+      %br
     - if @pads.present?
       %table.table.table-striped
         %thead
@@ -32,7 +33,7 @@
               %td= equipment.size
               %td TODO PLAYER_LINK
 
-%br
+%hr
 
 .row
   .col-md-12
@@ -47,6 +48,7 @@
           = f.label :size
           = f.text_field :size, {class: 'form-control', maxlength: 6}
           = f.submit t('rental_equipments.actions.save.helmet'), class: 'btn btn-primary'
+      %br
     - if @helmets.present?
       %table.table.table-striped
         %thead
@@ -64,5 +66,5 @@
               %td= equipment.size
               %td TODO PLAYER_LINK
 
-%br
+%hr
 = render 'index_actions', team: @team
