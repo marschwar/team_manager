@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208201441) do
+ActiveRecord::Schema.define(version: 20170208214751) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -67,14 +67,15 @@ ActiveRecord::Schema.define(version: 20170208201441) do
   add_index "rental_equipments", ["inventory_number"], name: "index_rental_equipments_on_inventory_number", unique: true
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "player_id",   null: false
-    t.string   "type",        null: false
+    t.integer  "player_id",        null: false
+    t.string   "type",             null: false
     t.string   "brand"
     t.string   "size"
-    t.date     "rental_date", null: false
+    t.date     "rental_date",      null: false
     t.date     "return_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "inventory_number"
   end
 
   create_table "sessions", force: :cascade do |t|

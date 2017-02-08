@@ -222,6 +222,7 @@ de:
         licence: Passnummer
         note: Notizen
       rental:
+        inventory_number: Inventar-ID
         brand: Marke/Model
         size: Größe
         rental_date: Ausleihdatum

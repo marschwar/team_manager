@@ -69,7 +69,7 @@ private
   end
 
   def safe_params(type)
-    params.require(type).permit(:type, :brand, :size, :rental_date, :return_date)
+    params.require(type).permit(:type, :inventory_number, :brand, :size, :rental_date, :return_date)
   end
 
 end

@@ -12,6 +12,10 @@
         %label.btn.btn-primary{class: "#{'active' if type == @rental.type}"}
           = f.radio_button :type, type
           = type
+  .form-group{class: "#{'has-error' if @rental.errors[:inventory_number].present?}"}
+    = f.label :inventory_number, :class => 'control-label'
+    .controls
+      = f.text_field :inventory_number, :class => 'form-control', maxlength: 5
   .form-group{class: "#{'has-error' if @rental.errors[:brand].present?}"}
     = f.label :brand, :class => 'control-label'
     .controls

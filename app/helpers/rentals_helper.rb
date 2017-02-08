@@ -2,7 +2,9 @@ module RentalsHelper
   def equipment_detail(equipment)
     return unless equipment
 
-    data = [equipment.brand]
+    data = []
+    data << "##{equipment.inventory_number}" if equipment.inventory_number.present?
+    data << equipment.brand if equipment.brand.present?
     data << "(#{equipment.size})" if equipment.size.present?
     content = data.join(' ')
 

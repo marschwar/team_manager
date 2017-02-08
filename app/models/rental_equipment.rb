@@ -1,7 +1,8 @@
 class RentalEquipment < ActiveRecord::Base
+	FORMAT = /\A[HP]\d{4}\z/
 	TYPES = %w(PAD HELMET)
 
-	validates :inventory_number, format: { with: /\A[HP]\d{4}\z/, message: "muss das Format [HP]1234 haben" }
+	validates :inventory_number, format: { with: RentalEquipment::FORMAT, message: "muss das Format [HP]1234 haben" }
   validates_uniqueness_of :inventory_number
 
 	scope :helmets, -> { where("inventory_number like 'H%'")}
