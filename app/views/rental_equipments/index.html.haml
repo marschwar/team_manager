@@ -14,8 +14,6 @@
           = f.text_field :brand, {class: 'form-control', maxlength: 40, size: 20}
           = f.label :size
           = f.text_field :size, {class: 'form-control', maxlength: 6}
-          = f.label :serial_number
-          = f.text_field :serial_number, {class: 'form-control', maxlength: 20, size: 10}
           = f.submit t('rental_equipments.actions.save.pad'), class: 'btn btn-primary'
       %br
     - if @pads.present?
@@ -25,7 +23,6 @@
             %th= RentalEquipment.human_attribute_name('inventory_number')
             %th= RentalEquipment.human_attribute_name('brand')
             %th= RentalEquipment.human_attribute_name('size')
-            %th= RentalEquipment.human_attribute_name('serial_number')
             %th= t('.in_use')
         %tfoot
         %tbody
@@ -34,7 +31,6 @@
               %td= equipment.inventory_number
               %td= equipment.brand
               %td= equipment.size
-              %td= equipment.serial_number
               - if equipment.rented_out?
                 %td
                   = link_to equipment.player.full_name, player_path(equipment.player), class: 'hidden-print'
@@ -56,6 +52,8 @@
           = f.text_field :brand, {class: 'form-control', maxlength: 40, size: 20}
           = f.label :size
           = f.text_field :size, {class: 'form-control', maxlength: 6}
+          = f.label :serial_number
+          = f.text_field :serial_number, {class: 'form-control', maxlength: 20, size: 10}
           = f.submit t('rental_equipments.actions.save.helmet'), class: 'btn btn-primary'
       %br
     - if @helmets.present?
@@ -65,6 +63,7 @@
             %th= RentalEquipment.human_attribute_name('inventory_number')
             %th= RentalEquipment.human_attribute_name('brand')
             %th= RentalEquipment.human_attribute_name('size')
+            %th= RentalEquipment.human_attribute_name('serial_number')
             %th= t('.in_use')
         %tfoot
         %tbody
@@ -73,6 +72,7 @@
               %td= equipment.inventory_number
               %td= equipment.brand
               %td= equipment.size
+              %td= equipment.serial_number
               - if equipment.rented_out?
                 %td
                   = link_to equipment.player.full_name, player_path(equipment.player), class: 'hidden-print'
