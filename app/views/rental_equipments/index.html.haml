@@ -31,7 +31,12 @@
               %td= equipment.inventory_number
               %td= equipment.brand
               %td= equipment.size
-              %td TODO PLAYER_LINK
+              - if equipment.rented_out?
+                %td
+                  = link_to equipment.player.full_name, player_path(equipment.player), class: 'hidden-print'
+                  %span.visible-print= equipment.player.full_name
+              - else
+                %td
 
 %hr
 
@@ -64,7 +69,12 @@
               %td= equipment.inventory_number
               %td= equipment.brand
               %td= equipment.size
-              %td TODO PLAYER_LINK
+              - if equipment.rented_out?
+                %td
+                  = link_to equipment.player.full_name, player_path(equipment.player), class: 'hidden-print'
+                  %span.visible-print= equipment.player.full_name
+              - else
+                %td
 
 %hr
 = render 'index_actions', team: @team

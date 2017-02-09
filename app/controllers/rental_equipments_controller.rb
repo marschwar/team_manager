@@ -6,8 +6,8 @@ class RentalEquipmentsController < ApplicationController
       @pad = RentalEquipment.new(inventory_number: 'P')
       @helmet = RentalEquipment.new(inventory_number: 'H')
     end
-    @helmets = RentalEquipment.helmets
-    @pads = RentalEquipment.pads
+    @helmets = RentalEquipment.helmets.ordered
+    @pads = RentalEquipment.pads.ordered
     respond_to do |format|
       format.html {}
       format.csv {

@@ -8,6 +8,7 @@ class RentalEquipment < ActiveRecord::Base
 	scope :with_number, -> (inventory_number) { where(inventory_number: inventory_number).limit(1)}
 	scope :helmets, -> { where("inventory_number like 'H%'")}
 	scope :pads, -> { where("inventory_number like 'P%'")}
+	scope :ordered, -> { order(:inventory_number)}
 
 	def type
 		case inventory_number
@@ -18,6 +19,14 @@ class RentalEquipment < ActiveRecord::Base
 		else
 			:unknown
 		end
+	end
+
+	def rented_out?
+		player.present?
+	end
+
+	def player
+		@_player ||= Rental.with_number(inventory_number).try(:player)
 	end
 
 end
