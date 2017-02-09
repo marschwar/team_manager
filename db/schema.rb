@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208214751) do
+ActiveRecord::Schema.define(version: 20170209071310) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
