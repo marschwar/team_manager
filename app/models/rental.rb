@@ -26,7 +26,7 @@ private
 
   def rental_equipment_must_exist
     if inventory_number.present? && RentalEquipment.with_number(inventory_number).blank?
-      errors.add(:inventory_number, "Inventarnummer existiert nicht")
+      errors.add(:inventory_number, "existiert nicht")
     end
   end
 
@@ -34,7 +34,7 @@ private
     if inventory_number.present?
       rented_to = Rental.with_number(inventory_number).active.where('player_id <> ?', player_id).first
       if rented_to.present?
-        errors.add(:inventory_number, "Equipment ist bereits an #{rented_to.player.full_name} verliehen")
+        errors.add(:inventory_number, "ist bereits an #{rented_to.player.full_name} verliehen")
       end
     end
   end
