@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209071310) do
+ActiveRecord::Schema.define(version: 20170209210132) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170209071310) do
     t.boolean  "active",           default: true, null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "serial_number"
   end
 
   add_index "rental_equipments", ["inventory_number"], name: "index_rental_equipments_on_inventory_number", unique: true

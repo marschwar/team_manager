@@ -31,6 +31,6 @@ class RentalEquipmentsController < ApplicationController
   private
 
   def rental_equipment_params
-    params.require(:rental_equipment).permit(:inventory_number, :size, :brand)
+    params.require(:rental_equipment).permit(:inventory_number, :size, :brand, :serial_number)
   end
 end

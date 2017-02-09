@@ -229,6 +229,7 @@ de:
         return_date: Rückgabedatum
       rental_equipment:
         inventory_number: ID
+        serial_number: Seriennummer
         brand: Marke/Model
         size: Größe
       team_equipment:
