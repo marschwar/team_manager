@@ -9,8 +9,20 @@ class Rental < ActiveRecord::Base
   scope :active, -> {where(return_date: nil)}
   scope :with_number, -> (inventory_number) {where(inventory_number: inventory_number)}
   scope :of_team, -> (team) { joins(:player).where('players.team_id = ? or (players.birthday >= ? and players.birthday <= ?)', team, team.first_day, team.last_day) }
-private
 
+  def equipment
+    @_equipment || load_equipment
+  end
+
+  def brand
+    equipment.try(:brand) || super
+  end
+
+  def size
+    equipment.try(:size) || super
+  end
+
+private
 
   def rental_equipment_must_exist
     if inventory_number.present? && RentalEquipment.with_number(inventory_number).blank?
@@ -25,5 +37,9 @@ private
         errors.add(:inventory_number, "Equipment ist bereits an #{rented_to.player.full_name} verliehen")
       end
     end
+  end
+
+  def load_equipment
+    RentalEquipment.with_number(inventory_number).first if inventory_number.present?
   end
 end
