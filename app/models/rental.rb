@@ -4,10 +4,26 @@ class Rental < ActiveRecord::Base
   belongs_to :player
 
   validates_presence_of :type, :rental_date
-  validates :inventory_number,
-    format: { with: RentalEquipment::FORMAT, message: "muss das Format [HP]1234 haben" },
-    if: "inventory_number.present?"
+  validate :rental_equipment_must_exist, :rental_equipment_may_not_be_taken
 
   scope :active, -> {where(return_date: nil)}
+  scope :with_number, -> (inventory_number) {where(inventory_number: inventory_number)}
   scope :of_team, -> (team) { joins(:player).where('players.team_id = ? or (players.birthday >= ? and players.birthday <= ?)', team, team.first_day, team.last_day) }
+private
+
+
+  def rental_equipment_must_exist
+    if inventory_number.present? && RentalEquipment.with_number(inventory_number).blank?
+      errors.add(:inventory_number, "Inventarnummer existiert nicht")
+    end
+  end
+
+  def rental_equipment_may_not_be_taken
+    if inventory_number.present?
+      rented_to = Rental.with_number(inventory_number).active.where('player_id <> ?', player_id).first
+      if rented_to.present?
+        errors.add(:inventory_number, "Equipment ist bereits an #{rented_to.player.full_name} verliehen")
+      end
+    end
+  end
 end
