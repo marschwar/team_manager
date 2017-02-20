@@ -55,7 +55,8 @@
                     %li= link_to t("navbar.team.jerseys"), team_game_jerseys_path(@current_team)
                     %li= link_to t("navbar.team.pants"), team_game_pants_index_path(@current_team)
                   - if can? :index, Rental
-                    %li= link_to t("navbar.team.rental_equipment"), rental_equipments_path
+                    %li= link_to t("navbar.team.rental_equipment.pads"), "#{rental_equipments_path}#pads"
+                    %li= link_to t("navbar.team.rental_equipment.helmets"), "#{rental_equipments_path}#helmets"
             - if can? :contacts, Team
               %li.team-dropdown
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}

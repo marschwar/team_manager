@@ -2,6 +2,7 @@
 = render 'index_actions', team: @team
 %hr
 
+%a{id: "pads"}
 .row
   .col-md-12
     %h2= Pad.model_name.human(count: 2)
@@ -40,6 +41,7 @@
 
 %hr
 
+%a{id: "helmets"}
 .row
   .col-md-12
     %h2= Helmet.model_name.human(count: 2)

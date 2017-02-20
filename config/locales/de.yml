@@ -38,7 +38,10 @@ de:
       jerseys: Spieljerseys
       pants: Spielhosen
       rental: Leihausrüstung
-      rental_equipment: Leihausrüstung
+      rental_equipment:
+        pads: Leihpads
+        helmets: Leihhelme
+
     admin:
       header: Adminstratives
       contacts: Kontakte
