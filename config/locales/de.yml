@@ -48,6 +48,8 @@ de:
   misc:
     player_count: "Insgesamt %{count} Spieler"
     current_date: "Stand: %{date}"
+    pad_count: "Insgesamt %{count} Pads"
+    helmet_count: "Insgesamt %{count} Helme"
   startpage:
     show:
       headline: FPE Team Manager

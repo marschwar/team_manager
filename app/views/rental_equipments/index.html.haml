@@ -26,6 +26,8 @@
             %th= RentalEquipment.human_attribute_name('size')
             %th= t('.in_use')
         %tfoot
+          %tr
+            %td{colspan: 4}= t('misc.pad_count', count: @pads.count)
         %tbody
           - @pads.each do |equipment|
             %tr
@@ -68,6 +70,8 @@
             %th= RentalEquipment.human_attribute_name('serial_number')
             %th= t('.in_use')
         %tfoot
+          %tr
+            %td{colspan: 5}= t('misc.helmet_count', count: @helmets.count)
         %tbody
           - @helmets.each do |equipment|
             %tr
