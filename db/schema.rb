@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209210132) do
+ActiveRecord::Schema.define(version: 20170319220410) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20170209210132) do
     t.date     "event_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "member_statuses", force: :cascade do |t|
+    t.integer  "player_id",        null: false
+    t.boolean  "rental_equipment", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "participations", force: :cascade do |t|

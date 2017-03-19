@@ -7,6 +7,7 @@ class Player < ActiveRecord::Base
 	has_many :participations, dependent: :destroy
 	has_many :contacts, dependent: :destroy
 	has_many :rentals, dependent: :destroy
+	has_one :member_status, dependent: :destroy
 
 	scope :of_team, -> (team) { where('team_id = ? or (team_id is null and birthday >= ? and birthday <= ?)', team, team.first_day, team.last_day) }
 	scope :with_number, -> (number) {where(number: number)}
