@@ -10,8 +10,8 @@
         %tr
           %th= Player.human_attribute_name('last_name')
           %th= Player.human_attribute_name('first_name')
-          %th= Player.human_attribute_name('active_rental')
-          %th= MemberStatus.human_attribute_name('rental_equipment')
+          %th.text-center= Player.human_attribute_name('active_rental')
+          %th.text-center= MemberStatus.human_attribute_name('rental_equipment')
       %tfoot
         %tr
           %td{colspan: 5}= t('misc.player_count', count: players.count)
@@ -25,5 +25,15 @@
             %td
               = link_to player.first_name, player_path(player), class: 'hidden-print'
               %span.visible-print= player.first_name
-            %td= player.active_rental?
-            %td= player.member_status.try(:rental_equipment)
+            %td.text-center
+              - if player.active_rental?
+                %span.glyphicon.glyphicon-ok-sign
+              - else
+                %span.glyphicon.glyphicon-remove-sign
+            %td.text-center
+              - if player.member_status.blank?
+                %span.glyphicon.glyphicon-question-sign
+              - elsif player.member_status.rental_equipment
+                %span.glyphicon.glyphicon-ok-sign
+              - else
+                %span.glyphicon.glyphicon-remove-sign
