@@ -52,4 +52,14 @@ class Player < ActiveRecord::Base
 			member_status.rental_equipment != active_rental?
 	end
 
+	def matches?(other_last_name, other_first_name, other_birthday)
+		matches_last = last_name && last_name.downcase == other_last_name.try(:downcase)
+		matches_first = first_name && first_name.downcase == other_first_name.try(:downcase)
+		matches_birthday = birthday && birthday == other_birthday
+
+		(matches_first && matches_first) ||
+		(matches_first && matches_birthday) ||
+		(matches_last && matches_birthday)
+	end
+
 end
