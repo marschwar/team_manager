@@ -41,6 +41,7 @@ private
     def headcoach
       manager
 
+      can :manage, MemberStatus
       can [:destroy, :read_note, :upload], Player
     end
 

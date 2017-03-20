@@ -184,6 +184,18 @@ de:
   users:
     actions:
       save: Benutzer speichern
+  member_status:
+    index:
+      headline: "Mitgliedsstatus der Spieler der %{name}"
+      unknown:
+        type: Unbekannt
+        description: Entweder der Spieler war beim letzten Abgleich nicht im Verein oder sein Status konnte nicht automatisch ermittelt werden.
+      invalid:
+        type: Ungültig
+        description: Entweder der Spieler leiht aktuell eine Ausrüstung und zahlt dafür keine Leihgebühr oder umgekehrt.
+      valid:
+        type: Alles in Ordnung
+        description: ""
   general:
     actions:
       cancel: Abbrechen

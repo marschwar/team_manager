@@ -43,4 +43,13 @@ class Player < ActiveRecord::Base
 		end
 	end
 
+	def active_rental?
+		rentals.any? { |r| r.return_date.blank? }
+	end
+
+	def invalid_rental_status?
+		member_status.present? &&
+			member_status.rental_equipment != active_rental?
+	end
+
 end

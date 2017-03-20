@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :team_equipments, only: [:index]
     resources :game_jerseys, only: [:index, :create, :destroy]
     resources :game_pants, except: [:new, :show]
+    resources :member_status, only: [:index]
     member do
       get 'select'
       get 'depth-chart', to: 'teams#depth_chart'

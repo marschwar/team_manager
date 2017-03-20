@@ -1,0 +1,29 @@
+%h1= t(".headline", name: @team.name)
+
+- [:unknown, :invalid, :valid].each do |status|
+  - players = @status[status]
+  - if players.present?
+    %h2= t(".#{status}.type")
+    %p.muted= t(".#{status}.description")
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= Player.human_attribute_name('last_name')
+          %th= Player.human_attribute_name('first_name')
+          %th= Player.human_attribute_name('active_rental')
+          %th= MemberStatus.human_attribute_name('rental_equipment')
+      %tfoot
+        %tr
+          %td{colspan: 5}= t('misc.player_count', count: players.count)
+
+      %tbody
+        - players.each do |player|
+          %tr
+            %td
+              = link_to player.last_name, player_path(player), class: 'hidden-print'
+              %span.visible-print= player.last_name
+            %td
+              = link_to player.first_name, player_path(player), class: 'hidden-print'
+              %span.visible-print= player.first_name
+            %td= player.active_rental?
+            %td= player.member_status.try(:rental_equipment)

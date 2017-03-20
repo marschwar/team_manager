@@ -57,13 +57,16 @@
                   - if can? :index, Rental
                     %li= link_to t("navbar.team.rental_equipment.pads"), "#{rental_equipments_path}#pads"
                     %li= link_to t("navbar.team.rental_equipment.helmets"), "#{rental_equipments_path}#helmets"
-            - if can? :contacts, Team
+            - if can?(:contacts, Team) || can?(:show, MemberStatus)
               %li.team-dropdown
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: true, expanded: false }}
                   = t("navbar.admin.header")
                   %span.caret
                 %ul.dropdown-menu
-                  %li= link_to t("navbar.admin.contacts"), contacts_team_path(@current_team)
+                  - if can? :contacts, Team
+                    %li= link_to t("navbar.admin.contacts"), contacts_team_path(@current_team)
+                  - if can? :show, MemberStatus
+                    %li= link_to t("navbar.admin.member_status"), team_member_status_index_path(@current_team)
           - if can? :index, User
             %li= link_to t("navbar.users"), users_path
           %li.dropdown
