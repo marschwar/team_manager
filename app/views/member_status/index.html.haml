@@ -1,4 +1,7 @@
-%h1= t(".headline", name: @team.name)
+- if @team
+  %h1= t(".headline", name: @team.name)
+- else
+  %h1= t(".headline_no_team")
 
 - [:unknown, :invalid, :valid].each do |status|
   - players = @status[status]
@@ -37,3 +40,18 @@
                 %span.glyphicon.glyphicon-ok-sign
               - else
                 %span.glyphicon.glyphicon-remove-sign
+
+- if can? :create, MemberStatus
+  .upload_staus.hidden-print
+    %h2= t('.upload.headline')
+    %p.muted= t('.upload.instructions_html')
+    = form_tag member_status_upload_path, class: 'form-inline', multipart: true do
+      .form-group
+        = label_tag 'upload[file]', 'File'
+        = file_field_tag 'upload[file]', :class => 'form-control'
+        = label_tag :dry_run, t('.upload.dry_run')
+        = check_box :upload, :dry_run, {class: 'form-control', checked: 'checked'}
+        %button.btn.btn-default{type: 'submit'}
+          %span.glyphicon.glyphicon-upload
+          = t('.actions.upload')
+

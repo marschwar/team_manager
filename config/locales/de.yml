@@ -187,6 +187,13 @@ de:
   member_status:
     index:
       headline: "Mitgliedsstatus der Spieler der %{name}"
+      headline_no_team: "Mitgliedsstatus aller Spieler"
+      upload:
+        headline: Abgleich des Mitgliedsstatus
+        instructions_html: |
+          Einmal pro Monat gibt es eine Datei vom Verein die alle Jugendspieler mit ihrem aktuellen Beitragstatus enthält
+          Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nachname;Vorname;Geburtstag;Zusatzbeitrag</code>.<br />Wenn Daten nicht vorhanden sind, dann einfach leer lassen, also z.B. <code>Peter;;;Abteilungsbeitrag Juniors inkl. Ausrüstung</code>
+        dry_run: Datei nur prüfen
       unknown:
         type: Unbekannt
         description: Entweder der Spieler war beim letzten Abgleich nicht im Verein oder sein Status konnte nicht automatisch ermittelt werden.
@@ -196,6 +203,19 @@ de:
       valid:
         type: Alles in Ordnung
         description: ""
+    upload:
+      no_match: Es konnte kein Spieler aus der Liste zugeordnet werden.
+      matches:
+        one: Ein Spieler wurde erfolgreich zugeordnet.
+        other: "%{count} Spieler wurden erfolgreich zugeordnet."
+      headline: Ergebnis des Mitgliederabgleich
+      header:
+        unmatched:
+          name: Spieler die nicht zugeordnet werden konnten
+          description: Dies sind Spieler die beim Verein bekannt sind, Beitäge zahlen aber in keiner der Teamlisten auftauchen. Wahrscheinlich hat der Spieler aufgehört und vergessen zu kündigen oder die Kündigung ist noch nicht durch.
+        unknown:
+          name: Spieler mit unbekanntem Mitgliedsstatus
+          description: Dies sind Spieler zwar in einer Teamliste auftauchen, aber noch beim Verein nicht bekannt sind. Vermutlich sind sie neu und noch nicht angemeldet. Bitte unbedingt prüfen.
   general:
     actions:
       cancel: Abbrechen

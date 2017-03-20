@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   post 'players/upload', controller: 'players', action: 'upload'
 
   resources :rental_equipments
+  resources :member_status, only: [:index]
+  post 'member_status/upload', controller: 'member_status', action: 'upload'
 
   resources :sessions, only: [:create]
   get '/logout', to: 'sessions#clear'

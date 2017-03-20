@@ -1,0 +1,55 @@
+%h1= t(".headline")
+
+- if @results[:matched].blank?
+  .alert.alert-danger{role: 'alert'}= t('.no_matches')
+- else
+  .alert.alert-success{role: 'success'}= t('.matches', count: @results[:matched].count)
+
+%h2= t(".header.unmatched.name")
+%p.muted= t('.header.unmatched.description')
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Player.human_attribute_name('last_name')
+      %th= Player.human_attribute_name('first_name')
+      %th= Player.human_attribute_name('birthday')
+      %th.text-center= MemberStatus.human_attribute_name('rental_equipment')
+  %tfoot
+    %tr
+      %td{colspan: 4}= t('misc.player_count', count: @results[:unmatched].count)
+  %tbody
+    - @results[:unmatched].each do |hash|
+      - data = hash[:data]
+      %tr
+        %td= data[:last_name]
+        %td= data[:first_name]
+        %td= data[:birthday]
+        %td= data[:rental_status]
+
+%h2= t(".header.unknown.name")
+%p.muted= t('.header.unknown.description')
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Player.human_attribute_name('last_name')
+      %th= Player.human_attribute_name('first_name')
+      %th= Team.human_attribute_name('name')
+      %th.text-center= Player.human_attribute_name('active_rental')
+  %tfoot
+    %tr
+      %td{colspan: 4}= t('misc.player_count', count: @results[:unknown].count)
+  %tbody
+    - @results[:unknown].each do |player|
+      %tr
+        %td
+          = link_to player.last_name, player_path(player), class: 'hidden-print'
+          %span.visible-print= player.last_name
+        %td
+          = link_to player.first_name, player_path(player), class: 'hidden-print'
+          %span.visible-print= player.first_name
+        %td= player.actual_team_name
+        %td.text-center
+          - if player.active_rental?
+            %span.glyphicon.glyphicon-ok-sign
+          - else
+            %span.glyphicon.glyphicon-remove-sign
