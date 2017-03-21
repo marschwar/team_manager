@@ -6,7 +6,7 @@
   .alert.alert-success{role: 'success'}= t('.matches', count: @results[:matched].count)
 
 %h2= t(".header.unmatched.name")
-%p.muted= t('.header.unmatched.description')
+%p.text-muted= t('.header.unmatched.description')
 %table.table.table-striped
   %thead
     %tr
@@ -27,7 +27,7 @@
         %td= data[:rental_status]
 
 %h2= t(".header.unknown.name")
-%p.muted= t('.header.unknown.description')
+%p.text-muted= t('.header.unknown.description')
 %table.table.table-striped
   %thead
     %tr

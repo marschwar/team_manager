@@ -1,6 +1,6 @@
 .container
   %h1= t('.headline')
-  %p.muted-text= t('.subheadline')
+  %p.text-muted= t('.subheadline')
   - if flash[:notice].present?
     .alert.alert-success= flash[:notice]
   %ul.nav.nav-tabs

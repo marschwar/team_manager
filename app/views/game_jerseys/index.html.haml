@@ -39,7 +39,7 @@
 - if can? :create, GameJersey
   .row.hidden-print
     %h2= t('.upload.headline')
-    %p.muted= t('.upload.instructions_html')
+    %p.text-muted= t('.upload.instructions_html')
     = form_tag team_game_jerseys_upload_path(@team), class: 'form-inline', multipart: true do
       .form-group
         = label_tag 'upload[file]', 'File'

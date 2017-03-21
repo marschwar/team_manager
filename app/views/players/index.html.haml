@@ -15,7 +15,7 @@
         %th= Player.human_attribute_name('last_name')
         %th= Player.human_attribute_name('first_name')
         %th= Player.human_attribute_name('position')
-        %th= Player.human_attribute_name('year_class') 
+        %th= Player.human_attribute_name('year_class')
     %tfoot
       %tr
         %td{colspan: 5}= t('misc.player_count', count: @players.count)
@@ -39,7 +39,7 @@
 - if @inactive_players.present?
   .inactive_players.hidden-print
     %br
-    %h2= t('.headline_inactive') 
+    %h2= t('.headline_inactive')
     %table.table.table-striped
       %thead
         %tr
@@ -56,7 +56,7 @@
 - if can? :create, Player
   .upload_player.hidden-print
     %h2= t('.upload.headline')
-    %p.muted= t('.upload.instructions_html')
+    %p.text-muted= t('.upload.instructions_html')
     = form_tag players_upload_path, class: 'form-inline', multipart: true do
       .form-group
         = label_tag :team_id

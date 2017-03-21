@@ -196,10 +196,10 @@ de:
           Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nachname;Vorname;Geburtstag;Zusatzbeitrag</code>.<br />Wenn Daten nicht vorhanden sind, dann einfach leer lassen, also z.B. <code>Peter;;;Abteilungsbeitrag Juniors inkl. Ausrüstung</code>
         dry_run: Datei nur prüfen
       unknown:
-        type: Unbekannt
+        type: Unbekannter Status
         description: Entweder der Spieler war beim letzten Abgleich nicht im Verein oder sein Status konnte nicht automatisch ermittelt werden.
       invalid:
-        type: Ungültig
+        type: Ungültiger Status
         description: Entweder der Spieler leiht aktuell eine Ausrüstung und zahlt dafür keine Leihgebühr oder umgekehrt.
       valid:
         type: Alles in Ordnung
