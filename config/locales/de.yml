@@ -45,6 +45,7 @@ de:
     admin:
       header: Adminstratives
       contacts: Kontakte
+      member_status: Mitgliedsstatus
   misc:
     player_count: "Insgesamt %{count} Spieler"
     current_date: "Stand: %{date}"
