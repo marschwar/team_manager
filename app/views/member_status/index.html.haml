@@ -2,12 +2,14 @@
   %h1= t(".headline", name: @team.name)
 - else
   %h1= t(".headline_no_team")
+- if @latest_import_date
+  %p.text-muted= t('misc.current_date', date: format_date(@latest_import_date))
 
 - [:unknown, :invalid, :valid].each do |status|
   - players = @status[status]
   - if players.present?
     %h2= t(".#{status}.type")
-    %p.muted= t(".#{status}.description")
+    %p.text-muted= t(".#{status}.description")
     %table.table.table-striped
       %thead
         %tr
@@ -44,7 +46,7 @@
 - if can? :create, MemberStatus
   .upload_staus.hidden-print
     %h2= t('.upload.headline')
-    %p.muted= t('.upload.instructions_html')
+    %p.text-muted= t('.upload.instructions_html')
     = form_tag member_status_upload_path, class: 'form-inline', multipart: true do
       .form-group
         = label_tag 'upload[file]', 'File'

@@ -14,6 +14,7 @@ class MemberStatusController < ApplicationController
       invalid: invalid_rental_status,
       valid: valid_status
     }
+    @latest_import_date = MemberStatus.latest_import_date
   end
 
   def upload
@@ -21,7 +22,7 @@ class MemberStatusController < ApplicationController
     flash[:error] = I18n.translate('players.index.upload.errors.file_missing') unless file
     redirect_to member_status_index_path and return if flash[:error]
 
-    players = Player.all.to_a
+    players = Player.all.includes(:member_status).to_a
 
     @results = {}.tap do |r|
       r[:matched] = []
@@ -39,7 +40,12 @@ class MemberStatusController < ApplicationController
       end
     end
 
-    persist_matches @results[:matched] unless dry_run?
+    unless dry_run?
+      persist_matches @results[:matched]
+      players.each do |player|
+        player.member_status.destroy if player.member_status.present?
+      end
+    end
   end
 
   private
