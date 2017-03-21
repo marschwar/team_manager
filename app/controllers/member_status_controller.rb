@@ -19,7 +19,7 @@ class MemberStatusController < ApplicationController
   def upload
     file = upload_file
     flash[:error] = I18n.translate('players.index.upload.errors.file_missing') unless file
-    redirect_to team_players_path(team) and return if flash[:error]
+    redirect_to member_status_index_path and return if flash[:error]
 
     players = Player.all.to_a
 
@@ -38,6 +38,8 @@ class MemberStatusController < ApplicationController
         @results[:unmatched] << {data: line}
       end
     end
+
+    persist_matches @results[:matched] unless dry_run?
   end
 
   private
@@ -60,4 +62,13 @@ class MemberStatusController < ApplicationController
       players.find { |p| p.matches?(line[:last_name], line[:first_name], birthday) }
     end
 
+    def persist_matches(matches)
+      matches.each do |match_hash|
+        player = match_hash[:player]
+        member_status = player.member_status || MemberStatus.new(player: player)
+        with_rental_fee = !!(match_hash[:data][:rental_status] =~ /Ausrüstung/)
+        member_status.rental_equipment = with_rental_fee
+        member_status.save
+      end
+    end
 end

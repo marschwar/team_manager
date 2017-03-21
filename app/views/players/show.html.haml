@@ -22,6 +22,11 @@
         - if @player.note.present?
           %dt= Player.human_attribute_name('note')
           %dd= @player.note
+      - if can? :show, MemberStatus
+        %dt= MemberStatus.model_name.human
+        %dd= t("general.boolean.#{@player.member_status.present?}")
+        %dt= MemberStatus.human_attribute_name('rental_equipment')
+        %dd= t("general.boolean.#{!!(@player.member_status.try(:rental_equipment))}")
 
   .col-sm-4
     .panel.panel-default

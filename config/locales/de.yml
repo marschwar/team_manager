@@ -219,6 +219,9 @@ de:
   general:
     actions:
       cancel: Abbrechen
+    boolean:
+      'true': Ja
+      'false': Nein
   shared:
     date: "Stand: %{date}"
 
@@ -232,6 +235,7 @@ de:
   activerecord:
     models:
       player: Spieler
+      member_status: Vereinsmitgliedschaft
       game_jersey:
         one: Spieljersey
         other: Spieljerseys
@@ -258,6 +262,9 @@ de:
         pants_size: Hosengröße
         licence: Passnummer
         note: Notizen
+        active_rental: Leihausrüstung
+      member_status:
+        rental_equipment: Zusatzbeitrag
       rental:
         inventory_number: Inventar-ID
         brand: Marke/Model
