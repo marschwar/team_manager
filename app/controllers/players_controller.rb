@@ -1,4 +1,6 @@
 class PlayersController < ApplicationController
+  include UploadSupport
+
   UPLOAD_ATTRIBUTES = %w(last_name first_name position birthday)
 
   load_and_authorize_resource
@@ -85,12 +87,10 @@ class PlayersController < ApplicationController
 
     case file.content_type
     when 'text/csv'
-      count = import_players file, team
-      if count
-        flash[:info] = "#{count} Spieler importiert"
-      else
-        flash[:error] = "error importing players"
+      count = import_file(file) do |data, raw|
+        import_player team, data, raw
       end
+      flash[:info] = "#{count} Spieler importiert"
     else
       flash[:error] = "unknown content type #{file.content_type}"
     end
@@ -121,24 +121,20 @@ private
       params[:upload][:file] if params[:upload][:file].present?
     end
 
-    def import_players(file, team)
-      file.read.gsub( /\r\n/, "\n" ).force_encoding('ISO-8859-1').split("\n").each do |line|
-        player_data = line.split(';')
-        next unless player_data.count > 1
-        player_attributes = {}
-        UPLOAD_ATTRIBUTES.each_with_index do |attr, idx|
-          player_attributes[attr.to_sym] = player_data[idx].encode('UTF-8') if player_data.count > idx
-        end
-        player = Player.find_or_create_by(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name])
-        player.update_attributes player_attributes
-        player.team_id = player.birthday && player.actual_team == team ? nil : team.id
-        player.save
+    def upload_attributes
+      UPLOAD_ATTRIBUTES
+    end
 
-        Contact.where(player: player).destroy_all
-        addresses = player_data.slice(UPLOAD_ATTRIBUTES.count, player_data.count - UPLOAD_ATTRIBUTES.count) || []
-        addresses.each do |email|
-          Contact.new(player: player, email: email).save
-        end
+    def import_player(team, player_attributes, player_data)
+      player = Player.find_or_create_by(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name])
+      player.update_attributes player_attributes
+      player.team_id = player.birthday && player.actual_team == team ? nil : team.id
+      player.save
+
+      Contact.where(player: player).destroy_all
+      addresses = player_data.slice(UPLOAD_ATTRIBUTES.count, player_data.count - UPLOAD_ATTRIBUTES.count) || []
+      addresses.each do |email|
+        Contact.new(player: player, email: email).save
       end
     end
 end
