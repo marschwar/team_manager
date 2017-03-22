@@ -1,5 +1,6 @@
 class GameJerseysController < ApplicationController
   include TeamScoped
+  include UploadSupport
 
   UPLOAD_ATTRIBUTES = %w(number size)
 
@@ -57,18 +58,16 @@ private
   end
 
   def import_jerseys(file)
-    file.read.gsub( /\r\n/, "\n" ).force_encoding('ISO-8859-1').split("\n").each do |line|
-      jersey_data = line.split(';')
-      next unless jersey_data.count > 0
-      jersey_attributes = {}
-      UPLOAD_ATTRIBUTES.each_with_index do |attr, idx|
-        jersey_attributes[attr.to_sym] = jersey_data[idx].encode('UTF-8')
-      end
+    import_file(file) do |jersey_attributes|
       jersey = GameJersey.find_or_create_by(number: jersey_attributes[:number], team_id: @team)
       jersey.update_attributes jersey_attributes
       jersey.team = @team
       jersey.save
     end
+  end
+
+  def upload_attributes
+    UPLOAD_ATTRIBUTES
   end
 
 end
