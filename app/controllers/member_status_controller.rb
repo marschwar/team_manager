@@ -1,6 +1,8 @@
 class MemberStatusController < ApplicationController
   include UploadSupport
 
+  load_and_authorize_resource
+
   before_filter :set_team, only: [:index]
 
   def index

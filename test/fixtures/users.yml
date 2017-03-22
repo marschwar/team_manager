@@ -11,6 +11,10 @@ manager:
   common_name: Manager
   role: manager
 
+headcoach:
+  common_name: Headcoach
+  role: headcoach
+
 admin:
   common_name: Admin
   role: admin
