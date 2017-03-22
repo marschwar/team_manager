@@ -11,6 +11,8 @@
   %table.table.table-striped
     %thead
       %tr
+        - if can? :show, MemberStatus
+          %th.hidden-print
         %th #
         %th= Player.human_attribute_name('last_name')
         %th= Player.human_attribute_name('first_name')
@@ -23,6 +25,10 @@
     %tbody
       - @players.each do |player|
         %tr
+          - if can? :show, MemberStatus
+            %td.hidden-print
+              - if player.needs_action?
+                %span.glyphicon.glyphicon-warning-sign
           %td= player.number
           %td
             = link_to player.last_name, player_path(player), class: 'hidden-print'

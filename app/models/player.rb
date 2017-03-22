@@ -62,4 +62,8 @@ class Player < ActiveRecord::Base
 		(matches_last && matches_birthday)
 	end
 
+	def needs_action?
+		member_status.blank?
+	end
+
 end
