@@ -17,7 +17,7 @@ module UploadSupport
 
       line_as_hash = {}
       upload_attributes.each_with_index do |attr, idx|
-        line_as_hash[attr.to_sym] = row_data[idx] if row_data.count > idx
+        line_as_hash[attr.to_sym] = row_data[idx].strip if row_data.count > idx
       end
 
       yield line_as_hash, row_data

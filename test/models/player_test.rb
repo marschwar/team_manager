@@ -30,4 +30,8 @@ class PlayerTest < ActiveSupport::TestCase
   test 'does not match player without name' do
     assert !Player.new(birthday: Date.today).matches?(nil, nil, Date.today)
   end
+
+  test 'does not match player with same first name only' do
+    assert !Player.new(last_name: 'foo', first_name: 'bar', birthday: Date.today).matches?('fofo', 'Bar', Date.today - 1)
+  end
 end

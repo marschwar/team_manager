@@ -31,10 +31,10 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= Player.human_attribute_name('last_name')
-      %th= Player.human_attribute_name('first_name')
-      %th= Team.human_attribute_name('name')
-      %th.text-center= Player.human_attribute_name('active_rental')
+      %th.col-md-4= Player.human_attribute_name('last_name')
+      %th.col-md-4= Player.human_attribute_name('first_name')
+      %th.col-md-2= Team.human_attribute_name('name')
+      %th.col-md-2.text-center= Player.human_attribute_name('active_rental')
   %tfoot
     %tr
       %td{colspan: 4}= t('misc.player_count', count: @results[:unknown].count)

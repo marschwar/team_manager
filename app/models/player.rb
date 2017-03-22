@@ -57,7 +57,7 @@ class Player < ActiveRecord::Base
 		matches_first = first_name && first_name.downcase == other_first_name.try(:downcase)
 		matches_birthday = birthday && birthday == other_birthday
 
-		(matches_first && matches_first) ||
+		(matches_first && matches_last) ||
 		(matches_first && matches_birthday) ||
 		(matches_last && matches_birthday)
 	end

@@ -29,22 +29,23 @@ class MemberStatusController < ApplicationController
     @results = {}.tap do |r|
       r[:matched] = []
       r[:unmatched] = []
-      r[:unknown] = players
     end
 
     import_file file do |line|
       player = find_matching_player players, line
       if player.present?
         @results[:matched] << {player: player, data: line}
-        players.delete player
       else
         @results[:unmatched] << {data: line}
       end
     end
 
+    matched_players = @results[:matched].map { |e| e[:player] }
+    @results[:unknown] = players - matched_players
+
     unless dry_run?
       persist_matches @results[:matched]
-      players.each do |player|
+      @results[:unknown].each do |player|
         player.member_status.destroy if player.member_status.present?
       end
     end
@@ -76,7 +77,7 @@ class MemberStatusController < ApplicationController
         member_status = player.member_status || MemberStatus.new(player: player)
         with_rental_fee = !!(match_hash[:data][:rental_status] =~ /Ausrüstung/)
         member_status.rental_equipment = with_rental_fee
-        member_status.save
+        member_status.save!
       end
     end
 end

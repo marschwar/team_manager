@@ -13,13 +13,13 @@
     %table.table.table-striped
       %thead
         %tr
-          %th= Player.human_attribute_name('last_name')
-          %th= Player.human_attribute_name('first_name')
-          %th.text-center= Player.human_attribute_name('active_rental')
-          %th.text-center= MemberStatus.human_attribute_name('rental_equipment')
+          %th.col-md-5= Player.human_attribute_name('last_name')
+          %th.col-md-5= Player.human_attribute_name('first_name')
+          %th.col-md-1.text-center= Player.human_attribute_name('active_rental')
+          %th.col-md-1.text-center= MemberStatus.human_attribute_name('rental_equipment')
       %tfoot
         %tr
-          %td{colspan: 5}= t('misc.player_count', count: players.count)
+          %td{colspan: 4}= t('misc.player_count', count: players.count)
 
       %tbody
         - players.each do |player|
