@@ -11,6 +11,10 @@ class PlayerTest < ActiveSupport::TestCase
     assert Player.new(last_name: 'Foo', first_name: 'Bar').matches?('FOO', 'BAR', Date.today)
   end
 
+  test 'matches player with first and last name with whitespace' do
+    assert Player.new(last_name: 'Foo ', first_name: ' Bar').matches?('FOO', 'BAR', Date.today)
+  end
+
   test 'matches player with all' do
     assert Player.new(last_name: 'Foo', first_name: 'Bar', birthday: Date.today).matches?('FOO', 'BAR', Date.today)
   end

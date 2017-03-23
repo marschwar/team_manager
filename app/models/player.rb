@@ -4,6 +4,8 @@ class Player < ActiveRecord::Base
 	POSITIONS = OFFENSE_POSITIONS + DEFENSE_POSITIONS
 	YEAR_CLASSES = %w(Sr Jr So Fr)
 
+	before_validation :strip_name_fields
+
 	has_many :participations, dependent: :destroy
 	has_many :contacts, dependent: :destroy
 	has_many :rentals, dependent: :destroy
@@ -53,8 +55,8 @@ class Player < ActiveRecord::Base
 	end
 
 	def matches?(other_last_name, other_first_name, other_birthday)
-		matches_last = last_name && last_name.downcase == other_last_name.try(:downcase)
-		matches_first = first_name && first_name.downcase == other_first_name.try(:downcase)
+		matches_last = last_name && last_name.downcase.strip == other_last_name.try(:downcase).strip
+		matches_first = first_name && first_name.downcase.strip == other_first_name.try(:downcase).strip
 		matches_birthday = birthday && birthday == other_birthday
 
 		(matches_first && matches_last) ||
@@ -65,5 +67,12 @@ class Player < ActiveRecord::Base
 	def needs_action?
 		member_status.blank?
 	end
+
+private
+	def strip_name_fields
+		last_name = last_name.strip unless last_name.blank?
+		first_name = first_name.strip unless first_name.blank?
+	end
+
 
 end
