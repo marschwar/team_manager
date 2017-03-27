@@ -56,8 +56,9 @@
       %tbody
         - @inactive_players.each do |player|
           %tr
-            - last_name = player.last_name.blank? ? '-' : player.last_name
-            = link_to last_name, player_path(player), class: 'hidden-print'
+            %td
+              - last_name = player.last_name.blank? ? '-' : player.last_name
+              = link_to last_name, player_path(player)
             %td= player.first_name
 
 
