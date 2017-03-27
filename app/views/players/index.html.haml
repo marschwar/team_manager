@@ -31,7 +31,8 @@
                 %span.glyphicon.glyphicon-warning-sign
           %td= player.number
           %td
-            = link_to player.last_name, player_path(player), class: 'hidden-print'
+            - last_name = player.last_name.blank? ? '-' : player.last_name
+            = link_to last_name, player_path(player), class: 'hidden-print'
             %span.visible-print= player.last_name
           %td
             = link_to player.first_name, player_path(player), class: 'hidden-print'
