@@ -40,12 +40,13 @@
       %td{colspan: 4}= t('misc.player_count', count: @results[:unknown].count)
   %tbody
     - @results[:unknown].each do |player|
-      %tr
+      - inactive_class = player.active ? '' : 'text-muted'
+      %tr{class: "#{inactive_class}"}
         %td
-          = link_to player.last_name, player_path(player), class: 'hidden-print'
+          = link_to player.last_name, player_path(player), class: "#{inactive_class} hidden-print"
           %span.visible-print= player.last_name
         %td
-          = link_to player.first_name, player_path(player), class: 'hidden-print'
+          = link_to player.first_name, player_path(player), class: "#{inactive_class} hidden-print"
           %span.visible-print= player.first_name
         %td= player.actual_team_name
         %td.text-center
