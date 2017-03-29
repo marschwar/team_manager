@@ -24,6 +24,15 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    team = @player.actual_team
+    if team
+      team_players = Player.of_team(team).active.sorted.to_a
+      idx = team_players.find_index { |a_player| a_player.id == @player.id}
+      if idx
+        @previous = team_players[idx - 1] if idx > 0
+        @next = team_players[idx + 1] if idx < team_players.count - 1
+      end
+    end
     @contact = Contact.new
   end
 

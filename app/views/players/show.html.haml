@@ -63,7 +63,7 @@
                   %span.glyphicon.glyphicon-edit
               = equipment_detail(equipment)
       %br
-.row
+.row.hidden-print
   .col-sm-12
     .actions
       - if @player.actual_team
@@ -74,3 +74,12 @@
         = link_to t('.actions.edit'), edit_player_path(@player), class: 'btn btn-primary'
       - if can? :destroy, @player
         = link_to t('.actions.destroy'), player_path(@player), class: 'btn btn-danger', data: {method: :delete, confirm: 'Are you sure?'}
+.row.hidden-print.mt-2
+  .col-xs-6
+    - if @previous
+      - full_name = @previous.full_name.blank? ? '-' : @previous.full_name
+      = link_to "<< #{full_name}", player_path(@previous)
+  .col-xs-6
+    - if @next
+      - full_name = @next.full_name.blank? ? '-' : @next.full_name
+      = link_to "#{full_name} >>", player_path(@next), class: 'pull-right'
