@@ -32,7 +32,7 @@ class MemberStatusController < ApplicationController
     end
 
     import_file file do |line|
-      player = find_matching_player players, line
+      player = find_best_matching_player players, line
       if player.present?
         @results[:matched] << {player: player, data: line}
       else
@@ -66,9 +66,14 @@ class MemberStatusController < ApplicationController
       %w(last_name first_name birthday rental_status)
     end
 
-    def find_matching_player(players, line)
+    def find_best_matching_player(players, line)
+      find_matching_players(players, line).first
+    end
+
+    def find_matching_players(players, line)
       birthday = Date.parse(line[:birthday]) if line[:birthday].present?
-      players.find { |p| p.matches?(line[:last_name], line[:first_name], birthday) }
+      candidates = players.select { |p| p.matches?(line[:last_name], line[:first_name], birthday) }
+      candidates.sort_by { |p| p.match_score(line[:last_name], line[:first_name], birthday) }.reverse
     end
 
     def persist_matches(matches)

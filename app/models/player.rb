@@ -55,13 +55,19 @@ class Player < ActiveRecord::Base
 	end
 
 	def matches?(other_last_name, other_first_name, other_birthday)
+		match_score(other_last_name, other_first_name, other_birthday) > 0
+	end
+
+	def match_score(other_last_name, other_first_name, other_birthday)
 		matches_last = last_name && last_name.downcase.strip == other_last_name.try(:downcase).strip
 		matches_first = first_name && first_name.downcase.strip == other_first_name.try(:downcase).strip
 		matches_birthday = birthday && birthday == other_birthday
 
-		(matches_first && matches_last) ||
-		(matches_first && matches_birthday) ||
-		(matches_last && matches_birthday)
+		score = 0
+		score += 3 if matches_first && matches_last
+		score += 2 if matches_last && matches_birthday
+		score += 2 if matches_first && matches_birthday
+		score
 	end
 
 	def needs_action?
