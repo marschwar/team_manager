@@ -29,7 +29,7 @@
             %td.hidden-print
               - if player.needs_action?
                 %span.glyphicon.glyphicon-warning-sign
-          %td= player.number
+          %td= player.actual_number
           %td
             - last_name = player.last_name.blank? ? '-' : player.last_name
             = link_to last_name, player_path(player), class: 'hidden-print'

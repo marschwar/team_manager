@@ -4,11 +4,13 @@ one:
   first_name: Number
   last_name: One
   birthday: 2000-02-15
+  number: 99
 
 two:
   first_name: Number
   last_name: Two
   birthday: 2001-02-15
+  number: 1
 
 three:
   first_name: Number

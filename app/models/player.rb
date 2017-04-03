@@ -37,6 +37,12 @@ class Player < ActiveRecord::Base
 		!!team_id
 	end
 
+	def actual_number
+		if number.present? && actual_team.present?
+			number if GameJersey.where(number: number, team: actual_team).present?
+		end
+	end
+
 	# In Ermangelung eines besseren Names. Dies ist der Jahrgang
 	def year_class
 		if birthday && actual_team

@@ -38,4 +38,18 @@ class PlayerTest < ActiveSupport::TestCase
   test 'does not match player with same first name only' do
     assert !Player.new(last_name: 'foo', first_name: 'bar', birthday: Date.today).matches?('fofo', 'Bar', Date.today - 1)
   end
+
+  test 'player has number' do
+    GameJersey.create!(number: 99, team: teams(:one))
+    assert_equal 99, players(:one).actual_number
+  end
+
+  test 'player has number not with team' do
+    GameJersey.create!(number: 99, team: teams(:two))
+    assert_nil players(:one).actual_number
+  end
+
+  test 'player has no number' do
+    assert_nil players(:three).actual_number
+  end
 end
