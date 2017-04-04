@@ -3,6 +3,8 @@ class Rental < ActiveRecord::Base
 
   belongs_to :player
 
+  before_validation :prepare_number
+
   validates_presence_of :type, :rental_date
   validate :rental_equipment_must_exist, :rental_equipment_may_not_be_taken
 
@@ -39,7 +41,7 @@ private
 
   def rental_equipment_may_not_be_taken
     if inventory_number.present?
-      rented_to = Rental.any_with_number(inventory_number).where('player_id <> ?', player_id)
+      rented_to = Rental.any_with_number(inventory_number).where('player_id <> ?', player_id).first
       if rented_to.present?
         errors.add(:inventory_number, "ist bereits an #{rented_to.player.full_name} verliehen")
       end
@@ -48,5 +50,9 @@ private
 
   def load_equipment
     RentalEquipment.with_number(inventory_number).first if inventory_number.present?
+  end
+
+  def prepare_number
+    self.inventory_number = self.inventory_number.strip.upcase unless self.inventory_number.blank?
   end
 end

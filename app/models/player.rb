@@ -82,9 +82,7 @@ class Player < ActiveRecord::Base
 
 private
 	def strip_name_fields
-		last_name = last_name.strip unless last_name.blank?
-		first_name = first_name.strip unless first_name.blank?
+		self.last_name = self.last_name.strip unless self.last_name.blank?
+		self.first_name = self.first_name.strip unless self.first_name.blank?
 	end
-
-
 end

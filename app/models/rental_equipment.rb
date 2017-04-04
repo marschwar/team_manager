@@ -2,6 +2,8 @@ class RentalEquipment < ActiveRecord::Base
 	FORMAT = /\A[HP]\d{4}\z/
 	TYPES = %w(PAD HELMET)
 
+	before_validation :prepare_number
+
 	validates :inventory_number, format: { with: RentalEquipment::FORMAT, message: "muss das Format [HP]1234 haben" }
   validates_uniqueness_of :inventory_number
 
@@ -29,4 +31,9 @@ class RentalEquipment < ActiveRecord::Base
 		@_player ||= Rental.with_number(inventory_number).try(:player)
 	end
 
+private
+
+	def prepare_number
+		number = number.strip.upcase unless number.blank?
+	end
 end
