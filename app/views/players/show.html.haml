@@ -18,6 +18,15 @@
       - if @player.licence.present?
         %dt= Player.human_attribute_name('licence')
         %dd= @player.licence
+      - if @player.participations.present?
+        %dt Trainingsbeteiligung
+        %dd
+          - %w(4 8 12 24).each do |offset|
+            - percentage = @player.participation_ratio(offset)
+            - level = percentage < 50 ? 'danger' : (percentage < 66 ? 'warning' : 'success')
+            %span.label{class: "label-#{level}", title: t("events.index_practice.filter.#{offset}_weeks")}
+              = number_to_percentage(percentage, precision: 1)
+            &nbsp;
       - if can? :read_note, @player
         - if @player.note.present?
           %dt= Player.human_attribute_name('note')
@@ -27,7 +36,7 @@
         %dd= t("general.boolean.#{@player.member_status.present?}")
         %dt= MemberStatus.human_attribute_name('rental_equipment')
         %dd= t("general.boolean.#{!!(@player.member_status.try(:rental_equipment))}")
-
+ 
   .col-sm-4
     .panel.panel-default
       .panel-heading
@@ -63,6 +72,7 @@
                   %span.glyphicon.glyphicon-edit
               = equipment_detail(equipment)
       %br
+
 .row.hidden-print
   .col-sm-12
     .actions

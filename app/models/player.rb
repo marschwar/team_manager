@@ -80,9 +80,23 @@ class Player < ActiveRecord::Base
 		member_status.blank?
 	end
 
+	def participation_ratio(weeks)
+		cutoff_date = weeks_ago_to_date weeks
+		events_last_weeks = participations
+			.includes(:event)
+			.select { |p| p.event.event_date >= cutoff_date }
+		return if events_last_weeks.blank?
+		participation_count = events_last_weeks.count(&:participated)
+		100.0 * participation_count / events_last_weeks.size
+	end
+
 private
 	def strip_name_fields
 		self.last_name = self.last_name.strip unless self.last_name.blank?
 		self.first_name = self.first_name.strip unless self.first_name.blank?
 	end
+
+  def weeks_ago_to_date(weeks)
+    weeks.to_i.weeks.ago.to_date
+  end	
 end
