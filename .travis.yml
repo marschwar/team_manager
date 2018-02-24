@@ -1,0 +1,10 @@
+language: ruby
+sudo: false
+
+rvm:
+  - 2.3.3
+env:
+  - DB=sqlite
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake test
