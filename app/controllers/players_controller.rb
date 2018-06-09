@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   include UploadSupport
 
-  UPLOAD_ATTRIBUTES = %w(last_name first_name position birthday)
+  UPLOAD_ATTRIBUTES = %w(number last_name first_name position birthday licence)
 
   load_and_authorize_resource
 

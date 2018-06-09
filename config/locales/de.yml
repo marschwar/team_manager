@@ -73,7 +73,7 @@ de:
       player_count: Insgesamt %{count} Spieler
       upload:
         headline: Spielerliste importieren
-        instructions_html: Anstatt alle Spieler einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nachname;Vorname;Geburtstag;Position;Email-Adresse1;Email-Adresse2</code>.<br />Wenn Daten nicht vorhanden sind, dann einfach leer lassen, also z.B. <code>Peter;;;OL;</code>
+        instructions_html: Anstatt alle Spieler einzeln anzulegen, kannst du auch eine Liste in Excel erstellen und diese hochladen. Wichtig dabei ist, dass sie genau dieser Form entspricht. <code>Nummer;Nachname;Vorname;Geburtstag;Position;Passnummer;Email-Adresse1;Email-Adresse2</code>.<br />Wenn Daten nicht vorhanden sind, dann einfach leer lassen, also z.B. <code>Peter;;;OL;</code>
         prompt: Team wählen
         errors:
           team_missing: Bitte wähle das Team aus

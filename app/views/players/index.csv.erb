@@ -1,4 +1,4 @@
-<%= Player.human_attribute_name('last_name') %>;<%= Player.human_attribute_name('first_name') %>;<%= Player.human_attribute_name('position') %>;<%= Player.human_attribute_name('birthday') %>
+<%= Player.human_attribute_name('number') %>;<%= Player.human_attribute_name('last_name') %>;<%= Player.human_attribute_name('first_name') %>;<%= Player.human_attribute_name('position') %>;<%= Player.human_attribute_name('birthday') %>;<%= Player.human_attribute_name('licence') %>
 <% @players.each do |player| %>
-<%= player.last_name %>;<%= player.first_name %>;<%= player.position %>;<%= format_date player.birthday %><% player.contacts.each do |contact| %>;<%= contact.email %><% end %>
+<%= player.number %>;<%= player.last_name %>;<%= player.first_name %>;<%= player.position %>;<%= format_date player.birthday %>;<%= player.licence %><% player.contacts.each do |contact| %>;<%= contact.email %><% end %>
 <% end %>
