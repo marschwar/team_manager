@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170319220410) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contacts", force: :cascade do |t|
     t.integer  "player_id",   null: false
     t.string   "email",       null: false
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170319220410) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "participations", ["event_id", "player_id"], name: "index_participations_on_event_id_and_player_id", unique: true
+  add_index "participations", ["event_id", "player_id"], name: "index_participations_on_event_id_and_player_id", unique: true, using: :btree
 
   create_table "players", force: :cascade do |t|
     t.integer  "team_id"
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 20170319220410) do
     t.string   "serial_number"
   end
 
-  add_index "rental_equipments", ["inventory_number"], name: "index_rental_equipments_on_inventory_number", unique: true
+  add_index "rental_equipments", ["inventory_number"], name: "index_rental_equipments_on_inventory_number", unique: true, using: :btree
 
   create_table "rentals", force: :cascade do |t|
     t.integer  "player_id",        null: false
@@ -93,8 +96,8 @@ ActiveRecord::Schema.define(version: 20170319220410) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "team_equipments", force: :cascade do |t|
     t.integer  "team_id"
