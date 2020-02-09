@@ -263,6 +263,7 @@ de:
         number: Spielernummer
         pants_size: Hosengröße
         licence: Passnummer
+        member_since: Mitglied seit
         note: Notizen
         active_rental: Leihausrüstung
       member_status:

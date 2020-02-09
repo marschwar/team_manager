@@ -58,6 +58,12 @@
         .controls
           = f.text_field :licence, :class => 'form-control', autocomplete: :off
     .col-sm-5.col-sm-offset-1
+      .form-group{class: "#{'has-error' if @player.errors[:member_since].present?}"}
+        = f.label :member_since, :class => 'control-label'
+        .controls
+          = f.date_field :member_since, :class => 'form-control', maxlength: 100, autocomplete: :off
+  .row
+    .col-sm-5
       .form-group{class: "#{'has-error' if @player.errors[:team].present?}"}
         %label
           = f.check_box :team_overwritten

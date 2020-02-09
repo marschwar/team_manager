@@ -114,7 +114,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      my_params = params.require(:player).permit(:active, :first_name, :last_name, :birthday, :place_of_birth, :position, :number, :team_id, :team_overwritten, :pants_size, :licence, :note)
+      my_params = params.require(:player).permit(:active, :first_name, :last_name, :birthday, :place_of_birth, :position, :number, :team_id, :team_overwritten, :pants_size, :licence, :member_since, :note)
       my_params[:team_id] = nil if my_params[:team_overwritten] == '0'
       my_params.delete :team_overwritten
       my_params

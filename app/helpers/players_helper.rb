@@ -3,6 +3,10 @@ module PlayersHelper
     format_date person.birthday
   end
 
+  def membership_date_of(person)
+    format_date person.member_since
+  end
+
   def year_class_element(player)
     year_class_element_for_year player.year_class if player.year_class
   end
