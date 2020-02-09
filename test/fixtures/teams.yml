@@ -6,6 +6,6 @@ one:
   year_until: '2003'
 
 two:
-  name: 'One'
+  name: 'Two'
   year_from: '2004'
   year_until: '2007'

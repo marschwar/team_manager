@@ -3,8 +3,8 @@ require 'test_helper'
 class PlayerTest < ActiveSupport::TestCase
 
   test 'finds player with team' do
-    expected = [players(:two), players(:one)]
-    assert_equal expected, Player.of_team(teams(:one)).to_a
+    expected = [players(:two), players(:one)].to_set
+    assert_equal expected, Player.of_team(teams(:one)).to_set
   end
 
   test 'matches player with first and last name' do
