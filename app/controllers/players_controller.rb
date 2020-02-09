@@ -135,6 +135,9 @@ private
     end
 
     def import_player(team, player_attributes, player_data)
+
+      return if player_attributes[:last_name] == Player.human_attribute_name('last_name')
+
       player = Player.find_or_create_by(first_name: player_attributes[:first_name], last_name: player_attributes[:last_name])
       player.update_attributes player_attributes
       player.team_id = player.birthday && player.actual_team == team ? nil : team.id
