@@ -256,6 +256,7 @@ de:
         last_name: Nachname
         first_name: Vorname
         birthday: Geburtstag
+        place_of_birth: Geburtsort
         position: Position
         year_class: Jahrgang
         team_overwritten: Team überschrieben

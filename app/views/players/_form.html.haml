@@ -25,11 +25,16 @@
         .controls
           = f.text_field :last_name, :class => 'form-control', maxlength: 100, autocomplete: :off
   .row
-    .col-sm-5
+    .col-sm-2
       .form-group{class: "#{'has-error' if @player.errors[:birthday].present?}"}
         = f.label :birthday, :class => 'control-label'
         .controls
           = f.date_field :birthday, :class => 'form-control', maxlength: 100, autocomplete: :off
+    .col-sm-3
+      .form-group{class: "#{'has-error' if @player.errors[:place_of_birth].present?}"}
+        = f.label :place_of_birth, :class => 'control-label'
+        .controls
+          = f.text_field :place_of_birth, :class => 'form-control', maxlength: 100, autocomplete: :off
     .col-sm-5.col-sm-offset-1
       .form-group{class: "#{'has-error' if @player.errors[:position].present?}"}
         = f.label :position, :class => 'control-label'

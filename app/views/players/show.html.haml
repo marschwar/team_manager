@@ -9,7 +9,10 @@
   .col-sm-4
     %dl
       %dt= Player.human_attribute_name('birthday')
-      %dd= birthday_of(@player)
+      %dd 
+        = birthday_of(@player)
+        - if @player.place_of_birth
+          = " / #{@player.place_of_birth}"
       %dt= Player.human_attribute_name('position')
       %dd= @player.position
       - if @player.pants_size.present?
