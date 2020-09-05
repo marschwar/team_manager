@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'rental', to: 'rentals#index'
 
   resources :players do
-    resources :contacts, only: [:create, :destroy]
+    resources :contacts, except: [:show]
     resources :rentals, only: [:new, :create, :edit, :update, :destroy]
     resources :helmets, controller: 'rentals', type: 'Helmet'
     resources :pads, controller: 'rentals', type: 'Pad'

@@ -62,7 +62,7 @@ de:
       by_year:
         headline: Spieler pro Jahrgang
     contacts:
-      headline: "%{name} Kontaktadressen"
+      headline: "%{name} Kontakte"
     by_year:
       headline: "Spieler der %{name} nach Jahrgang"
   players:
@@ -84,7 +84,7 @@ de:
         download: Herunterladen
     show:
       inactive: (inaktiv)
-      contacts: Kontaktadressen
+      contacts: Kontakte
       contact:
         email:
           placeholder: Email Adresse
@@ -103,6 +103,12 @@ de:
         hint: Aktiviere diese Checkbox und wähle das Team des Spielers wenn du den Geburtstag nicht kennst oder aber der Spieler eigentlich noch zu jung für das Team ist in dem er spielt.
       note:
         hint: Diese Notizen sind nur für die Headcoaches gedacht und können auch von niemandem sonst gelesen werden.
+    actions:
+      save: Speichern
+  contacts:
+    new:
+    edit:
+      headline: Kontakt bearbeiten
     actions:
       save: Speichern
   events:
@@ -266,6 +272,10 @@ de:
         member_since: Mitglied seit
         note: Notizen
         active_rental: Leihausrüstung
+      contact:
+        description: Name oder Funktion
+        email: E-Mail Adresse
+        phone: Telefon
       member_status:
         rental_equipment: Zusatzbeitrag
       rental:

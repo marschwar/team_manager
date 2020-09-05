@@ -1,8 +1,8 @@
 class ContactsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_player, only: [:create, :destroy]
-  before_action :set_contact, only: [:destroy]
+  before_action :set_player
+  before_action :set_contact, only: [:edit, :destroy]
 
   def create
     @contact = Contact.new contact_params
@@ -18,6 +18,17 @@ class ContactsController < ApplicationController
     redirect_to @player    
   end
 
+  def edit    
+  end
+
+  def update
+    if @contact.update(contact_params)
+      redirect_to @player, notice: 'Contact was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
 private
   def set_player
     @player = Player.find params[:player_id]
@@ -28,7 +39,7 @@ private
   end
 
   def contact_params
-    params.require(:contact).permit(:email, :description)
+    params.require(:contact).permit(:description, :email, :phone)
   end
 
 end

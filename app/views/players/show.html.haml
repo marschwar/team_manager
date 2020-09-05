@@ -47,20 +47,27 @@
   .col-sm-4
     .panel.panel-default
       .panel-heading
-        %h3.panel-title= t('.contacts')
+        %h3.panel-title
+          - if can? :create, Contact
+            %a{href: "#{new_player_contact_path @player}", class: 'pull-right'}
+              %span.glyphicon.glyphicon-plus
+          = t('.contacts')
       %ul.list-group
         - @player.contacts.each do |contact|
           %li.list-group-item
             - if can? :destroy, contact
               %a{href: "#{player_contact_path @player, contact}", class: 'pull-right', data: {method: :delete, confirm: 'Are you sure?'}}
+                &nbsp;
                 %span.glyphicon.glyphicon-trash
-            = contact.email
-    - if can? :create, Contact
-      = form_for [@player, @contact], :html => { :class => 'form-inline' }  do |f|
-        .form-group
-          = f.text_field :email, type: 'email', class: 'form-control', maxlength: 100, size: 25, placeholder: t('.contact.email.placeholder')
-        %button.btn.btn-default{type: 'submit'}
-          %span.glyphicon.glyphicon-plus
+            - if can? :update, contact
+              %a{href: "#{edit_player_contact_path @player, contact}", class: 'pull-right'}
+                %span.glyphicon.glyphicon-edit
+            - if contact.description
+              .item= contact.description
+            - if contact.email
+              .item= contact.email
+            - if contact.phone
+              .item= contact.phone
     %br
   - if can? :show, Rental
     .col-sm-4

@@ -1,0 +1,30 @@
+= form_for [@player, @contact], :html => { class: 'form-horizontal', autocomplete: :off } do |f|
+  - if @contact.errors.any?
+    .row
+      #error_explanation
+        %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this player from being saved:"
+        %ul
+          - @contact.errors.full_messages.each do |msg|
+            %li= msg
+
+  .row
+    .col
+      .form-group{class: "#{'has-error' if @contact.errors[:description].present?}"}
+        = f.label :description, :class => 'control-label'
+        .controls
+          = f.text_field :description, :class => 'form-control', maxlength: 100, autocomplete: :off
+  .row
+    .col
+      .form-group{class: "#{'has-error' if @contact.errors[:email].present?}"}
+        = f.label :email, :class => 'control-label'
+        .controls
+          = f.text_field :email, type: 'email', :class => 'form-control', maxlength: 100, autocomplete: :off
+  .row
+    .col
+      .form-group{class: "#{'has-error' if @contact.errors[:phone].present?}"}
+        = f.label :phone, :class => 'control-label'
+        .controls
+          = f.text_field :phone, :class => 'form-control', maxlength: 100, autocomplete: :off
+  .row
+    .col-sm-11.actions.form-group
+      = f.submit t('contacts.actions.save'), class: 'btn btn-primary'
