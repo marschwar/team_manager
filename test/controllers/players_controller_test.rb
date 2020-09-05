@@ -19,31 +19,31 @@ class PlayersControllerTest < ActionController::TestCase
 
   test "should create player" do
     assert_difference('Player.count') do
-      post :create, player: { first_name: 'first', last_name: 'last' }
+      post :create, params: { player: { first_name: 'first', last_name: 'last' } }
     end
 
     assert_redirected_to player_path(assigns(:player))
   end
 
   test "should show player" do
-    get :show, id: @player
+    get :show, params: {id: @player}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @player
+    get :edit, params: {id: @player}
     assert_response :success
   end
 
   test "should update player" do
-    patch :update, id: @player, player: { first_name: 'first', last_name: 'last' }
+    patch :update, params: {id: @player, player: { first_name: 'first', last_name: 'last' }}
     assert_redirected_to player_path(assigns(:player))
   end
 
   test "should destroy player" do
     with_user :admin
     assert_difference('Player.count', -1) do
-      delete :destroy, id: @player
+      delete :destroy, params: {id: @player}
     end
 
     assert_redirected_to team_players_path(Team.first)

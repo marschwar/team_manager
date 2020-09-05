@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :redirect_to_startpage
+  skip_before_action :redirect_to_startpage
   
   def create
     user = auth_service.handle_auth_success auth_hash

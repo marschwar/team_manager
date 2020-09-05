@@ -1,4 +1,4 @@
-class Rental < ActiveRecord::Base
+class Rental < ApplicationRecord
   TYPES = ['Helmet', 'Pad']
 
   belongs_to :player

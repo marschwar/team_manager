@@ -3,7 +3,7 @@ class MemberStatusController < ApplicationController
 
   load_and_authorize_resource
 
-  before_filter :set_team, only: [:index]
+  before_action :set_team, only: [:index]
 
   def index
     scope = @team ? Player.of_team(@team) : Player.all

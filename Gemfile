@@ -3,7 +3,7 @@ ruby "2.5.3"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.2.0'
 
 gem 'activerecord-session_store'
 
@@ -14,7 +14,7 @@ gem "bootstrap-sass", ">= 3.4.1"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 5.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -53,12 +53,12 @@ end
 
 group :test do
   gem 'mocha'
+  gem 'rails-controller-testing'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'quiet_assets'
 end
 
 group :production do

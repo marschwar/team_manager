@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class Contact < ApplicationRecord
 
   before_validation :strip_email_address
 

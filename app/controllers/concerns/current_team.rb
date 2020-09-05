@@ -2,7 +2,7 @@ module CurrentTeam
   extend ActiveSupport::Concern
 
   included do
-    before_filter :check_for_team
+    before_action :check_for_team
   end
 
   def current_team

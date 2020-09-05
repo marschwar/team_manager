@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base
+class Player < ApplicationRecord
 	OFFENSE_POSITIONS = %w(QB RB WR OL TE)
 	DEFENSE_POSITIONS = %w(DL LB CB S)
 	POSITIONS = OFFENSE_POSITIONS + DEFENSE_POSITIONS

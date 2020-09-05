@@ -1,4 +1,4 @@
-class MemberStatus < ActiveRecord::Base
+class MemberStatus < ApplicationRecord
    belongs_to :player
 
    def self.latest_import_date

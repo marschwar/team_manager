@@ -1,4 +1,4 @@
-class RentalEquipment < ActiveRecord::Base
+class RentalEquipment < ApplicationRecord
 	FORMAT = /\A[HP]\d{4}\z/
 	TYPES = %w(PAD HELMET)
 

@@ -1,4 +1,4 @@
-class TeamEquipment < ActiveRecord::Base
+class TeamEquipment < ApplicationRecord
   SIZES = %w(XXS XS S M L XL XXL XXXL)
 
   validates_presence_of :team_id

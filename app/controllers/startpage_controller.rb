@@ -1,6 +1,6 @@
 class StartpageController < ApplicationController
 
-  skip_before_filter :redirect_to_startpage, only: [:show]
+  skip_before_action :redirect_to_startpage, only: [:show]
 
   def show
     if current_team

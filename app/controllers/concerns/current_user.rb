@@ -2,7 +2,7 @@ module CurrentUser
   extend ActiveSupport::Concern
 
   included do
-    before_filter :check_for_user
+    before_action :check_for_user
   end
 
   def current_user

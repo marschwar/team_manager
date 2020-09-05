@@ -2,7 +2,7 @@ module TeamScoped
   extend ActiveSupport::Concern
 
   included do
-    before_filter :set_team
+    before_action :set_team
   end
 
   def set_team
