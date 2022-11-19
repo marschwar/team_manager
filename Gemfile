@@ -3,7 +3,7 @@ ruby "2.5.3"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0'
 
 gem 'activerecord-session_store'
 
@@ -45,6 +45,8 @@ gem 'cancancan'
 gem 'puma'
 gem 'lograge'
 
+gem 'pg', '~> 1.1'
+
 group :development, :test do
   gem 'byebug'
 end
@@ -60,7 +62,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '~> 0.18'
   # see https://devcenter.heroku.com/articles/rails4
   gem 'rails_12factor'
 end
