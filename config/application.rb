@@ -17,6 +17,8 @@ module TeamManger
     # in config/environments, which are processed later.
     #
     config.time_zone = 'Europe/Berlin'
+    config.i18n.default_locale = :de
+    
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
