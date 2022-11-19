@@ -44,6 +44,7 @@ gem 'cancancan'
 # multi threaded webserver
 gem 'puma'
 gem 'lograge'
+gem 'listen'
 
 gem 'pg', '~> 1.1'
 
