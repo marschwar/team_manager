@@ -6,8 +6,9 @@
 
 - if @current_user
   %h2= t('.salutation', name: @current_user.common_name)
+  = link_to "Logout", logout_path, class: "btn btn-lg btn-primary"
 - else
-  %a{href: '/auth/facebook'}
-    = image_tag 'social/128/facebook.jpg', title: 'Facebook', class: 'img-rounded'
-  %a{href: '/auth/twitter'}
-    = image_tag 'social/128/twitter.jpg', title: 'Twitter', class: 'img-rounded'
+  = button_to "Twitter Login", "/auth/twitter2", method: :post, class: "btn btn-lg btn-primary"
+  - if Rails.env.development?
+    = button_to "Dev Login", "/auth/developer", method: :post, class: "btn btn-lg btn-secondary"
+  

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.5.3"
+ruby "3.0.4"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,8 +37,8 @@ gem 'jbuilder'
 gem 'haml-rails'
 
 gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-twitter2"
 gem 'cancancan'
 
 # multi threaded webserver
@@ -66,5 +66,3 @@ group :production do
   # see https://devcenter.heroku.com/articles/rails4
   gem 'rails_12factor'
 end
-
-

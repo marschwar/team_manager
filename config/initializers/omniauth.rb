@@ -1,5 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-  	scope: 'email,public_profile'
-  provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+  provider :developer if Rails.env.development?
+  provider :twitter2, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'], callback_path: '/auth/twitter2/callback', scope: "tweet.read users.read"
 end

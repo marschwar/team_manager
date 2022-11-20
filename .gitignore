@@ -16,3 +16,5 @@
 *.sqlite
 .env
 /.byebug_history
+
+/config/master.key

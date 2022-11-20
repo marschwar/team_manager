@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token, only: :create
   skip_before_action :redirect_to_startpage
   
   def create

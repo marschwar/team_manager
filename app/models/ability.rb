@@ -29,7 +29,7 @@ private
     def manager
       staff
 
-      can [:read, :create, :edit, :update], Player
+      can [:read, :create, :edit, :update, :upload], Player
       can [:select, :depth_chart, :contacts, :by_year], Team
       can :manage, Event
       can :manage, Contact
