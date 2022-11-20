@@ -60,7 +60,7 @@ private
   def import_jerseys(file)
     import_file(file) do |jersey_attributes|
       jersey = GameJersey.find_or_create_by(number: jersey_attributes[:number], team_id: @team)
-      jersey.update_attributes jersey_attributes
+      jersey.update jersey_attributes
       jersey.team = @team
       jersey.save
     end

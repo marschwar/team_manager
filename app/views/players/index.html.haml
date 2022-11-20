@@ -61,7 +61,7 @@
             %td= player.first_name
 
 
-- if can? :create, Player
+- if can? :upload, Player
   .upload_player.hidden-print
     %h2= t('.upload.headline')
     %p.text-muted= t('.upload.instructions_html')
