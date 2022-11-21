@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :redirect_to_startpage
   before_action :load_teams
   before_action :set_locale
-  before_action :force_https
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -30,10 +29,6 @@ private
     redirect_to root_path unless @current_user.present?
   end
 
-  def force_https
-    force_ssl_redirect if Rails.env.production?
-  end
-  
   def load_teams
   	@all_teams = all_teams
   end
